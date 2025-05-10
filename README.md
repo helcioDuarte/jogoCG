@@ -1,6 +1,10 @@
 
 # Game Design Document - Loud Depression
----
+## Grupo 1 - Integrantes
+- Helcio Duarte Dantas
+- Pedro Henrique Silva de Albuquerque
+- Rafael França de Araujo
+- Rafael Vieira da Silva
 ## Core Gameplay
 
 - Andar
@@ -30,8 +34,11 @@
 - Trenchbroom (Mapa)
 ### Técnicas
 - Iluminação e Sombras em Tempo Real
+    - Utilizado na lanterna e em outros pontos de iluminação que haverá no mapa.
 - Sistemas de Partículas
+    - Utilizado na interação das armas com o ambiente (faiscas ao bater em paredes) e ao acertar inimigos.
 - Visualização de IA
+    - Utilziado na segunda fase (segundo andar), onde o chefe conseguirá realizar path fiding para o jogador caso esteja em seu campo de visão.
 
 ## Fases
 O mapa consiste em diversas áreas da faculdade com inimigos espalhados, separados por andar e bloco, nem todas as partes estarão desbloqueadas desde o começo.
@@ -80,7 +87,7 @@ O jogador deverá resolver diversos puzzles para desbloquear áreas novas do map
 O jogo não apresentará sistema de pontuação
 
 ## Game Over/Continue
-O jogo apresentará pontos de salvamento (banheiro) onde o jogador poderá salvar seu progresso, ao morrer o último salvamento será carregado.
+O jogo apresentará pontos de salvamento (banheiro de cada andar) onde o jogador poderá salvar seu progresso, ao morrer o último salvamento será carregado.
 
 ## Vida/Mana/Níveis
 O jogador possuirá vida e estamina que não serão visíveis durante o jogo, haverão indicativos visuais de que elas estão baixas. A vida poderá ser recuperada utilizando kits médicos, a estamina se recuperará automaticamente quando não estiver correndo nem batendo.
