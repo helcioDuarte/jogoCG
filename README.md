@@ -37,8 +37,9 @@
     - Utilizado na lanterna e em outros pontos de iluminação que haverá no mapa.
 - Sistemas de Partículas
     - Utilizado na interação das armas com o ambiente (faiscas ao bater em paredes) e ao acertar inimigos.
-- Visualização de IA
-    - Utilziado na segunda fase (segundo andar), onde o chefe conseguirá realizar path fiding para o jogador caso esteja em seu campo de visão.
+- Inventário
+    - Utilizado para gerenciar os itens coletados pelo jogador, permitindo o uso e a troca de armas.
+    - Itens coletáveis brilharão quando o jogador estiver próximo.
 
 ## Fases
 O mapa consiste em diversas áreas da faculdade com inimigos espalhados, separados por andar e bloco, nem todas as partes estarão desbloqueadas desde o começo.
