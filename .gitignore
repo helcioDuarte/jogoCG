@@ -1,0 +1,15 @@
+# Godot 4+ specific ignores
+.godot/
+/android/
+
+# tbloader
+addons
+# trenchbroom autosave
+autosave
+
+# Godot files
+project.godot
+.editorconfig
+icon.svg
+*.tmp
+*.import
