@@ -8,7 +8,6 @@ addons
 autosave
 
 # Godot files
-project.godot
 .editorconfig
 icon.svg
 *.tmp
