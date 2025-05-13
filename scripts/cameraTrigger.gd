@@ -8,9 +8,9 @@ func enter(body):
 
 func leave(body):
 	if body.name == "player":
-		inside = true
+		inside = false
 		
 func _process(_delta: float) -> void:
 	if inside && get_parent().current != true:
-		get_parent().current = true # change the camera
+		get_parent().set_camera() # change the camera
 		$"../../../player".switch_camera() # update camera on player
