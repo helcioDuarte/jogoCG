@@ -1,8 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://rxinvobacirt"]
+[gd_scene load_steps=6 format=3 uid="uid://rxinvobacirt"]
 
 [ext_resource type="Script" uid="uid://da7dnp2drds5i" path="res://scripts/player.gd" id="1_merdl"]
+[ext_resource type="Texture2D" uid="uid://ddce2xjng1slm" path="res://icon.svg" id="2_b0kkn"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_b0kkn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e4p34"]
+albedo_texture = ExtResource("2_b0kkn")
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_e4p34"]
 
@@ -13,4 +17,6 @@ script = ExtResource("1_merdl")
 shape = SubResource("CapsuleShape3D_b0kkn")
 
 [node name="model" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_e4p34")
 mesh = SubResource("CapsuleMesh_e4p34")
