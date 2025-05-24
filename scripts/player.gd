@@ -1,8 +1,13 @@
 extends CharacterBody3D
 
 @export var speed = 5.0
+@export var sprint_multiplier = 2.0
 
 @onready var camera_node = get_viewport().get_camera_3d() 
+
+var armas = ["nada", "cano", "faca"]
+var armaIndex = 0
+var vida = 100
 
 var current_input_dir = Vector2.ZERO
 var last_frame_input_dir = Vector2.ZERO
@@ -10,11 +15,55 @@ var active_world_movement_direction = Vector3.ZERO
 
 var _camera_was_just_switched = false
 
+func handle_inventory_input():
+	if Input.is_action_just_pressed("open_inventory"):
+		var inventory_panel = $InventoryPanel
+		if !is_instance_valid(inventory_panel):
+			return
+		inventory_panel.visible = not inventory_panel.visible
+		# pause
+		Engine.time_scale = 0 if inventory_panel.visible else 1
+		if inventory_panel.visible:
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		else:
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		
+		get_viewport().set_input_as_handled() # Evita que o input seja processado por outros nós
+
+func handle_inventory_open():
+	var inventory_panel = $InventoryPanel
+	if !inventory_panel.visible:
+		return
+	if Input.is_action_just_pressed("left"):
+		armaIndex = (armaIndex + 1) % len(armas)
+		$InventoryPanel/arma.text = "Arma atual: " + armas[armaIndex]
+	elif Input.is_action_just_pressed("right"):
+		armaIndex = (armaIndex - 1) % len(armas)
+		$InventoryPanel/arma.text = "Arma atual: " + armas[armaIndex]
+	
+	if Input.is_action_just_pressed("front"):
+		if vida < 100:
+			vida += 10
+	elif Input.is_action_just_pressed("back"):
+		if vida > 0:
+			vida -= 10
+		if vida == 0:
+			get_tree().quit()
+	if vida >= 75:
+		$InventoryPanel/vida.text = "vida: boa" 
+	elif vida >= 50:
+		$InventoryPanel/vida.text = "vida: mais ou menos"
+	elif vida <= 50:
+		$InventoryPanel/vida.text = "vida: ruim"
+
 func switch_camera():
 	camera_node = get_viewport().get_camera_3d()
 	_camera_was_just_switched = true
 
 func _physics_process(delta: float):
+	handle_inventory_input()
+	handle_inventory_open()
+	
 	current_input_dir = Input.get_vector("left", "right", "front", "back")
 
 	var new_calculated_direction_from_camera = Vector3.ZERO
@@ -53,10 +102,11 @@ func _physics_process(delta: float):
 
 	_camera_was_just_switched = false
 	last_frame_input_dir = current_input_dir
-
+	
+	var current_speed = speed * sprint_multiplier if Input.is_action_pressed("sprint") else speed
 	# Aplica o movimento
 	if active_world_movement_direction != Vector3.ZERO:
-		velocity = active_world_movement_direction * speed
+		velocity = active_world_movement_direction * current_speed
 	else:
 		# Sem direção ativa, para imediatamente.
 		velocity = Vector3.ZERO # <--- PARADA IMEDIATA
