@@ -5,8 +5,8 @@ extends CharacterBody3D
 
 @onready var camera_node = get_viewport().get_camera_3d() 
 
-var armas = ["nada", "cano", "faca"]
-var armaIndex = 0
+var itens = []
+var itemIndex = 0
 var vida = 100
 
 var current_input_dir = Vector2.ZERO
@@ -14,6 +14,7 @@ var last_frame_input_dir = Vector2.ZERO
 var active_world_movement_direction = Vector3.ZERO
 
 var _camera_was_just_switched = false
+
 
 func handle_inventory_input():
 	if Input.is_action_just_pressed("open_inventory"):
@@ -34,12 +35,12 @@ func handle_inventory_open():
 	var inventory_panel = $InventoryPanel
 	if !inventory_panel.visible:
 		return
-	if Input.is_action_just_pressed("left"):
-		armaIndex = (armaIndex + 1) % len(armas)
-		$InventoryPanel/arma.text = "Arma atual: " + armas[armaIndex]
-	elif Input.is_action_just_pressed("right"):
-		armaIndex = (armaIndex - 1) % len(armas)
-		$InventoryPanel/arma.text = "Arma atual: " + armas[armaIndex]
+	if Input.is_action_just_pressed("left") && len(itens) > 0:
+		itemIndex = (itemIndex + 1) % len(itens)
+		$InventoryPanel/arma.text = "Arma atual: " + itens[itemIndex]
+	elif Input.is_action_just_pressed("right") && len(itens) > 0:
+		itemIndex = (itemIndex - 1) % len(itens)
+		$InventoryPanel/arma.text = "Arma atual: " + itens[itemIndex]
 	
 	if Input.is_action_just_pressed("front"):
 		if vida < 100:
