@@ -9,6 +9,5 @@ autosave
 
 # Godot files
 .editorconfig
-icon.svg
 *.tmp
 *.import
