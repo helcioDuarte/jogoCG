@@ -1,0 +1,126 @@
+[gd_scene load_steps=5 format=3 uid="uid://bdqsbhb6idhy5"]
+
+[ext_resource type="Script" uid="uid://ddjioub76e5o5" path="res://scripts/inventory/inventory.gd" id="1_xyz12"]
+[ext_resource type="PackedScene" uid="uid://b5w5fucv7g2vj" path="res://scenes/inventory/item_icon.tscn" id="2_pqrst"]
+[ext_resource type="PackedScene" uid="uid://cvg8w6yqmxwvg" path="res://scenes/inventory/health_display.tscn" id="3_fha14"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel_bg"]
+bg_color = Color(0.1, 0.1, 0.15, 0.85)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.3, 0.3, 0.4, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="InventoryPanel" type="CanvasLayer"]
+offset = Vector2(0, -150)
+transform = Transform2D(1, 0, 0, 1, 0, -150)
+script = ExtResource("1_xyz12")
+item_icon_scene = ExtResource("2_pqrst")
+
+[node name="InventoryPanel" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -300.0
+offset_top = -250.0
+offset_right = 300.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel_bg")
+
+[node name="MarginContainer" type="MarginContainer" parent="InventoryPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="InventoryPanel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="ItemDescriptionLabel" type="Label" parent="InventoryPanel/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+text = "Item Name
+Item Description"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="CarouselControls" type="HBoxContainer" parent="InventoryPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="HealthDisplay" parent="InventoryPanel/MarginContainer/VBoxContainer/CarouselControls" instance=ExtResource("3_fha14")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="PrevItemButton" type="Button" parent="InventoryPanel/MarginContainer/VBoxContainer/CarouselControls"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+text = "<"
+
+[node name="ItemListContainer" type="HBoxContainer" parent="InventoryPanel/MarginContainer/VBoxContainer/CarouselControls"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="NextItemButton" type="Button" parent="InventoryPanel/MarginContainer/VBoxContainer/CarouselControls"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+text = ">"
+
+[node name="ActionButtons" type="HBoxContainer" parent="InventoryPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="UseEquipButton" type="Button" parent="InventoryPanel/MarginContainer/VBoxContainer/ActionButtons"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Usar/Equipar"
+
+[node name="CombineButton" type="Button" parent="InventoryPanel/MarginContainer/VBoxContainer/ActionButtons"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Combinar (0/2)"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="InventoryPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="EquippedItemLabel" type="Label" parent="InventoryPanel/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Equipado: Nenhum"
+horizontal_alignment = 1
+
+[node name="spacer" type="Control" parent="InventoryPanel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ammo" type="Label" parent="InventoryPanel/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Munição: 0/0"
+horizontal_alignment = 2
+
+[connection signal="pressed" from="InventoryPanel/MarginContainer/VBoxContainer/CarouselControls/PrevItemButton" to="." method="_on_prev_item_button_pressed"]
+[connection signal="pressed" from="InventoryPanel/MarginContainer/VBoxContainer/CarouselControls/NextItemButton" to="." method="_on_next_item_button_pressed"]
+[connection signal="pressed" from="InventoryPanel/MarginContainer/VBoxContainer/ActionButtons/UseEquipButton" to="." method="_on_use_equip_button_pressed"]
+[connection signal="pressed" from="InventoryPanel/MarginContainer/VBoxContainer/ActionButtons/CombineButton" to="." method="_on_combine_button_pressed"]
