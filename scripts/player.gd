@@ -13,18 +13,19 @@ var active_world_movement_direction = Vector3.ZERO
 var _camera_was_just_switched = false
 
 func _ready():
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	inventory.visible = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func handle_inventory_input():
 	if Input.is_action_just_pressed("open_inventory"):
-		var inventory_panel = inventory
-		if !is_instance_valid(inventory_panel):
+		if !is_instance_valid(inventory):
 			return
-		inventory_panel.visible = not inventory_panel.visible
-		# pause
-		Engine.time_scale = 0 if inventory_panel.visible else 1
-		if inventory_panel.visible:
+		
+		inventory.visible = not inventory.visible
+		get_tree().paused = inventory.visible
+		
+		if inventory.visible:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		else:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -37,6 +38,8 @@ func switch_camera():
 
 func _physics_process(delta: float):
 	handle_inventory_input()
+	if inventory.visible:
+		return
 	
 	current_input_dir = Input.get_vector("left", "right", "front", "back")
 

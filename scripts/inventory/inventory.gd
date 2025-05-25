@@ -2,7 +2,7 @@ extends CanvasLayer
 
 @export var item_icon_scene: PackedScene
 
-@onready var health_indicator_rect: ColorRect = %HealthIndicatorRect
+@onready var health_indicator = %HealthDisplay
 var max_health: float = 100.0
 var current_health: float = max_health
 
@@ -43,8 +43,8 @@ const ITEM_DATA = {
 }
 
 func _ready():
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	update_health_indicator()
-	
 	# debug itens
 	add_item_to_inventory("green_herb", 4)
 	add_item_to_inventory("red_herb", 2)
@@ -58,7 +58,7 @@ func _ready():
 	update_ui_elements()
 
 func _input(event):
-	if not get_viewport().gui_is_dragging() and not event.is_echo():
+	if not get_viewport().gui_is_dragging() and not event.is_echo() and visible:
 		if event.is_action_pressed("right"):
 			cycle_inventory(1)
 			get_viewport().set_input_as_handled()
@@ -73,6 +73,7 @@ func _input(event):
 		if event.is_action_pressed("something_else"):
 			_on_combine_button_pressed()
 			get_viewport().set_input_as_handled()
+		
 
 func update_ui_elements():
 	update_inventory_display()
@@ -99,15 +100,15 @@ func update_health_indicator():
 	if max_health > 0:
 		p = current_health / max_health
 	
-	if health_indicator_rect:
+	if health_indicator:
 		if p >= 1.0:
-			health_indicator_rect.color = FULL_HEALTH_COLOR
+			health_indicator.color = FULL_HEALTH_COLOR
 		elif p > 0.66:
-			health_indicator_rect.color = HEALTHY_COLOR
+			health_indicator.color = HEALTHY_COLOR
 		elif p > 0.33:
-			health_indicator_rect.color = DAMAGED_COLOR
+			health_indicator.color = DAMAGED_COLOR
 		else:
-			health_indicator_rect.color = CRITICAL_COLOR
+			health_indicator.color = CRITICAL_COLOR
 
 func add_item_to_inventory(item_id, quantity_to_add = 1):
 	if not ITEM_DATA.has(item_id):

@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bdqsbhb6idhy5"]
+[gd_scene load_steps=5 format=3 uid="uid://bdqsbhb6idhy5"]
 
 [ext_resource type="Script" uid="uid://ddjioub76e5o5" path="res://scripts/inventory/inventory.gd" id="1_xyz12"]
 [ext_resource type="PackedScene" uid="uid://b5w5fucv7g2vj" path="res://scenes/inventory/item_icon.tscn" id="2_pqrst"]
+[ext_resource type="PackedScene" uid="uid://cvg8w6yqmxwvg" path="res://scenes/inventory/health_display.tscn" id="3_fha14"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel_bg"]
 bg_color = Color(0.1, 0.1, 0.15, 0.85)
@@ -16,20 +17,10 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
 [node name="InventoryPanel" type="CanvasLayer"]
+offset = Vector2(0, -150)
+transform = Transform2D(1, 0, 0, 1, 0, -150)
 script = ExtResource("1_xyz12")
 item_icon_scene = ExtResource("2_pqrst")
-
-[node name="HealthIndicatorRect" type="ColorRect" parent="."]
-unique_name_in_owner = true
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -50.0
-offset_top = 20.0
-offset_right = 50.0
-offset_bottom = 70.0
-grow_horizontal = 2
-color = Color(0, 1, 0, 1)
 
 [node name="InventoryPanel" type="PanelContainer" parent="."]
 unique_name_in_owner = true
@@ -70,6 +61,10 @@ autowrap_mode = 2
 [node name="CarouselControls" type="HBoxContainer" parent="InventoryPanel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 alignment = 1
+
+[node name="HealthDisplay" parent="InventoryPanel/MarginContainer/VBoxContainer/CarouselControls" instance=ExtResource("3_fha14")]
+unique_name_in_owner = true
+layout_mode = 2
 
 [node name="PrevItemButton" type="Button" parent="InventoryPanel/MarginContainer/VBoxContainer/CarouselControls"]
 unique_name_in_owner = true
