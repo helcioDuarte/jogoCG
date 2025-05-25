@@ -4,10 +4,7 @@ extends CharacterBody3D
 @export var sprint_multiplier = 2.0
 
 @onready var camera_node = get_viewport().get_camera_3d() 
-
-var itens = []
-var itemIndex = 0
-var vida = 100
+@onready var inventory = $InventoryPanel
 
 var current_input_dir = Vector2.ZERO
 var last_frame_input_dir = Vector2.ZERO
@@ -15,10 +12,13 @@ var active_world_movement_direction = Vector3.ZERO
 
 var _camera_was_just_switched = false
 
+func _ready():
+	inventory.visible = false
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func handle_inventory_input():
 	if Input.is_action_just_pressed("open_inventory"):
-		var inventory_panel = $InventoryPanel
+		var inventory_panel = inventory
 		if !is_instance_valid(inventory_panel):
 			return
 		inventory_panel.visible = not inventory_panel.visible
@@ -31,39 +31,12 @@ func handle_inventory_input():
 		
 		get_viewport().set_input_as_handled() # Evita que o input seja processado por outros nós
 
-func handle_inventory_open():
-	var inventory_panel = $InventoryPanel
-	if !inventory_panel.visible:
-		return
-	if Input.is_action_just_pressed("left") && len(itens) > 0:
-		itemIndex = (itemIndex + 1) % len(itens)
-		$InventoryPanel/arma.text = "Arma atual: " + itens[itemIndex]
-	elif Input.is_action_just_pressed("right") && len(itens) > 0:
-		itemIndex = (itemIndex - 1) % len(itens)
-		$InventoryPanel/arma.text = "Arma atual: " + itens[itemIndex]
-	
-	if Input.is_action_just_pressed("front"):
-		if vida < 100:
-			vida += 10
-	elif Input.is_action_just_pressed("back"):
-		if vida > 0:
-			vida -= 10
-		if vida == 0:
-			get_tree().quit()
-	if vida >= 75:
-		$InventoryPanel/vida.text = "vida: boa" 
-	elif vida >= 50:
-		$InventoryPanel/vida.text = "vida: mais ou menos"
-	elif vida <= 50:
-		$InventoryPanel/vida.text = "vida: ruim"
-
 func switch_camera():
 	camera_node = get_viewport().get_camera_3d()
 	_camera_was_just_switched = true
 
 func _physics_process(delta: float):
 	handle_inventory_input()
-	handle_inventory_open()
 	
 	current_input_dir = Input.get_vector("left", "right", "front", "back")
 

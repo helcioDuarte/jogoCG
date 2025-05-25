@@ -21,5 +21,5 @@ func _process(_delta: float) -> void:
 		return
 	
 	if Input.is_action_just_pressed("interact"):
-		player.itens.append(get_parent().name)
+		player.inventory.add_item_to_inventory(get_parent().name, 1)
 		get_parent().queue_free()

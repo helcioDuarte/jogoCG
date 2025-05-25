@@ -8,7 +8,10 @@
   - [ ] Finalizar mapa
 
 - [ ] **Segunda parte**
-  - [ ] Implementar tecnicas escolhidas 
+  - [ ] Implementar tecnicas escolhidas
+	- [ ] Partículas
+	- [ ] Iluminação  dinâmica
+	- [x] Inventário
   - [ ] Finalizar o jogo
 
 - [ ] **Extras??**

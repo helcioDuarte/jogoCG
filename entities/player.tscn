@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://rxinvobacirt"]
+[gd_scene load_steps=7 format=3 uid="uid://rxinvobacirt"]
 
 [ext_resource type="Script" uid="uid://da7dnp2drds5i" path="res://scripts/player.gd" id="1_merdl"]
 [ext_resource type="Texture2D" uid="uid://bcldlnmkv6gva" path="res://icon.svg" id="2_b0kkn"]
+[ext_resource type="PackedScene" uid="uid://bdqsbhb6idhy5" path="res://scenes/inventory/inventory_panel.tscn" id="3_e4p34"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_b0kkn"]
 
@@ -21,38 +22,4 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 
 material_override = SubResource("StandardMaterial3D_e4p34")
 mesh = SubResource("CapsuleMesh_e4p34")
 
-[node name="InventoryPanel" type="ColorRect" parent="."]
-visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.883344, 0.000625507, 0.883338, 1)
-
-[node name="titulo" type="Label" parent="InventoryPanel"]
-layout_mode = 0
-offset_left = 394.0
-offset_top = 23.0
-offset_right = 594.0
-offset_bottom = 70.0
-theme_override_font_sizes/font_size = 84
-text = "Inventário"
-
-[node name="arma" type="Label" parent="InventoryPanel"]
-layout_mode = 0
-offset_left = 57.0
-offset_top = 154.0
-offset_right = 530.0
-offset_bottom = 269.0
-theme_override_font_sizes/font_size = 84
-text = "Arma atual: nada"
-
-[node name="vida" type="Label" parent="InventoryPanel"]
-layout_mode = 0
-offset_left = 53.0
-offset_top = 262.0
-offset_right = 471.0
-offset_bottom = 377.0
-theme_override_font_sizes/font_size = 84
-text = "Vida: boa"
+[node name="InventoryPanel" parent="." instance=ExtResource("3_e4p34")]
