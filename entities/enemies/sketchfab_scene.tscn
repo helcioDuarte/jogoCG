@@ -1,0 +1,40 @@
+[gd_scene load_steps=2 format=3 uid="uid://r5vansvnokj2"]
+
+[ext_resource type="PackedScene" uid="uid://bjwu4wrwwqr7y" path="res://entities/silent_hill_1_monsters_-_mumbler.glb" id="1_yahc8"]
+
+[node name="Sketchfab_Scene" instance=ExtResource("1_yahc8")]
+
+[node name="Skeleton3D" parent="Sketchfab_model/mumbler_fbx/Object_2/RootNode/CLD4_skeleton/Object_6" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.55785, -10.0787, -6.51694)
+bones/1/position = Vector3(6, -2.00001, 156)
+bones/2/rotation = Quaternion(0.137677, -0.116582, -0.0477801, 0.982431)
+bones/3/position = Vector3(14, 28, -1.90509e-07)
+bones/3/rotation = Quaternion(0.0653029, 0.0274902, 0.0733662, 0.994785)
+bones/4/position = Vector3(-1.54789e-07, 76, -2)
+bones/4/rotation = Quaternion(-0.471191, 0.00210733, 0.0310964, 0.881481)
+bones/5/position = Vector3(-2.0837e-08, 60, -8.00001)
+bones/5/rotation = Quaternion(0.293938, 0.0745291, 0.0239579, 0.952613)
+bones/7/position = Vector3(-14, 28, -4.76273e-08)
+bones/7/rotation = Quaternion(-0.323805, -0.156415, 0.28356, 0.888976)
+bones/8/position = Vector3(-2.85764e-07, 76, -2)
+bones/8/rotation = Quaternion(-0.278347, -0.000680985, -0.0175711, 0.96032)
+bones/9/position = Vector3(-6.19155e-07, 60, -8)
+bones/9/rotation = Quaternion(-0.0985624, 0.0094092, 0.035514, 0.994452)
+bones/11/rotation = Quaternion(-0.248375, 0.0764537, 0.0363555, 0.964958)
+bones/12/position = Vector3(9.52546e-08, -86, -6)
+bones/12/rotation = Quaternion(0.270387, -0.0518036, -0.0508185, 0.960013)
+bones/14/position = Vector3(28, -60, -8)
+bones/14/rotation = Quaternion(0.182869, 0.021464, -0.0171508, 0.982753)
+bones/15/position = Vector3(14, 44, 4)
+bones/15/rotation = Quaternion(0.0136988, -0.0900278, -0.0304595, 0.995379)
+bones/16/position = Vector3(8, 48, 6)
+bones/16/rotation = Quaternion(-0.058943, -0.0153046, 0.00927229, 0.998101)
+bones/18/position = Vector3(-28, -60, -8)
+bones/18/rotation = Quaternion(0.142518, -0.0376519, 0.176025, 0.973286)
+bones/19/position = Vector3(-14, 44, 4)
+bones/19/rotation = Quaternion(0.0964969, 0.0203283, -0.20404, 0.973983)
+bones/20/position = Vector3(-8, 48, 6)
+bones/20/rotation = Quaternion(-0.0397961, 0.0145181, -0.0509246, 0.997804)
+
+[node name="Object_9" parent="Sketchfab_model/mumbler_fbx/Object_2/RootNode/CLD4_skeleton/Object_6/Skeleton3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.19675, 6.10947, 0.344627)
