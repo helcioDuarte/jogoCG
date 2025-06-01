@@ -97,6 +97,12 @@ func _physics_process(delta: float):
 	move_and_slide()
 
 	if velocity.length_squared() > 0.01:
-		var look_target_offset = velocity.normalized()
-		if look_target_offset != Vector3.ZERO : 
-			look_at(global_position + look_target_offset, Vector3.UP)
+		var target_dir = velocity.normalized()
+		var current_dir = -global_transform.basis.z.normalized()
+		var angle_diff = rad_to_deg(acos(clamp(current_dir.dot(target_dir), -1.0, 1.0)))
+
+		if angle_diff < 150.0:
+			var lerped_dir = current_dir.lerp(target_dir, delta * 10.0).normalized()
+			look_at(global_position + lerped_dir, Vector3.UP)
+		else:
+			look_at(global_position + target_dir, Vector3.UP)
