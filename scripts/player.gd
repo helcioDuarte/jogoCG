@@ -5,6 +5,7 @@ extends CharacterBody3D
 
 @onready var camera_node = get_viewport().get_camera_3d() 
 @onready var inventory = $InventoryPanel
+@onready var animations = $model
 
 var current_input_dir = Vector2.ZERO
 var last_frame_input_dir = Vector2.ZERO
@@ -88,6 +89,11 @@ func _physics_process(delta: float):
 		# Sem direção ativa, para imediatamente.
 		velocity = Vector3.ZERO # <--- PARADA IMEDIATA
 
+	if Input.is_action_pressed("sprint") and velocity.length() != 0:
+		animations.changeWalkRun("run")
+	else:
+		animations.changeWalkRun("walk")
+	animations.animateMovement(velocity, speed)
 	move_and_slide()
 
 	if velocity.length_squared() > 0.01:
