@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://oeqg3p241q0p"]
+[gd_scene load_steps=2 format=3 uid="uid://oeqg3p241q0p"]
 
 [ext_resource type="Script" uid="uid://42v5tadk8yfh" path="res://scripts/particle_system/blood_system.gd" id="1_fn8na"]
-[ext_resource type="MultiMesh" uid="uid://d1xwkpt832li7" path="res://scripts/particle_system/particles/blood_particle_multimesh.tres" id="2_xl40y"]
 
 [node name="Particle" type="Node3D"]
 script = ExtResource("1_fn8na")
@@ -11,4 +10,3 @@ wait_time = 2.0
 autostart = true
 
 [node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="."]
-multimesh = ExtResource("2_xl40y")
