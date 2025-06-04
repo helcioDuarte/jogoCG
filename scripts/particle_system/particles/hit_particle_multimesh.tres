@@ -1,0 +1,18 @@
+[gd_resource type="MultiMesh" load_steps=3 format=3 uid="uid://id07c835qc2l"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pw5bj"]
+albedo_color = Color(0.400698, 0.400698, 0.400698, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_6bd71"]
+material = SubResource("StandardMaterial3D_pw5bj")
+radius = 0.05
+height = 0.1
+radial_segments = 8
+rings = 4
+
+[resource]
+transform_format = 1
+use_colors = true
+instance_count = 3
+mesh = SubResource("SphereMesh_6bd71")
+buffer = PackedFloat32Array(-2.0187e+26, 8.77213e-43, -2.01922e+26, 8.77213e-43, -2.01714e+26, 8.77213e-43, -2.01818e+26, 8.77213e-43, -2.01975e+26, 8.77213e-43, -1.61971e-05, 8.77213e-43, -0.110352, -0.473633, 3.73125e-05, 0, -1.77193e-05, 8.77213e-43, -1.78172e-05, 8.77213e-43, -1.80336e-05, 8.77213e-43, -1.77915e-05, 8.77213e-43, -9.98989e-05, 8.77213e-43, -1.77606e-05, 8.77213e-43, 11.875, -0.473877, 3.73125e-05, 0, -1.63825e-05, 8.77213e-43, -1.78945e-05, 8.77213e-43, -3.53765e-05, 8.77213e-43, -2.87415e-05, 8.77213e-43, -0.000100332, 8.77213e-43, -3.49335e-05, 8.77213e-43, nan, -0.602539, 3.73125e-05, 0)

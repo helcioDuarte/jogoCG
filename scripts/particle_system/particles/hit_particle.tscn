@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bsw1tmjlxf4p2"]
+
+[ext_resource type="Script" uid="uid://boxwragavcryl" path="res://scripts/particle_system/hit_system.gd" id="1_pw5bj"]
+[ext_resource type="MultiMesh" uid="uid://id07c835qc2l" path="res://scripts/particle_system/particles/hit_particle_multimesh.tres" id="2_6bd71"]
+
+[node name="HitParticle" type="Node3D"]
+script = ExtResource("1_pw5bj")
+
+[node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="."]
+multimesh = ExtResource("2_6bd71")

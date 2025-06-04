@@ -20,5 +20,8 @@ func changeWalkRun(goal):
 	elif goal == "walk":
 		animStateMachine.travel("idle|walk")
 
+func changeWalkSlash():
+	animStateMachine.travel("Slash")
+
 func getState():
 	return animStateMachine.get_current_node()
