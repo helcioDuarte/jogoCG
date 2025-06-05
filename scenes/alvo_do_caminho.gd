@@ -1,6 +1,6 @@
 extends PathFollow3D
 
-@onready var animation_player = $AnimationPlayer
+@onready var animation_player = $AnimacaoDoCaminho
 @onready var inimigo = $Mumble
 
 func _ready():

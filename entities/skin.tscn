@@ -1,6 +1,6 @@
 [gd_scene load_steps=55 format=3 uid="uid://cfgioqkuxwctm"]
 
-[ext_resource type="PackedScene" uid="uid://ckle4own0q0fd" path="res://models/helcio.glb" id="1_ksru8"]
+[ext_resource type="PackedScene" uid="uid://c5nm8gfr4g7qx" path="res://models/helcio.glb" id="1_ksru8"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fvgxq"]
 animation = &"Dance"
