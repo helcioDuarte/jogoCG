@@ -4,6 +4,11 @@ extends Node3D
 @onready var animStateMachine = $AnimationTree.get('parameters/playback')
 var currentFrame = 0.0
 
+func animationFinished(goal):
+	if getState() == goal :
+		return 0
+	return 1
+
 func animateMovement(velocity, speed):
 	if getState() == "idle|walk":
 		currentFrame = lerp(currentFrame, velocity.length() / speed, 0.1)

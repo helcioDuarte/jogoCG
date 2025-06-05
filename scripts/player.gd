@@ -132,8 +132,12 @@ func _physics_process(delta: float):
 		animations.changeWalkRun("walk")
 		
 	if Input.is_action_just_pressed("hit"):
-		animations.changeWalkSlash()
-		hit_pipe()
+		if animations.animationFinished("Slash"):
+			animations.changeWalkSlash()
+			speed = 0
+			hit_pipe()
+			await get_tree().create_timer(1.3).timeout
+			speed = 5
 	animations.animateMovement(velocity, speed)
 	move_and_slide()
 	
