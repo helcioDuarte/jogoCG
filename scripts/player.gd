@@ -72,10 +72,14 @@ func handle_inventory_input():
 
 func switch_camera():
 	camera_node = get_viewport().get_camera_3d()
+	$spark_particle.switch_camera()
 	_camera_was_just_switched = true
 
 func _physics_process(delta: float):
 	handle_inventory_input()
+	if inventory.current_health <= 0:
+		animations.die()
+		return
 	if inventory.visible:
 		return
 	

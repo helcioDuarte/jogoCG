@@ -84,8 +84,6 @@ func update_ui_elements():
 func take_damage(amount):
 	current_health = clamp(current_health - amount, 0.0, max_health)
 	update_health_indicator()
-	if current_health <= 0:
-		get_tree().quit()
 
 func heal(amount):
 	current_health = clamp(current_health + amount, 0.0, max_health)

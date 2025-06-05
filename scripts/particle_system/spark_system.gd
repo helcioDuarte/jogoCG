@@ -91,6 +91,9 @@ func _ready():
 
 	set_process(true)
 
+func switch_camera():
+	camera = get_viewport().get_camera_3d()
+
 func _process(delta: float):
 	if not multimesh_res: return
 

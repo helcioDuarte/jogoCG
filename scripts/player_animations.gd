@@ -28,5 +28,8 @@ func changeWalkRun(goal):
 func changeWalkSlash():
 	animStateMachine.travel("Slash")
 
+func die():
+	animStateMachine.travel("Die")
+
 func getState():
 	return animStateMachine.get_current_node()
