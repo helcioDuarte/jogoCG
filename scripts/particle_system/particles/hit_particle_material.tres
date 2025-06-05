@@ -1,8 +1,0 @@
-[gd_resource type="SphereMesh" load_steps=0 format=3 uid="uid://cock160kl7npm"]
-
-[resource]
-material = null
-radius = 0.05
-height = 0.1
-radial_segments = 8
-rings = 4

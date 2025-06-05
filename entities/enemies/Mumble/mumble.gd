@@ -12,7 +12,8 @@ extends CharacterBody3D
 # Comportamento
 @export var velocidade: float = 5.0
 @export var tempo_para_voltar: float = 5.0
-@export var dano_ataque: float = 10
+@export var dano_ataque: float = 0
+@export var vida: float = 20
 
 # Estados de IA
 enum Estado { PATRULHANDO, PERSEGUINDO, VOLTANDO, ATACANDO }
@@ -22,6 +23,7 @@ var estado: Estado = Estado.PATRULHANDO
 var jogador: Node3D
 var tempo_desde_perda: float = 0.0
 var debug_visuals_visible: bool = false
+
 
 # Nós de visão e visualização
 var cone_visual_mesh: MeshInstance3D
@@ -397,3 +399,15 @@ func _criar_area_visao_quadrada():
 
 	area_visao_quadrada.body_entered.connect(_on_body_entered)
 	area_visao_quadrada.body_exited.connect(_on_body_exited)
+
+# Adicione esta função ao script do seu inimigo
+
+func take_damage(amount: int):
+	vida -= amount
+	print(self.name, " tomou ", amount, " de dano. Vida restante: ", vida)
+	if vida <= 0:
+		die() # Você precisaria de uma função para a morte do inimigo
+
+func die():
+	print(self.name, " morreu!")
+	queue_free() # A forma mais simples de "matar" o inimigo

@@ -3,6 +3,7 @@ extends CharacterBody3D
 @export var speed = 5.0
 @export var sprint_multiplier = 2.0
 @export var impact_spark_system_path: NodePath
+@export var pipe_damage = 10
 
 @onready var sparks_fx = get_node_or_null(impact_spark_system_path) if impact_spark_system_path else null
 @onready var camera_node = get_viewport().get_camera_3d() 
@@ -18,36 +19,41 @@ var _camera_was_just_switched = false
 
 func hit_pipe():
 	if not is_instance_valid(pipe) or not is_instance_valid(sparks_fx):
-		if not is_instance_valid(pipe):
-			print("Referência do 'pipe' não é válida em hit_pipe()")
 		if not is_instance_valid(sparks_fx):
-			print("Sistema de faíscas não configurado ou não encontrado.")
+			print("Sistema de faíscas não configurado no personagem.")
 		return
-	var attack_reach = 2 
 
-	var ray_origin = pipe.global_transform.origin 
-	
+	var attack_reach = 2.0
+	var ray_origin = pipe.global_transform.origin
 	var forward_direction = -camera_node.global_transform.basis.z.normalized() if is_instance_valid(camera_node) else -global_transform.basis.z.normalized()
 	var ray_end = ray_origin + forward_direction * attack_reach
 
+	# Prepara a query do raycast
 	var space_state = get_world_3d().direct_space_state
 	var query = PhysicsRayQueryParameters3D.create(ray_origin, ray_end)
+	
+	# IMPORTANTE: Configure a máscara para detectar paredes (camada 1) E inimigos (ex: camada 2)
+	query.collision_mask = 1 | 2 # Exemplo para detectar camadas 1 e 2
 
-	query.collision_mask = 1 
-
-
+	# Executa o raycast
 	var result = space_state.intersect_ray(query)
 
+	# Se atingiu alguma coisa
 	if result:
-		print("Pipe atingiu: ", result.collider.name if result.collider else "algo")
+		var hit_collider = result.collider
 		var impact_position = result.position
 		var impact_normal = result.normal
-		var hit_collider = result.collider if result.collider else null 
+		
+		print("Pipe atingiu: ", hit_collider.name)
 
-
-		if hit_collider is MeshInstance3D:
-			var mesh_instance = hit_collider as MeshInstance3D
+		# 1. VERIFICA SE O OBJETO ATINGIDO É UM INIMIGO
+		# A forma mais robusta é checar se ele tem a função "take_damage" que acabamos de criar.
+		if hit_collider and hit_collider.has_method("take_damage"):
+			# Se tiver, chama a função para causar dano.
+			hit_collider.call("take_damage", pipe_damage)
+			
 		sparks_fx.emit_sparks(impact_position, impact_normal)
+			
 	else:
 		print("Pipe não atingiu nada.")
 func _ready():
