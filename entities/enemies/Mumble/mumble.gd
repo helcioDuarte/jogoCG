@@ -10,7 +10,7 @@ extends CharacterBody3D
 @export var esf_area_color: Color = Color(1, 0.8, 0.2, 0.3)
 
 # Comportamento
-@export var velocidade: float = 4.0
+@export var velocidade: float = 2.5
 @export var tempo_para_voltar: float = 5.0
 @export var dano_ataque: float = 0
 @export var vida: float = 20

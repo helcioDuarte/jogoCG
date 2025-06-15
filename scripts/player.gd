@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-@export var speed = 5.0
+@export var speed = 3.0
 @export var sprint_multiplier = 2.0
 @export var impact_spark_system_path: NodePath
 @export var pipe_damage = 10
@@ -158,9 +158,9 @@ func _physics_process(delta: float):
 			speed = 5
 	animations.animateMovement(velocity, speed)
 	if $go_up_trigger.should_step_up():
-		global_position.y += 0.2
+		global_position.y += 0.1
 	elif not is_on_floor():
-		global_position.y -= 0.1
+		global_position.y -= 0.05
 	move_and_slide()
 	
 	if velocity.length_squared() > 0.01:

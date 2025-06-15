@@ -25,5 +25,4 @@ func leave(body):
 	stairs -= 1
 	
 func should_step_up():
-	print("good ", stairs, " | bad ", not_stairs)
 	return stairs > not_stairs
