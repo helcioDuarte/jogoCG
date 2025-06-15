@@ -103,8 +103,6 @@ func _physics_process(delta: float):
 	current_input_dir = Input.get_vector("left", "right", "front", "back")
 
 	var new_calculated_direction_from_camera = Vector3.ZERO
-	if $go_up_trigger.stairs > 0:
-		print("hello work")
 	if current_input_dir == Vector2.ZERO:
 		active_world_movement_direction = Vector3.ZERO
 	elif current_input_dir != last_frame_input_dir:
@@ -146,7 +144,6 @@ func _physics_process(delta: float):
 	else:
 		# Sem direção ativa, para imediatamente.
 		velocity = Vector3.ZERO # <--- PARADA IMEDIATA
-
 	if Input.is_action_pressed("sprint") and velocity.length() != 0:
 		animations.changeWalkRun("run")
 	else:
@@ -160,7 +157,9 @@ func _physics_process(delta: float):
 			await get_tree().create_timer(1.3).timeout
 			speed = 5
 	animations.animateMovement(velocity, speed)
-	if not is_on_floor():
+	if $go_up_trigger.should_step_up():
+		global_position.y += 0.2
+	elif not is_on_floor():
 		global_position.y -= 0.1
 	move_and_slide()
 	
