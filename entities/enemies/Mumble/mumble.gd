@@ -1,16 +1,16 @@
 extends CharacterBody3D
 
 # Configurações de Visão
-@export var cone_height: float = 15.0
-@export var cone_radius: float = 5.0
+@export var cone_height: float = 15.0 / 2
+@export var cone_radius: float = 5.0 / 4 # ta dividido por 2 pq o tamanho dele ta 0.5
 @export var cone_color: Color = Color(0, 0.5, 1, 0.3)
 
-@export var quad_area_side_length: float = 5.0
-@export var quad_area_height: float = 7.0
-@export var quad_area_color: Color = Color(1, 0.8, 0.2, 0.3)
+@export var esf_area_side_length: float = 10.0 # ta dividido por 2 pq o tamanho dele ta 0.5
+@export var esf_area_height: float = 7.0 / 2 # ta dividido por 2 pq o tamanho dele ta 0.5
+@export var esf_area_color: Color = Color(1, 0.8, 0.2, 0.3)
 
 # Comportamento
-@export var velocidade: float = 5.0
+@export var velocidade: float = 4.0
 @export var tempo_para_voltar: float = 5.0
 @export var dano_ataque: float = 0
 @export var vida: float = 20
@@ -27,11 +27,11 @@ var debug_visuals_visible: bool = false
 
 # Nós de visão e visualização
 var cone_visual_mesh: MeshInstance3D
-var quadrado_visual_mesh: MeshInstance3D
+var esfera_visual_mesh: MeshInstance3D
 var ataque_visual_mesh: MeshInstance3D
 
 var area_visao_cone: Area3D
-var area_visao_quadrada: Area3D
+var area_visao_redonda: Area3D
 var todas_as_areas_de_visao: Array[Area3D] = []
 
 # Variaveis de comportamento
@@ -53,7 +53,7 @@ func _ready():
 	animation_tree.set("parameters/conditions/idle", false)
 
 	_criar_area_visao_cone()
-	_criar_area_visao_quadrada()
+	_criar_area_visao_esferica()
 
 	todas_as_areas_de_visao.clear()
 
@@ -67,15 +67,15 @@ func _ready():
 	else:
 		printerr("Erro: AreaDeVisao não encontrada.")
 
-	area_visao_quadrada = get_node_or_null("AreaDeVisaoQuadrada")
-	if area_visao_quadrada != null:
-		quadrado_visual_mesh = area_visao_quadrada.get_node_or_null("VisualQuadrado")
-		if quadrado_visual_mesh == null:
-			printerr("Erro: VisualQuadrado não encontrado dentro da AreaDeVisaoQuadrada.")
+	area_visao_redonda = get_node_or_null("AreaDeVisaoRedonda")
+	if area_visao_redonda != null:
+		esfera_visual_mesh = area_visao_redonda.get_node_or_null("VisualRedondo")
+		if esfera_visual_mesh == null:
+			printerr("Erro: VisualRedondo não encontrado dentro da AreaDeVisaoRedibda.")
 		else:
-			todas_as_areas_de_visao.append(area_visao_quadrada)
+			todas_as_areas_de_visao.append(area_visao_redonda)
 	else:
-		printerr("Erro: AreaDeVisaoQuadrada não encontrada.")
+		printerr("Erro: AreaDeVisaoRedonda não encontrada.")
 
 	ataque_area.body_entered.connect(_on_body_entered_atack)
 	ataque_area.body_exited.connect(_on_body_exited_atack)
@@ -265,8 +265,8 @@ func _suavizar_rotacao(alvo: Vector3, delta: float, velocidade_rot: float = 2.0)
 func _atualizar_visibilidade_debug_visuals():
 	if cone_visual_mesh != null:
 		cone_visual_mesh.visible = debug_visuals_visible
-	if quadrado_visual_mesh != null:
-		quadrado_visual_mesh.visible = debug_visuals_visible
+	if esfera_visual_mesh != null:
+		esfera_visual_mesh.visible = debug_visuals_visible
 	if ataque_visual_mesh != null:
 		ataque_visual_mesh.visible = debug_visuals_visible
 
@@ -342,7 +342,7 @@ func _criar_area_visao_cone():
 	shape.height = cone_height
 	collision.shape = shape
 	collision.rotation_degrees = Vector3(90, 0, 0)
-	collision.position = Vector3(0, 2.0, -cone_height / 2.0) 
+	collision.position = Vector3(0, 1.0, -cone_height / 2.0) 
 	area_visao_cone.add_child(collision)
 	collision.owner = area_visao_cone
 
@@ -369,36 +369,40 @@ func _criar_area_visao_cone():
 	area_visao_cone.body_exited.connect(_on_body_exited)
 
 
-func _criar_area_visao_quadrada():
-	area_visao_quadrada = Area3D.new()
-	area_visao_quadrada.name = "AreaDeVisaoQuadrada"
-	add_child(area_visao_quadrada)
-	area_visao_quadrada.owner = self
+func _criar_area_visao_esferica():
+	area_visao_redonda = Area3D.new()
+	area_visao_redonda.name = "AreaDeVisaoRedonda"
+	add_child(area_visao_redonda)
+	area_visao_redonda.owner = self
 
 	var collision = CollisionShape3D.new()
-	var shape = BoxShape3D.new()
-	shape.size = Vector3(quad_area_side_length, quad_area_height, quad_area_side_length)
+	var shape = CylinderShape3D.new()
+	shape.radius = esf_area_side_length
+	shape.height = esf_area_height
 	collision.shape = shape
-	area_visao_quadrada.add_child(collision)
-	collision.owner = area_visao_quadrada
+	area_visao_redonda.add_child(collision)
+	collision.owner = area_visao_redonda
+
 
 	var visual = MeshInstance3D.new()
-	var mesh = BoxMesh.new()
-	mesh.size = shape.size
+	var mesh = CylinderMesh.new()
+	mesh.top_radius = esf_area_side_length
+	mesh.bottom_radius = esf_area_side_length
+	mesh.height = esf_area_height
 	visual.mesh = mesh
-	visual.name = "VisualQuadrado"
+	visual.name = "VisualRedondo"
 	
 	var mat = StandardMaterial3D.new()
-	mat.albedo_color = quad_area_color
+	mat.albedo_color = esf_area_color
 	mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
 	mat.flags_transparent = true
 	mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
 	visual.material_override = mat
-	area_visao_quadrada.add_child(visual)
-	visual.owner = area_visao_quadrada
+	area_visao_redonda.add_child(visual)
+	visual.owner = area_visao_redonda
 
-	area_visao_quadrada.body_entered.connect(_on_body_entered)
-	area_visao_quadrada.body_exited.connect(_on_body_exited)
+	area_visao_redonda.body_entered.connect(_on_body_entered)
+	area_visao_redonda.body_exited.connect(_on_body_exited)
 
 # Adicione esta função ao script do seu inimigo
 

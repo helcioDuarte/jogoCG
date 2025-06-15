@@ -15,3 +15,6 @@
   - [ ] Finalizar o jogo
 
 - [ ] **Extras??**
+attack generalization
+cameras all
+subir escada
