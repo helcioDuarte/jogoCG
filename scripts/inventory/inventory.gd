@@ -57,6 +57,11 @@ func _ready():
 	
 	update_ui_elements()
 
+func pause():
+	if not is_visible():
+		# get the current frame and use it as background
+		$background.texture = ImageTexture.create_from_image(get_viewport().get_texture().get_image())
+
 func _input(event):
 	if not get_viewport().gui_is_dragging() and not event.is_echo() and visible:
 		if event.is_action_pressed("right"):

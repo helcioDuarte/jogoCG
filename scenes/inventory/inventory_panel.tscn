@@ -22,6 +22,15 @@ transform = Transform2D(1, 0, 0, 1, 0, -150)
 script = ExtResource("1_xyz12")
 item_icon_scene = ExtResource("2_pqrst")
 
+[node name="background" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 150.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="InventoryPanel" type="PanelContainer" parent="."]
 unique_name_in_owner = true
 anchors_preset = 7

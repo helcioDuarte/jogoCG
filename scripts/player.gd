@@ -6,16 +6,27 @@ extends CharacterBody3D
 @export var pipe_damage = 10
 
 @onready var sparks_fx = get_node_or_null(impact_spark_system_path) if impact_spark_system_path else null
-@onready var camera_node = get_viewport().get_camera_3d() 
+@onready var camera_node = get_viewport().get_camera_3d()
 @onready var inventory = $InventoryPanel
 @onready var animations = $model
 @onready var pipe = $model/Armature/Skeleton3D/BoneAttachment3D/pipe
+@onready var step_up_ray = $StepUpRay
+@onready var other_ray = $OtherRay
 
 var current_input_dir = Vector2.ZERO
 var last_frame_input_dir = Vector2.ZERO
 var active_world_movement_direction = Vector3.ZERO
 
 var _camera_was_just_switched = false
+
+func move():
+	#if is_on_floor() and velocity.length() > 0:
+		#if step_up_ray.is_colliding() and not other_ray.is_colliding():
+			#var max_step_height = 0.5
+			#global_position.y += max_step_height
+	if velocity.length() > 0 and step_up_ray.is_colliding() and not other_ray.is_colliding():
+		global_position.y += step_up_ray.get_collision_point().y
+	move_and_slide()
 
 func hit_pipe():
 	if not is_instance_valid(pipe) or not is_instance_valid(sparks_fx):
@@ -25,7 +36,7 @@ func hit_pipe():
 
 	var attack_reach = 2.0
 	var ray_origin = pipe.global_transform.origin
-	var forward_direction = -camera_node.global_transform.basis.z.normalized() if is_instance_valid(camera_node) else -global_transform.basis.z.normalized()
+	var forward_direction = - camera_node.global_transform.basis.z.normalized() if is_instance_valid(camera_node) else -global_transform.basis.z.normalized()
 	var ray_end = ray_origin + forward_direction * attack_reach
 
 	# Prepara a query do raycast
@@ -66,9 +77,9 @@ func handle_inventory_input():
 		if !is_instance_valid(inventory):
 			return
 		
+		inventory.pause()
 		inventory.visible = not inventory.visible
 		get_tree().paused = inventory.visible
-		
 		if inventory.visible:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		else:
@@ -92,7 +103,8 @@ func _physics_process(delta: float):
 	current_input_dir = Input.get_vector("left", "right", "front", "back")
 
 	var new_calculated_direction_from_camera = Vector3.ZERO
-
+	if $go_up_trigger.stairs > 0:
+		print("hello work")
 	if current_input_dir == Vector2.ZERO:
 		active_world_movement_direction = Vector3.ZERO
 	elif current_input_dir != last_frame_input_dir:
@@ -115,15 +127,14 @@ func _physics_process(delta: float):
 				cam_right = Vector3.ZERO
 
 			new_calculated_direction_from_camera = (cam_right * current_input_dir.x) + (cam_forward * current_input_dir.y)
-			
 			if new_calculated_direction_from_camera.length_squared() > 0.0001:
 				active_world_movement_direction = new_calculated_direction_from_camera.normalized()
 			else:
-				active_world_movement_direction = Vector3.ZERO 
+				active_world_movement_direction = Vector3.ZERO
 		else:
 			active_world_movement_direction = Vector3.ZERO
 	elif _camera_was_just_switched:
-		pass 
+		pass
 
 	_camera_was_just_switched = false
 	last_frame_input_dir = current_input_dir
@@ -149,12 +160,13 @@ func _physics_process(delta: float):
 			await get_tree().create_timer(1.3).timeout
 			speed = 5
 	animations.animateMovement(velocity, speed)
+	if not is_on_floor():
+		global_position.y -= 0.1
 	move_and_slide()
-	
 	
 	if velocity.length_squared() > 0.01:
 		var target_dir = velocity.normalized()
-		var current_dir = -global_transform.basis.z.normalized()
+		var current_dir = - global_transform.basis.z.normalized()
 		var angle_diff = rad_to_deg(acos(clamp(current_dir.dot(target_dir), -1.0, 1.0)))
 
 		if angle_diff < 150.0:

@@ -9,7 +9,7 @@
 
 - [ ] **Segunda parte**
   - [ ] Implementar tecnicas escolhidas
-	- [ ] Partículas
+	- [X] Partículas
 	- [ ] Iluminação  dinâmica
 	- [x] Inventário
   - [ ] Finalizar o jogo

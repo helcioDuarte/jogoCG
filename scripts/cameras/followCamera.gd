@@ -6,15 +6,21 @@ const follow_speed = 0.1
 var activated = true
 var new_pos = null
 func set_camera():
-	global_position = Vector3(player.global_position.x - 5, player.global_position.y + 2, global_position.z)
+	global_position = Vector3(player.global_position.x - 3, player.global_position.y + 1, global_position.z)
 	activated = true
 	current = true
 
 func _process(delta):
 	if current and is_instance_valid(player):
-		new_pos = Vector3(player.global_position.x - 5, player.global_position.y + 2, global_position.z)
-		global_position = global_position.lerp(new_pos, follow_speed)
-
+		new_pos = Vector3(player.global_position.x - 3, player.global_position.y + 1, global_position.z)
+		if abs(pos0.z - player.global_position.z) > 4:
+			new_pos.z = player.global_position.z
+		else:
+			new_pos.z = pos0.z
+		if Input.is_action_pressed("sprint"):
+			global_position = global_position.lerp(new_pos, follow_speed * 2)
+		else:
+			global_position = global_position.lerp(new_pos, follow_speed)
 	# reset camera position when not used so trigger doesn't get messed up
 	if !current and activated:
 		global_position = pos0
