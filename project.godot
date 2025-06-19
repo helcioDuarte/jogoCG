@@ -15,6 +15,10 @@ run/main_scene="uid://bkb5jrwi6q3v4"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+TransitionManager="*res://scripts/transition_manager.gd"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/tbloader/plugin.cfg")
