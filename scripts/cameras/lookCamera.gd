@@ -1,6 +1,6 @@
 extends Camera3D
 
-@onready var player = get_node($"../../player".get_path())
+@onready var player = get_node($"../../../player".get_path())
 @onready var r0 = Vector3(global_rotation.x, global_rotation.y, global_rotation.z)
 const follow_speed = 0.1
 var activated = true

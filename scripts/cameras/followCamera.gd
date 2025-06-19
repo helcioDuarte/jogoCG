@@ -1,6 +1,6 @@
 extends Camera3D
 
-@onready var player = get_node($"../../player".get_path())
+@onready var player = get_node($"../../../player".get_path())
 @onready var pos0 = Vector3(global_position.x, global_position.y, global_position.z)
 @export var inverted = false
 
