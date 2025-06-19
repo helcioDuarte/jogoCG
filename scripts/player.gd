@@ -36,7 +36,7 @@ func hit_pipe():
 
 	var attack_reach = 2.0
 	var ray_origin = pipe.global_transform.origin
-	var forward_direction = - camera_node.global_transform.basis.z.normalized() if is_instance_valid(camera_node) else -global_transform.basis.z.normalized()
+	var forward_direction = -global_transform.basis.z.normalized()
 	var ray_end = ray_origin + forward_direction * attack_reach
 
 	# Prepara a query do raycast

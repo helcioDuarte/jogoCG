@@ -1,8 +1,8 @@
 extends CharacterBody3D
 
 # Configurações de Visão
-@export var cone_height: float = 15.0 / 2
-@export var cone_radius: float = 5.0 / 4 # ta dividido por 2 pq o tamanho dele ta 0.5
+@export var cone_height: float = 20
+@export var cone_radius: float = 5.0  # ta dividido por 2 pq o tamanho dele ta 0.5
 @export var cone_color: Color = Color(0, 0.5, 1, 0.3)
 
 @export var esf_area_side_length: float = 10.0 # ta dividido por 2 pq o tamanho dele ta 0.5
@@ -14,6 +14,8 @@ extends CharacterBody3D
 @export var tempo_para_voltar: float = 5.0
 @export var dano_ataque: float = 0
 @export var vida: float = 20
+var esta_morto: bool = false
+
 
 # Estados de IA
 enum Estado { PATRULHANDO, PERSEGUINDO, VOLTANDO, ATACANDO }
@@ -39,6 +41,7 @@ var _pode_causar_dano_neste_ciclo_anim: bool = false # Controla o dano por ciclo
 
 # Referências @onready
 @onready var path_follow: PathFollow3D = get_parent()
+@onready var path_follow2: PathFollow3D = get_node("CaminhoPatrulha/AlvoDoCaminho")
 @onready var animation_player: AnimationPlayer = path_follow.get_node("AnimacaoDoCaminho")
 @onready var agente: NavigationAgent3D = $NavigationAgent3D
 @onready var animation_tree: AnimationTree = $AnimationTree
@@ -86,9 +89,11 @@ func _ready():
 
 # ========== CICLO DE VIDA ==========
 func _physics_process(delta: float):
+	if esta_morto:
+		return
 	match estado:
 		Estado.PATRULHANDO:
-			_set_anim_state(false, true, false)
+			_set_anim_state(false, true, false, false)
 			velocity = Vector3.ZERO
 			move_and_slide()
 		Estado.PERSEGUINDO:
@@ -97,6 +102,7 @@ func _physics_process(delta: float):
 			_retornar_para_path(delta)
 		Estado.ATACANDO:
 			_atacar_jogador(delta)
+			
 
 
 func _unhandled_input(event: InputEvent):
@@ -108,7 +114,7 @@ func _unhandled_input(event: InputEvent):
 func _perseguir_jogador(delta: float):
 	if not is_instance_valid(jogador):
 		tempo_desde_perda += delta
-		_set_anim_state(true, false, false)
+		_set_anim_state(true, false, false, false)
 		velocity = Vector3.ZERO
 		move_and_slide()
 
@@ -118,7 +124,7 @@ func _perseguir_jogador(delta: float):
 		return
 
 	tempo_desde_perda = 0.0
-	_set_anim_state(false, true, false)
+	_set_anim_state(false, true, false, false)
 
 	agente.target_position = jogador.global_transform.origin
 	var proximo_ponto = agente.get_next_path_position()
@@ -129,7 +135,7 @@ func _perseguir_jogador(delta: float):
 
 
 func _retornar_para_path(delta: float):
-	_set_anim_state(false, true, false)
+	_set_anim_state(false, true, false, false)
 
 	if agente.is_navigation_finished():
 		global_position = path_follow.global_position
@@ -147,7 +153,7 @@ func _retornar_para_path(delta: float):
 
 
 func _atacar_jogador(delta: float):
-	_set_anim_state(false, false, true)
+	_set_anim_state(false, false, true, false)
 
 	if is_instance_valid(jogador):
 		if global_position.distance_squared_to(jogador.global_position) > 0.01:
@@ -186,7 +192,7 @@ func _on_body_entered(body: Node3D):
 			estado = Estado.PERSEGUINDO
 			jogador = body
 			tempo_desde_perda = 0.0
-			_set_anim_state(false, true, false)
+			_set_anim_state(false, true, false, false)
 
 
 func _on_body_exited(body: Node3D):
@@ -323,10 +329,11 @@ func _criar_visual_area_ataque():
 
 
 # ========== UTILITÁRIOS ==========
-func _set_anim_state(idle := false, walk := false, attack := false):
+func _set_anim_state(idle := false, walk := false, attack := false, die := false):
 	animation_tree.set("parameters/conditions/idle", idle)
 	animation_tree.set("parameters/conditions/walk", walk)
 	animation_tree.set("parameters/conditions/attack", attack)
+	animation_tree.set("parameters/conditions/die", die)
 
 
 # ========== ÁREAS DE VISÃO ==========
@@ -407,11 +414,27 @@ func _criar_area_visao_esferica():
 # Adicione esta função ao script do seu inimigo
 
 func take_damage(amount: int):
-	vida -= amount
-	print(self.name, " tomou ", amount, " de dano. Vida restante: ", vida)
-	if vida <= 0:
-		die() # Você precisaria de uma função para a morte do inimigo
+	if esta_morto:
+		return
 
-func die():
-	print(self.name, " morreu!")
-	queue_free() # A forma mais simples de "matar" o inimigo
+	vida -= amount
+	print(name, " tomou ", amount, " de dano. Vida restante: ", vida)
+
+	if vida <= 0:
+		morrer()
+
+
+func morrer():
+	if esta_morto:
+		return
+
+	print(name, " morreu!")
+	esta_morto = true
+	velocity = Vector3.ZERO # Para o movimento imediatamente
+
+	# Desativa a colisão para que o corpo não bloqueie o caminho
+	# (Ajuste o nome "CollisionShape3D" se o seu for diferente)
+	$CollisionShape3D.disabled = true
+
+	# AnimaçãoTree: configura estado de morte
+	_set_anim_state(false, false, false, true)
