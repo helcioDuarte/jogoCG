@@ -460,3 +460,22 @@ func execute_combination(item1_data_for_combine: Dictionary, item2_data_for_comb
 
 func _on_prev_item_button_pressed(): cycle_inventory(-1)
 func _on_next_item_button_pressed(): cycle_inventory(1)
+
+func save_persistent_state() -> Dictionary:
+	return {
+		"current_health": current_health,
+		"current_item_index": current_item_index,
+		"equipped_item_id": equipped_item_id,
+		"inventory": inventory
+	}
+
+func load_persistent_state(data: Dictionary):
+	if data.has("current_health"):
+		current_health = data["current_health"]
+	if data.has("current_item_index"):
+		current_item_index = data["current_item_index"]
+	if data.has("equipped_item_id"):
+		equipped_item_id = data["equipped_item_id"]
+	if data.has("inventory"):
+		inventory = data["inventory"]
+	update_ui_elements()

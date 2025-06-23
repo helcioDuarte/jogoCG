@@ -23,6 +23,10 @@ TransitionManager="*res://scripts/transition_manager.gd"
 
 enabled=PackedStringArray("res://addons/tbloader/plugin.cfg")
 
+[global_group]
+
+savable=""
+
 [input]
 
 front={

@@ -33,3 +33,18 @@ func _process(delta):
 	if !current and activated:
 		global_position = pos0
 		activated = false
+
+func save_state() -> Dictionary:
+	return {
+		"position": global_position,
+		"activated": activated,
+		"current": current
+	}
+
+func load_state(data: Dictionary):
+	if data.has("position"):
+		global_position = data["position"]
+	if data.has("activated"):
+		activated = data["activated"]
+	if data.has("current"):
+		current = data["current"]

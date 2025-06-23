@@ -16,7 +16,7 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[node name="InventoryPanel" type="CanvasLayer"]
+[node name="InventoryPanel" type="CanvasLayer" groups=["savable"]]
 offset = Vector2(0, -150)
 transform = Transform2D(1, 0, 0, 1, 0, -150)
 script = ExtResource("1_xyz12")

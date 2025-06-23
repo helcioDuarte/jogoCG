@@ -20,10 +20,6 @@ var active_world_movement_direction = Vector3.ZERO
 var _camera_was_just_switched = false
 
 func move():
-	#if is_on_floor() and velocity.length() > 0:
-		#if step_up_ray.is_colliding() and not other_ray.is_colliding():
-			#var max_step_height = 0.5
-			#global_position.y += max_step_height
 	if velocity.length() > 0 and step_up_ray.is_colliding() and not other_ray.is_colliding():
 		global_position.y += step_up_ray.get_collision_point().y
 	move_and_slide()
@@ -173,3 +169,16 @@ func _physics_process(delta: float):
 			look_at(global_position + lerped_dir, Vector3.UP)
 		else:
 			look_at(global_position + target_dir, Vector3.UP)
+
+func save_state() -> Dictionary:
+	return {
+		"position": global_position,
+		"rotation": rotation
+	}
+
+func load_state(data: Dictionary):
+	if get_tree().current_scene.name == "overworld":
+		if data.has("position"):
+			global_position = data["position"]
+		if data.has("rotation"):
+			rotation.y = - data["rotation"].y

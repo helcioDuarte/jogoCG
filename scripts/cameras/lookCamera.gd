@@ -16,3 +16,18 @@ func _process(delta):
 
 	if !current and activated:
 		global_rotation = r0
+
+func save_state() -> Dictionary:
+	return {
+		"rotation": rotation,
+		"activated": activated,
+		"current": current
+	}
+
+func load_state(data: Dictionary):
+	if data.has("rotation"):
+		rotation = data["rotation"]
+	if data.has("activated"):
+		activated = data["activated"]
+	if data.has("current"):
+		current = data["current"]
