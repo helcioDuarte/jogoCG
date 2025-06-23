@@ -1,12 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://cfam0t7rbuyhp"]
+[gd_scene load_steps=5 format=3 uid="uid://cfam0t7rbuyhp"]
 
 [ext_resource type="Shader" uid="uid://6m66wsbvffql" path="res://scripts/screen_transition.gdshader" id="1_s44ji"]
+[ext_resource type="Shader" uid="uid://lxexv1ka3spd" path="res://scripts/screen_transition_end.gdshader" id="2_08lus"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_08lus"]
 shader = ExtResource("1_s44ji")
 shader_parameter/progress = 0.0
-shader_parameter/swirl_strength = 20.0
-shader_parameter/zoom_strength = 0.5
+shader_parameter/strength = 0.1
+shader_parameter/samples = 32
+shader_parameter/white_tint_strength = 0.7
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hunk0"]
+shader = ExtResource("2_08lus")
+shader_parameter/progress = 0.0
+shader_parameter/fade_color = Color(0, 0, 0, 1)
 
 [node name="TransitionLayer" type="CanvasLayer"]
 
@@ -17,3 +24,24 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="black" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_hunk0")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LoadingLabel" type="Label" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -151.0
+offset_top = -65.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Carregando..."

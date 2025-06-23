@@ -1,6 +1,6 @@
 extends MeshInstance3D
 
-@export var destination = "res://scenes/ov2.tscn"
+@export var destination = "res://scenes/sala.tscn"
 var player = null
 var canEnter = false
 
