@@ -6,12 +6,16 @@ var scene_states = {}
 var inventoryState = {}
 var inventoryPath = ""
 
+# Função que inicia a transição
 func start(scene_path: String):
 	if is_transitioning:
 		return
 
 	is_transitioning = true
 	_save_current_scene_state()
+
+	# Salva o estado da cena em um arquivo
+	_save_current_scene_state_to_file()
 
 	var instance = transition_layer_scene.instantiate()
 	get_tree().root.add_child(instance)
@@ -41,7 +45,7 @@ func start(scene_path: String):
 		is_transitioning = false
 		return
 
-	# Wait two frames to ensure the new scene is fully initialized
+	# Espera dois frames para garantir que a nova cena foi inicializada
 	await get_tree().process_frame
 	await get_tree().process_frame
 
@@ -54,6 +58,7 @@ func start(scene_path: String):
 	instance.queue_free()
 	is_transitioning = false
 
+# Função para salvar o estado da cena atual
 func _save_current_scene_state():
 	var current_scene = get_tree().current_scene
 	if current_scene == null or current_scene.scene_file_path.is_empty():
@@ -71,6 +76,23 @@ func _save_current_scene_state():
 	if !state.is_empty():
 		scene_states[current_scene.scene_file_path] = state
 
+# Função para salvar o estado em um arquivo
+func _save_current_scene_state_to_file():
+	var file = FileAccess.open("res://viado.json", FileAccess.WRITE)  # Usando FileAccess em vez de File
+	if file == null:
+		push_error("Falha ao abrir o arquivo para escrita!")
+		return
+	
+	# Converte o dicionário em uma string JSON
+	var json_state = JSON.stringify(scene_states)  # JSON.print foi mantido para serializar a estrutura
+
+	# Escreve a string JSON no arquivo
+	file.store_string(json_state)
+	file.close()
+
+	print("Estado da cena salvo em: user://scene_state.json")  # A função print() agora deve funcionar normalmente
+
+# Função para carregar o estado da nova cena
 func _load_new_scene_state():
 	var current_scene = get_tree().current_scene
 	var inventory_node = current_scene.find_child("InventoryPanel")

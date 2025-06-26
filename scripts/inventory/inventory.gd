@@ -4,7 +4,7 @@ extends CanvasLayer
 
 @onready var health_indicator = %HealthDisplay
 var max_health: float = 100.0
-var current_health: float = max_health
+var current_health: float = max_health - 90
 
 const HEALTHY_COLOR: Color = Color.GREEN
 const DAMAGED_COLOR: Color = Color.YELLOW
