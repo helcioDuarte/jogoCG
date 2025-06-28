@@ -2,7 +2,7 @@
 extends Control
 
 # Referências para os nós da interface. Ajuste os caminhos se sua cena for diferente.
-@onready var confirmation_label = $Panel/VBoxContainer/ConfirmationLabel
+@onready var confirmation_label = $ConfirmationLabel
 @onready var confirmation_timer = $Timer
 
 func _ready():

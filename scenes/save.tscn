@@ -1,25 +1,49 @@
-[gd_scene load_steps=2 format=3 uid="uid://be3btta2v07l"]
+[gd_scene load_steps=8 format=3 uid="uid://be3btta2v07l"]
 
 [ext_resource type="Script" uid="uid://d13g7iusquii2" path="res://scripts/save.gd" id="1_3sv4i"]
+[ext_resource type="Texture2D" uid="uid://cscbwrtfdi8sc" path="res://pics/savepic.png" id="2_r5a0y"]
+[ext_resource type="Theme" uid="uid://djyknvanlkv26" path="res://theme/menu_theme.tres" id="3_7obqq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7obqq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wsf25"]
+bg_color = Color(1, 0.6, 0.6, 1)
+draw_center = false
+border_width_left = 10
+border_color = Color(0.478431, 0.231373, 0.372549, 1)
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_bottom_left = 5
+corner_detail = 20
+anti_aliasing_size = 3.018
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r5a0y"]
+
+[sub_resource type="Theme" id="Theme_th0i3"]
+Button/colors/font_color = Color(1, 0.87451, 0.87451, 1)
+Button/constants/line_spacing = 17
+Button/font_sizes/font_size = 25
+Button/fonts/font = null
+Button/styles/disabled = SubResource("StyleBoxFlat_7obqq")
+Button/styles/normal = SubResource("StyleBoxFlat_wsf25")
+HBoxContainer/constants/separation = 256
+Label/styles/normal = SubResource("StyleBoxEmpty_r5a0y")
 
 [node name="Control" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_th0i3")
 script = ExtResource("1_3sv4i")
 
-[node name="Panel" type="Panel" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+[node name="ConfirmationLabel" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -27,35 +51,61 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -576.0
-offset_top = -324.0
+offset_top = -11.5
 offset_right = 576.0
-offset_bottom = 324.0
+offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ConfirmationLabel" type="Label" parent="Panel/VBoxContainer"]
-layout_mode = 2
+[node name="menu" type="NinePatchRect" parent="."]
+light_mask = 2
+visibility_layer = 2
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -575.5
+offset_top = -327.0
+offset_right = 575.5
+offset_bottom = 327.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_r5a0y")
+region_rect = Rect2(0, 0, 846, 596)
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer"]
-layout_mode = 2
+[node name="HBoxContainer" type="HBoxContainer" parent="menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -576.0
+offset_top = -17.5
+offset_right = 576.0
+offset_bottom = 17.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_7obqq")
 alignment = 1
 
-[node name="save" type="Button" parent="Panel/VBoxContainer/HBoxContainer"]
+[node name="save" type="Button" parent="menu/HBoxContainer"]
 layout_mode = 2
 text = "Salvar"
 
-[node name="load" type="Button" parent="Panel/VBoxContainer/HBoxContainer"]
+[node name="load" type="Button" parent="menu/HBoxContainer"]
 layout_mode = 2
 text = "Carregar"
 
-[node name="exit" type="Button" parent="Panel/VBoxContainer/HBoxContainer"]
+[node name="exit" type="Button" parent="menu/HBoxContainer"]
 layout_mode = 2
 text = "Sair"
 
-[node name="Timer" type="Timer" parent="."]
-one_shot = true
-
-[connection signal="pressed" from="Panel/VBoxContainer/HBoxContainer/save" to="." method="_on_save_button_pressed"]
-[connection signal="pressed" from="Panel/VBoxContainer/HBoxContainer/load" to="." method="_on_load_button_pressed"]
-[connection signal="pressed" from="Panel/VBoxContainer/HBoxContainer/exit" to="." method="_on_exit_button_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_confirmation_timer_timeout"]
+[connection signal="pressed" from="menu/HBoxContainer/save" to="." method="_on_save_button_pressed"]
+[connection signal="pressed" from="menu/HBoxContainer/load" to="." method="_on_load_button_pressed"]
+[connection signal="pressed" from="menu/HBoxContainer/exit" to="." method="_on_exit_button_pressed"]
