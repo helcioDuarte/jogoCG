@@ -26,7 +26,13 @@ func save_state() -> Dictionary:
 
 func load_state(data: Dictionary):
 	if data.has("rotation"):
-		rotation = data["rotation"]
+		if data["rotation"] is String: # se o jogo é carregado os valores viram string por algum motivo
+			data["rotation"] = data["rotation"].replace("(", "").replace(")", "").split(", ") # nojento
+			rotation.x = float(data["rotation"][0])
+			rotation.y = float(data["rotation"][1])
+			rotation.z = float(data["rotation"][2])
+		else:
+			rotation = data["rotation"]
 	if data.has("activated"):
 		activated = data["activated"]
 	if data.has("current"):

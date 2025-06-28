@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-@export var speed = 3.0
+@export var speed = 13.0
 @export var sprint_multiplier = 2.0
 @export var impact_spark_system_path: NodePath
 @export var pipe_damage = 10
@@ -180,6 +180,18 @@ func save_state() -> Dictionary:
 func load_state(data: Dictionary):
 	if get_tree().current_scene.name == "overworld":
 		if data.has("position"):
-			global_position = data["position"]
+			if data["position"] is String: # se o jogo é carregado os valores viram string por algum motivo
+				data["position"] = data["position"].replace("(", "").replace(")", "").split(", ") # nojento
+				global_position.x = float(data["position"][0])
+				global_position.y = float(data["position"][1])
+				global_position.z = float(data["position"][2])
+			else:
+				global_position = data["position"]
 		if data.has("rotation"):
-			rotation.y = - data["rotation"].y
+			if data["rotation"] is String: # se o jogo é carregado os valores viram string por algum motivo
+				data["rotation"] = data["rotation"].replace("(", "").replace(")", "").split(", ") # nojento
+				rotation.x = float(data["rotation"][0])
+				rotation.y = float(data["rotation"][1])
+				rotation.z = float(data["rotation"][2])
+			else:
+				rotation = data["rotation"]

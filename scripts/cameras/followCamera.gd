@@ -43,7 +43,13 @@ func save_state() -> Dictionary:
 
 func load_state(data: Dictionary):
 	if data.has("position"):
-		global_position = data["position"]
+		if data["position"] is String: # se o jogo é carregado os valores viram string por algum motivo
+			data["position"] = data["position"].replace("(", "").replace(")", "").split(", ") # nojento
+			global_position.x = float(data["position"][0])
+			global_position.y = float(data["position"][1])
+			global_position.z = float(data["position"][2])
+		else:
+			global_position = data["position"]
 	if data.has("activated"):
 		activated = data["activated"]
 	if data.has("current"):
