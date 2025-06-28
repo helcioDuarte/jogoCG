@@ -1,12 +1,14 @@
-[gd_scene load_steps=54 format=4 uid="uid://c2nu668m2p4ud"]
+[gd_scene load_steps=58 format=4 uid="uid://c2nu668m2p4ud"]
 
-[ext_resource type="Texture2D" uid="uid://634nprj4ydrq" path="res://textures/pisocomp.jpg" id="1_ohvp2"]
-[ext_resource type="Texture2D" uid="uid://03qx55l2vs61" path="res://textures/paredecomp.jpg" id="2_v8g2v"]
-[ext_resource type="Texture2D" uid="uid://ccp57xtlamspw" path="res://textures/piagranito_comp.png" id="3_oowmx"]
-[ext_resource type="Texture2D" uid="uid://cjtiwxdqfr142" path="res://textures/tetocomp.jpg" id="3_p1g6w"]
-[ext_resource type="Texture2D" uid="uid://dsqjks6sk5cc5" path="res://textures/corrimao_comp.jpg" id="4_qnxut"]
-[ext_resource type="Texture2D" uid="uid://cm0vgvitxcxo5" path="res://textures/Texturelabs_Metal_comp.jpg" id="5_qg2ob"]
+[ext_resource type="Texture2D" uid="uid://1w8wgbf4xqca" path="res://textures/pisocomp.jpg" id="1_ohvp2"]
+[ext_resource type="Texture2D" uid="uid://c3b8keottag2e" path="res://textures/paredecomp.jpg" id="2_v8g2v"]
+[ext_resource type="Texture2D" uid="uid://np187l71lon6" path="res://textures/piagranito_comp.png" id="3_oowmx"]
+[ext_resource type="Texture2D" uid="uid://dr8740jrc8nav" path="res://textures/tetocomp.jpg" id="3_p1g6w"]
+[ext_resource type="Texture2D" uid="uid://ct278xx26jjtx" path="res://textures/corrimao_comp.jpg" id="4_qnxut"]
+[ext_resource type="Texture2D" uid="uid://u1ckfw5b36d3" path="res://textures/Texturelabs_Metal_comp.jpg" id="5_qg2ob"]
 [ext_resource type="PackedScene" uid="uid://rxinvobacirt" path="res://entities/player.tscn" id="10_pv52q"]
+[ext_resource type="Texture2D" uid="uid://cyyplg1lyyio0" path="res://textures/door_brown.png" id="10_uu4lb"]
+[ext_resource type="Texture2D" uid="uid://bc0uuvhh3tddp" path="res://textures/door_bathroom.png" id="11_jhdnp"]
 [ext_resource type="Script" uid="uid://brxlx3bv071et" path="res://scripts/cameras/cameraTrigger.gd" id="12_3746r"]
 [ext_resource type="PackedScene" uid="uid://catogyqckj5p1" path="res://entities/door.tscn" id="13_5ukx8"]
 
@@ -328,6 +330,16 @@ size = Vector3(26.1086, 1, 22.6176)
 [sub_resource type="Environment" id="Environment_aqf5g"]
 fog_density = 0.1075
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ohvp2"]
+shading_mode = 0
+albedo_texture = ExtResource("10_uu4lb")
+uv1_scale = Vector3(3, 2, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v8g2v"]
+shading_mode = 0
+albedo_texture = ExtResource("11_jhdnp")
+uv1_scale = Vector3(3, 2, 1)
+
 [node name="Node3D" type="Node3D"]
 
 [node name="TBLoader" type="TBLoader" parent="."]
@@ -478,7 +490,7 @@ mesh = SubResource("ArrayMesh_y7wub")
 shape = SubResource("ConcavePolygonShape3D_el5f6")
 
 [node name="player" parent="." instance=ExtResource("10_pv52q")]
-transform = Transform3D(-0.999848, -0.0174524, -8.74228e-08, -0.0174524, 0.999848, 0, 8.74095e-08, 1.52574e-09, -1, 3.15423, 1.7672, -3.38412)
+transform = Transform3D(-4.37048e-08, -7.62869e-10, 1, -0.0174524, 0.999848, 0, -0.999848, -0.0174524, -4.37114e-08, 6.43763, 1.7672, -3.38412)
 
 [node name="Node3D" type="Node3D" parent="."]
 
@@ -503,7 +515,36 @@ environment = SubResource("Environment_aqf5g")
 
 [node name="Door" parent="." instance=ExtResource("13_5ukx8")]
 transform = Transform3D(1, 0, 0, 0, 1.1, 0, 0, 0, 1, 7.29784, 1.83708, -3.65205)
+material_override = SubResource("StandardMaterial3D_ohvp2")
 destination = "res://scenes/overworld.tscn"
+
+[node name="Door2" parent="." instance=ExtResource("13_5ukx8")]
+transform = Transform3D(-4.37114e-08, 0, 1.75, 0, 1.25, 0, -1, 0, -7.64949e-08, 2.52886, 1.99779, 2.67848)
+material_override = SubResource("StandardMaterial3D_v8g2v")
+destination = "res://scenes/overworld.tscn"
+open = false
+
+[node name="Door3" parent="." instance=ExtResource("13_5ukx8")]
+transform = Transform3D(-4.37114e-08, 0, 1.75, 0, 1.25, 0, -1, 0, -7.64949e-08, 0.63032, 1.99779, 2.67848)
+material_override = SubResource("StandardMaterial3D_v8g2v")
+destination = "res://scenes/overworld.tscn"
+open = false
+
+[node name="Door4" parent="." instance=ExtResource("13_5ukx8")]
+transform = Transform3D(-4.37114e-08, 0, 1.75, 0, 1.25, 0, -1, 0, -7.64949e-08, -1.29935, 1.99779, 2.67848)
+material_override = SubResource("StandardMaterial3D_v8g2v")
+destination = "res://scenes/overworld.tscn"
+open = false
+
+[node name="Door5" parent="." instance=ExtResource("13_5ukx8")]
+transform = Transform3D(-4.37114e-08, 0, 1.8, 0, 1.25, 0, -1, 0, -7.86805e-08, -5.10497, 1.99779, 2.67848)
+material_override = SubResource("StandardMaterial3D_v8g2v")
+destination = "res://scenes/save.tscn"
+
+[node name="Door6" parent="." instance=ExtResource("13_5ukx8")]
+transform = Transform3D(-4.37114e-08, -4.77671e-15, -1.8, -8.74228e-08, 1.25, 0, -1, -1.09278e-07, 7.86805e-08, -3.31057, 1.99779, 2.67848)
+material_override = SubResource("StandardMaterial3D_v8g2v")
+destination = "res://scenes/save.tscn"
 
 [connection signal="body_entered" from="Node3D/Node3D/cameraEntrada/cameraTrigger" to="Node3D/Node3D/cameraEntrada/cameraTrigger" method="enter"]
 [connection signal="body_exited" from="Node3D/Node3D/cameraEntrada/cameraTrigger" to="Node3D/Node3D/cameraEntrada/cameraTrigger" method="leave"]

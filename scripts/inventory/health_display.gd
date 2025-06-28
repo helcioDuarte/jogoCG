@@ -10,7 +10,7 @@ var base_y = 50.0
 var color = Color.WHITE
 func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
-	%Portrait.texture = load("res://textures/else_duarte.png")
+	#%Portrait.texture = load("res://textures/else_duarte.png")
 	line_2d.width = 2.5
 	line_2d.antialiased = true
 	line_2d.position.x -= 3

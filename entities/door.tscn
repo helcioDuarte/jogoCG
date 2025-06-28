@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://catogyqckj5p1"]
+[gd_scene load_steps=8 format=3 uid="uid://catogyqckj5p1"]
 
 [ext_resource type="Texture2D" uid="uid://fdgjr8iuyr1q" path="res://textures/door_white.png" id="1_3fqlw"]
 [ext_resource type="Script" uid="uid://crghr5f30jq8j" path="res://scripts/door.gd" id="2_k4wox"]
+[ext_resource type="PackedScene" uid="uid://dwffagowe1pga" path="res://entities/textbox.tscn" id="3_ts0s0"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k4wox"]
 shading_mode = 0
@@ -31,6 +32,8 @@ shape = SubResource("ConcavePolygonShape3D_3fqlw")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("CylinderShape3D_ts0s0")
+
+[node name="textBox" parent="." instance=ExtResource("3_ts0s0")]
 
 [connection signal="body_entered" from="Area3D" to="." method="enter"]
 [connection signal="body_exited" from="Area3D" to="." method="leave"]

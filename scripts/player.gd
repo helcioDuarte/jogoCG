@@ -63,6 +63,7 @@ func hit_pipe():
 			
 	else:
 		print("Pipe não atingiu nada.")
+
 func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	inventory.visible = false
@@ -93,7 +94,7 @@ func _physics_process(delta: float):
 	if inventory.current_health <= 0:
 		animations.die()
 		return
-	if inventory.visible:
+	if get_tree().paused:
 		return
 	
 	current_input_dir = Input.get_vector("left", "right", "front", "back")
@@ -151,7 +152,7 @@ func _physics_process(delta: float):
 			speed = 0
 			hit_pipe()
 			await get_tree().create_timer(1.3).timeout
-			speed = 5
+			speed = 3
 	animations.animateMovement(velocity, speed)
 	if $go_up_trigger.should_step_up():
 		global_position.y += 0.1

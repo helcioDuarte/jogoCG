@@ -4,7 +4,7 @@ extends CanvasLayer
 
 @onready var health_indicator = %HealthDisplay
 var max_health: float = 100.0
-var current_health: float = max_health - 90
+var current_health: float = max_health
 
 const HEALTHY_COLOR: Color = Color.GREEN
 const DAMAGED_COLOR: Color = Color.YELLOW
@@ -56,6 +56,7 @@ func _ready():
 		current_item_index = 0
 	
 	update_ui_elements()
+
 
 func pause():
 	if not is_visible():
@@ -200,7 +201,7 @@ func update_inventory_display():
 	var description_text = sel_item_data.name + "\n" + sel_item_data.description
 	
 	if sel_item_data.has("current_ammo"):
-		%ammo.text = "Munição: %d/%d" % [sel_item_data.current_ammo, sel_item_data.max_ammo]
+		%ammo.text = "Munição: %d/%d" % [int(sel_item_data.current_ammo), int(sel_item_data.max_ammo)]
 	else:
 		%ammo.text = ""
 	item_description_label.text = description_text
@@ -477,5 +478,12 @@ func load_persistent_state(data: Dictionary):
 	if data.has("equipped_item_id"):
 		equipped_item_id = data["equipped_item_id"]
 	if data.has("inventory"):
-		inventory = data["inventory"]
+		var loaded_inv = data["inventory"]
+		if loaded_inv is Array:
+			inventory.clear()
+			for item in loaded_inv:
+				print(item)
+				if item.has("quantity"):
+					item["quantity"] = int(item["quantity"])
+				inventory.append(item)
 	update_ui_elements()

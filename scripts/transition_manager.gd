@@ -14,9 +14,6 @@ func start(scene_path: String):
 	is_transitioning = true
 	_save_current_scene_state()
 
-	# Salva o estado da cena em um arquivo
-	_save_current_scene_state_to_file()
-
 	var instance = transition_layer_scene.instantiate()
 	get_tree().root.add_child(instance)
 
@@ -65,7 +62,6 @@ func _save_current_scene_state():
 		return
 		
 	var state = {}
-	var persistent = {}
 	var savable_nodes = get_tree().get_nodes_in_group("savable")
 	for node in savable_nodes:
 		if node.has_method("save_state"):
@@ -75,22 +71,6 @@ func _save_current_scene_state():
 			
 	if !state.is_empty():
 		scene_states[current_scene.scene_file_path] = state
-
-# Função para salvar o estado em um arquivo
-func _save_current_scene_state_to_file():
-	var file = FileAccess.open("res://viado.json", FileAccess.WRITE)  # Usando FileAccess em vez de File
-	if file == null:
-		push_error("Falha ao abrir o arquivo para escrita!")
-		return
-	
-	# Converte o dicionário em uma string JSON
-	var json_state = JSON.stringify(scene_states)  # JSON.print foi mantido para serializar a estrutura
-
-	# Escreve a string JSON no arquivo
-	file.store_string(json_state)
-	file.close()
-
-	print("Estado da cena salvo em: user://scene_state.json")  # A função print() agora deve funcionar normalmente
 
 # Função para carregar o estado da nova cena
 func _load_new_scene_state():
@@ -106,3 +86,34 @@ func _load_new_scene_state():
 		var node = current_scene.get_node_or_null(node_path_str)
 		if node != null and node.has_method("load_state"):
 			node.call("load_state", state[node_path_str])
+
+# Salva o estado atual do jogo em um arquivo.
+func save_game():
+	# Agrupa todos os dados persistentes em um único dicionário
+	var full_save_data = {
+		"scene_states": scene_states,
+		"inventory_state": inventoryState
+	}
+
+	var file = FileAccess.open("user://save.dat", FileAccess.WRITE)
+	# Usa JSON.stringify para criar um arquivo de texto legível e compatível
+	file.store_string(JSON.stringify(full_save_data))
+	print("Jogo Salvo.")
+
+# Carrega o estado do jogo e inicia a transição para a cena salva.
+func load_game():
+	var file_path = "user://save.dat"
+	if not FileAccess.file_exists(file_path):
+		print("Arquivo de save não encontrado.")
+		return
+
+	var file = FileAccess.open(file_path, FileAccess.READ)
+	var content = file.get_as_text()
+	var full_save_data = JSON.parse_string(content)
+
+	if full_save_data:
+		# Restaura as variáveis do manager com os dados do arquivo
+		self.scene_states = full_save_data.get("scene_states", {})
+		self.inventoryState = full_save_data.get("inventory_state", {})
+	else:
+		print("Erro ao ler os dados do arquivo de save.")

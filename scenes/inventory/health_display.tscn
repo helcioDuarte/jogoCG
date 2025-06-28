@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cvg8w6yqmxwvg"]
+[gd_scene load_steps=4 format=3 uid="uid://cvg8w6yqmxwvg"]
 
 [ext_resource type="Script" uid="uid://cclfn6o6xvva2" path="res://scripts/inventory/health_display.gd" id="1_abcde"]
+[ext_resource type="Texture2D" uid="uid://bp3c5lg1uu7f3" path="res://textures/else_duarte.png" id="2_hafh8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_12345"]
 bg_color = Color(0.2, 0.2, 0.2, 0.5)
@@ -37,13 +38,10 @@ color = Color(0, 0, 0, 0)
 unique_name_in_owner = true
 position = Vector2(-2, -2)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="Portrait" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+[node name="Portrait" type="TextureRect" parent="MarginContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 4
+texture = ExtResource("2_hafh8")
 stretch_mode = 5

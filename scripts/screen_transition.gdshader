@@ -20,7 +20,7 @@ void fragment() {
 		}
 		final_color /= float(samples);
 	}
-	
+
 	if (effective_progress > 0.0) {
 		float whiteness = pow(1.0 - effective_progress, 2.0) * white_tint_strength;
 		final_color.rgb = mix(final_color.rgb, vec3(1.0), whiteness);

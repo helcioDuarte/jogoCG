@@ -1,15 +1,16 @@
-[gd_scene load_steps=734 format=4 uid="uid://8jft6yj11cv3"]
+[gd_scene load_steps=737 format=4 uid="uid://8jft6yj11cv3"]
 
-[ext_resource type="Texture2D" uid="uid://prlec3li23cu" path="res://textures/paredecomp.jpg" id="2_e23bp"]
-[ext_resource type="Texture2D" uid="uid://bde2vi51lflil" path="res://textures/asphalt_track_diff_comp.png" id="3_8b1ih"]
-[ext_resource type="Texture2D" uid="uid://dq3esb588o4p3" path="res://textures/tetocomp.jpg" id="3_gb2nd"]
-[ext_resource type="Texture2D" uid="uid://dnjv32mxrwny8" path="res://textures/carpete_comp.jpg" id="3_jm84g"]
-[ext_resource type="Texture2D" uid="uid://crbyrce32x0fq" path="res://textures/Texturelabs_Metal_comp.jpg" id="5_2pe64"]
-[ext_resource type="Texture2D" uid="uid://dp0rexk6215nq" path="res://textures/pisocomp.jpg" id="7_3i23n"]
-[ext_resource type="Texture2D" uid="uid://6fjpg0ci7tvj" path="res://textures/p.png" id="7_15lrw"]
-[ext_resource type="Texture2D" uid="uid://d348u6kg0bnet" path="res://textures/vermelho_comp.jpg" id="8_3i23n"]
+[ext_resource type="Texture2D" uid="uid://c3b8keottag2e" path="res://textures/paredecomp.jpg" id="2_e23bp"]
+[ext_resource type="Texture2D" uid="uid://0xma1ndquq2q" path="res://textures/asphalt_track_diff_comp.png" id="3_8b1ih"]
+[ext_resource type="Texture2D" uid="uid://dr8740jrc8nav" path="res://textures/tetocomp.jpg" id="3_gb2nd"]
+[ext_resource type="Texture2D" uid="uid://bjb3c2chbpwnj" path="res://textures/carpete_comp.jpg" id="3_jm84g"]
+[ext_resource type="Texture2D" uid="uid://u1ckfw5b36d3" path="res://textures/Texturelabs_Metal_comp.jpg" id="5_2pe64"]
+[ext_resource type="Texture2D" uid="uid://1w8wgbf4xqca" path="res://textures/pisocomp.jpg" id="7_3i23n"]
+[ext_resource type="Texture2D" uid="uid://bmpl3ayatemi2" path="res://textures/p.png" id="7_15lrw"]
+[ext_resource type="Texture2D" uid="uid://dc55y3ffdrx15" path="res://textures/vermelho_comp.jpg" id="8_3i23n"]
 [ext_resource type="PackedScene" uid="uid://rxinvobacirt" path="res://entities/player.tscn" id="10_rwu5s"]
 [ext_resource type="Script" uid="uid://b4l20vgp1cixy" path="res://scripts/cameras/lookCamera.gd" id="11_dfjm3"]
+[ext_resource type="Texture2D" uid="uid://b7xa1s287y88c" path="res://textures/door_industrial_01_dark.png" id="11_jm84g"]
 [ext_resource type="Script" uid="uid://brxlx3bv071et" path="res://scripts/cameras/cameraTrigger.gd" id="12_vc80t"]
 [ext_resource type="PackedScene" uid="uid://catogyqckj5p1" path="res://entities/door.tscn" id="13_m6yth"]
 
@@ -5549,11 +5550,18 @@ _surfaces = [{
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_cf3uc"]
 data = PackedVector3Array(0.0234, 0.0316, -0.2891, -0.0215, 0.0316, -0.2891, -0.0215, -0.2561, -0.2734, 0.0234, 0.0316, -0.2891, -0.0215, -0.2561, -0.2734, 0.0234, -0.2561, -0.2734, -0.0215, 0.0316, -0.2891, 0.0234, 0.0316, -0.2891, 0.0234, 0.1383, -0.226, -0.0215, 0.0316, -0.2891, 0.0234, 0.1383, -0.226, -0.0215, 0.1383, -0.226, 0.0234, 0.1383, -0.226, 0.0234, 0.2094, -0.1126, -0.0215, 0.2094, -0.1126, 0.0234, 0.1383, -0.226, -0.0215, 0.2094, -0.1126, -0.0215, 0.1383, -0.226, 0.0234, 0.2094, -0.1126, 0.0234, 0.2272, -0.0036, -0.0215, 0.2272, -0.0036, 0.0234, 0.2094, -0.1126, -0.0215, 0.2272, -0.0036, -0.0215, 0.2094, -0.1126, 0.0234, -0.2561, -0.2734, -0.0215, -0.2561, -0.2734, -0.0215, -0.2884, -0.0036, 0.0234, -0.2561, -0.2734, -0.0215, -0.2884, -0.0036, 0.0234, -0.2884, -0.0036, -0.0215, -0.2561, -0.2734, -0.0215, 0.0316, -0.2891, -0.0215, 0.1383, -0.226, -0.0215, -0.2561, -0.2734, -0.0215, 0.1383, -0.226, -0.0215, 0.2094, -0.1126, -0.0215, -0.2561, -0.2734, -0.0215, 0.2094, -0.1126, -0.0215, 0.2272, -0.0036, -0.0215, -0.2561, -0.2734, -0.0215, 0.2272, -0.0036, -0.0215, 0.2259, 0, -0.0215, -0.2561, -0.2734, -0.0215, 0.2259, 0, -0.0215, -0.2881, 0, -0.0215, -0.2561, -0.2734, -0.0215, -0.2881, 0, -0.0215, -0.2884, -0.0036, 0.0234, -0.2884, -0.0036, 0.0234, -0.2881, 0, 0.0234, 0.2259, 0, 0.0234, -0.2884, -0.0036, 0.0234, 0.2259, 0, 0.0234, 0.2272, -0.0036, 0.0234, -0.2884, -0.0036, 0.0234, 0.2272, -0.0036, 0.0234, 0.2094, -0.1126, 0.0234, -0.2884, -0.0036, 0.0234, 0.2094, -0.1126, 0.0234, 0.1383, -0.226, 0.0234, -0.2884, -0.0036, 0.0234, 0.1383, -0.226, 0.0234, 0.0316, -0.2891, 0.0234, -0.2884, -0.0036, 0.0234, 0.0316, -0.2891, 0.0234, -0.2561, -0.2734, 0.0234, -0.2884, -0.0036, -0.0215, -0.2884, -0.0036, -0.0215, -0.2881, 0, 0.0234, -0.2884, -0.0036, -0.0215, -0.2881, 0, 0.0234, -0.2881, 0, 0.0234, 0.2272, -0.0036, 0.0234, 0.2259, 0, -0.0215, 0.2259, 0, 0.0234, 0.2272, -0.0036, -0.0215, 0.2259, 0, -0.0215, 0.2272, -0.0036, -0.0215, 0.2259, 0, 0.0234, 0.2259, 0, 0.0234, -0.2881, 0, -0.0215, 0.2259, 0, 0.0234, -0.2881, 0, -0.0215, -0.2881, 0, 0.0215, 0.2259, 0, -0.0234, 0.2259, 0, -0.0234, -0.2881, 0, 0.0215, 0.2259, 0, -0.0234, -0.2881, 0, 0.0215, -0.2881, 0, 0.0215, 0.2259, 0, 0.0215, 0.2272, 0.0036, -0.0234, 0.2272, 0.0036, 0.0215, 0.2259, 0, -0.0234, 0.2272, 0.0036, -0.0234, 0.2259, 0, 0.0215, -0.2881, 0, -0.0234, -0.2881, 0, -0.0234, -0.2884, 0.0036, 0.0215, -0.2881, 0, -0.0234, -0.2884, 0.0036, 0.0215, -0.2884, 0.0036, -0.0234, -0.2884, 0.0036, -0.0234, -0.2881, 0, -0.0234, 0.2259, 0, -0.0234, -0.2884, 0.0036, -0.0234, 0.2259, 0, -0.0234, 0.2272, 0.0036, -0.0234, -0.2884, 0.0036, -0.0234, 0.2272, 0.0036, -0.0234, 0.2094, 0.1126, -0.0234, -0.2884, 0.0036, -0.0234, 0.2094, 0.1126, -0.0234, 0.1383, 0.226, -0.0234, -0.2884, 0.0036, -0.0234, 0.1383, 0.226, -0.0234, 0.0316, 0.2891, -0.0234, -0.2884, 0.0036, -0.0234, 0.0316, 0.2891, -0.0234, -0.2561, 0.2734, 0.0215, -0.2881, 0, 0.0215, -0.2884, 0.0036, 0.0215, -0.2561, 0.2734, 0.0215, -0.2881, 0, 0.0215, -0.2561, 0.2734, 0.0215, 0.0316, 0.2891, 0.0215, -0.2881, 0, 0.0215, 0.0316, 0.2891, 0.0215, 0.1383, 0.226, 0.0215, -0.2881, 0, 0.0215, 0.1383, 0.226, 0.0215, 0.2094, 0.1126, 0.0215, -0.2881, 0, 0.0215, 0.2094, 0.1126, 0.0215, 0.2272, 0.0036, 0.0215, -0.2881, 0, 0.0215, 0.2272, 0.0036, 0.0215, 0.2259, 0, 0.0215, -0.2884, 0.0036, -0.0234, -0.2884, 0.0036, -0.0234, -0.2561, 0.2734, 0.0215, -0.2884, 0.0036, -0.0234, -0.2561, 0.2734, 0.0215, -0.2561, 0.2734, 0.0215, 0.2272, 0.0036, 0.0215, 0.2094, 0.1126, -0.0234, 0.2094, 0.1126, 0.0215, 0.2272, 0.0036, -0.0234, 0.2094, 0.1126, -0.0234, 0.2272, 0.0036, -0.0234, 0.2094, 0.1126, 0.0215, 0.2094, 0.1126, 0.0215, 0.1383, 0.226, -0.0234, 0.2094, 0.1126, 0.0215, 0.1383, 0.226, -0.0234, 0.1383, 0.226, -0.0234, 0.0316, 0.2891, -0.0234, 0.1383, 0.226, 0.0215, 0.1383, 0.226, -0.0234, 0.0316, 0.2891, 0.0215, 0.1383, 0.226, 0.0215, 0.0316, 0.2891, -0.0234, 0.0316, 0.2891, 0.0215, 0.0316, 0.2891, 0.0215, -0.2561, 0.2734, -0.0234, 0.0316, 0.2891, 0.0215, -0.2561, 0.2734, -0.0234, -0.2561, 0.2734)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_12o68"]
-size = Vector3(26.1086, 1, 22.6176)
-
 [sub_resource type="Environment" id="Environment_aqf5g"]
 fog_density = 0.1075
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_15lrw"]
+albedo_texture = ExtResource("11_jm84g")
+uv1_scale = Vector3(3, 2, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_aktge"]
+size = Vector3(34.2326, 2.5, 13.0459)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_e23bp"]
+size = Vector3(13.348, 1, 8.04517)
 
 [node name="Node3D" type="Node3D"]
 
@@ -7836,23 +7844,7 @@ mesh = SubResource("ArrayMesh_prlpj")
 shape = SubResource("ConcavePolygonShape3D_cf3uc")
 
 [node name="player" parent="." instance=ExtResource("10_rwu5s")]
-transform = Transform3D(0.999837, 0.0180632, 0, -0.0180632, 0.999837, 0, 0, 0, 1, 4.41237, 2.24876, -2.30924)
-
-[node name="Node3D" type="Node3D" parent="."]
-
-[node name="Node3D" type="Node3D" parent="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.5013, 4.42694, 0.302161)
-
-[node name="cameraEntrada" type="Camera3D" parent="Node3D/Node3D"]
-transform = Transform3D(-0.0764529, -0.414471, 0.906846, -0.034819, 0.910063, 0.413006, -0.996465, 0, -0.0840084, 4.87383, 4.05001, -4.50699)
-script = ExtResource("11_dfjm3")
-
-[node name="cameraTrigger" type="Area3D" parent="Node3D/Node3D/cameraEntrada"]
-script = ExtResource("12_vc80t")
-
-[node name="area" type="CollisionShape3D" parent="Node3D/Node3D/cameraEntrada/cameraTrigger"]
-transform = Transform3D(-0.973579, 0, -0.228351, 0, 1, 0, 0.228351, 0, -0.973579, -8.29472, -1.46445, 3.92596)
-shape = SubResource("BoxShape3D_12o68")
+transform = Transform3D(0.999837, 0.0180632, 0, -0.0180632, 0.999837, 0, 0, 0, 1, 4.41237, 2.00746, -2.30924)
 
 [node name="sol debug" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.0222162, 0.999753, 0, -0.999753, 0.0222162, -0.213011, 8.49915, -7.06491)
@@ -7861,9 +7853,39 @@ sky_mode = 1
 [node name="mundo debug" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_aqf5g")
 
-[node name="Door" parent="." instance=ExtResource("13_m6yth")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1.1, 0, -1, 0, -4.37114e-08, 4.48619, 2.08839, -1.56186)
+[node name="auditorio" parent="." instance=ExtResource("13_m6yth")]
+transform = Transform3D(-4.37114e-08, 0, 2, 0, 1.25, 0, -1, 0, -8.74228e-08, 4.29099, 2.20098, -1.63465)
+material_override = SubResource("StandardMaterial3D_15lrw")
+skeleton = NodePath("../../..")
 destination = "res://scenes/overworld.tscn"
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="Node3D" type="Node3D" parent="Node3D"]
+
+[node name="cameraEntrada" type="Camera3D" parent="Node3D/Node3D" groups=["savable"]]
+transform = Transform3D(-0.973599, 0, 0.228266, 0, 1, 0, -0.228266, 0, -0.973599, 3.73444, 3.86023, -14.5991)
+script = ExtResource("11_dfjm3")
+
+[node name="cameraTrigger" type="Area3D" parent="Node3D/Node3D/cameraEntrada"]
+script = ExtResource("12_vc80t")
+
+[node name="area" type="CollisionShape3D" parent="Node3D/Node3D/cameraEntrada/cameraTrigger"]
+transform = Transform3D(-0.973579, 0, -0.228351, 0, 1, 0, 0.228351, 0, -0.973579, -6.19819, -2.21445, -4.92379)
+shape = SubResource("BoxShape3D_aktge")
+
+[node name="cameraApresentacao" type="Camera3D" parent="Node3D/Node3D" groups=["savable"]]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -16.6973, 3.22227, -8.35174)
+script = ExtResource("11_dfjm3")
+
+[node name="cameraTrigger" type="Area3D" parent="Node3D/Node3D/cameraApresentacao"]
+script = ExtResource("12_vc80t")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/Node3D/cameraApresentacao/cameraTrigger"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0434723, -1.66687, -3.52258)
+shape = SubResource("BoxShape3D_e23bp")
 
 [connection signal="body_entered" from="Node3D/Node3D/cameraEntrada/cameraTrigger" to="Node3D/Node3D/cameraEntrada/cameraTrigger" method="enter"]
 [connection signal="body_exited" from="Node3D/Node3D/cameraEntrada/cameraTrigger" to="Node3D/Node3D/cameraEntrada/cameraTrigger" method="leave"]
+[connection signal="body_entered" from="Node3D/Node3D/cameraApresentacao/cameraTrigger" to="Node3D/Node3D/cameraApresentacao/cameraTrigger" method="enter"]
+[connection signal="body_exited" from="Node3D/Node3D/cameraApresentacao/cameraTrigger" to="Node3D/Node3D/cameraApresentacao/cameraTrigger" method="leave"]

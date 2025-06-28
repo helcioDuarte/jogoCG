@@ -8,22 +8,22 @@
 ## Core Gameplay
 
 - Andar
-    - O personagem pode se mover livremente pelo ambiente, explorando diferentes áreas e interagindo com o mundo ao seu redor.
+	- O personagem pode se mover livremente pelo ambiente, explorando diferentes áreas e interagindo com o mundo ao seu redor.
 
 - Bater 
-    - Em situações de combate corpo a corpo, o jogador pode realizar ataques rápidos com armas que serão encontradas no cenário.
+	- Em situações de combate corpo a corpo, o jogador pode realizar ataques rápidos com armas que serão encontradas no cenário.
 
 - Atirar 
-    - O personagem possui a habilidade de atirar com armas de fogo. O controle de mira é automático.
+	- O personagem possui a habilidade de atirar com armas de fogo. O controle de mira é automático.
 
 - Correr  
-    - Para se deslocar mais rapidamente pelo mundo, o personagem pode começar a correr, cansando ao longo do tempo através de uma barra de estamina.
+	- Para se deslocar mais rapidamente pelo mundo, o personagem pode começar a correr, cansando ao longo do tempo através de uma barra de estamina.
 
 - Lanterna
-    - O personagem usará o telefone como lanterna, e, ao ficar assustado começará a tremer, o que poderá desligar a lanterna.
+	- O personagem usará o telefone como lanterna, e, ao ficar assustado começará a tremer, o que poderá desligar a lanterna.
 
 - Usar Item (Inventário)
-    - O jogador terá acesso a um inventário que permite o uso de itens coletados durante a jornada. Com um sistema simples e eficiente, o jogador pode consumir ou equipar itens rapidamente, adaptando-se às situações e aprimorando sua experiência de jogo.
+	- O jogador terá acesso a um inventário que permite o uso de itens coletados durante a jornada. Com um sistema simples e eficiente, o jogador pode consumir ou equipar itens rapidamente, adaptando-se às situações e aprimorando sua experiência de jogo.
 
 ## Stack Tecnológico
 ### Engine
@@ -34,12 +34,12 @@
 - Trenchbroom (Mapa)
 ### Técnicas
 - Iluminação e Sombras em Tempo Real
-    - Utilizado na lanterna e em outros pontos de iluminação que haverá no mapa.
+	- Utilizado na lanterna e em outros pontos de iluminação que haverá no mapa.
 - Sistemas de Partículas
-    - Utilizado na interação das armas com o ambiente (faiscas ao bater em paredes) e ao acertar inimigos.
+	- Utilizado na interação das armas com o ambiente (faiscas ao bater em paredes) e ao acertar inimigos.
 - Inventário
-    - Utilizado para gerenciar os itens coletados pelo jogador, permitindo o uso e a troca de armas.
-    - Itens coletáveis brilharão quando o jogador estiver próximo.
+	- Utilizado para gerenciar os itens coletados pelo jogador, permitindo o uso e a troca de armas.
+	- Itens coletáveis brilharão quando o jogador estiver próximo.
 
 ## Fases
 O mapa consiste em diversas áreas da faculdade com inimigos espalhados, separados por andar e bloco, nem todas as partes estarão desbloqueadas desde o começo.
@@ -52,13 +52,13 @@ O jogador deverá resolver diversos puzzles para desbloquear áreas novas do map
 
 ## Progressão
 - Primeiro objetivo: Entrar no bandejão
-    - Ao escutar um barulho saindo do bandejão, o jogador resolve investigar. Porém a porta esta trancada, com isso será necessário explorar o térreo e resolver um puzzle no auditório. Quando ele conseguir entrar no bandejão, haverá uma cutscene apresentando o primeiro boss. Após isso, o jogador deverá se esconder e o segundo andar será liberado.
+	- Ao escutar um barulho saindo do bandejão, o jogador resolve investigar. Porém a porta esta trancada, com isso será necessário explorar o térreo e resolver um puzzle no auditório. Quando ele conseguir entrar no bandejão, haverá uma cutscene apresentando o primeiro boss. Após isso, o jogador deverá se esconder e o segundo andar será liberado.
 - Segundo objetivo: Investigar o segundo andar
-    - O segundo andar será uma fase de stealth e exploração, o primeiro boss perseguirá o jogador enquanto ele explora, após explorar, ele encontrará a chave da biblioteca e lá será o combate com o boss. Ao final a chave para o terceiro andar.
+	- O segundo andar será uma fase de stealth e exploração, o primeiro boss perseguirá o jogador enquanto ele explora, após explorar, ele encontrará a chave da biblioteca e lá será o combate com o boss. Ao final a chave para o terceiro andar.
 - Terceiro objetivo: Investigar o terceiro andar
-    - O terceiro andar será uma fase de exploração onde haverá um puzzle para desbloquear o laboratório de informática. Ao entrar no laboratório ele descobrirá que ele deve ir para o prédio da pós.
+	- O terceiro andar será uma fase de exploração onde haverá um puzzle para desbloquear o laboratório de informática. Ao entrar no laboratório ele descobrirá que ele deve ir para o prédio da pós.
 - Objetivo Final: Enfrentar o boss final na pós
-    - Após derrotar o boss final, aparecerá uma cutscene mostrando o final do jogo.
+	- Após derrotar o boss final, aparecerá uma cutscene mostrando o final do jogo.
 
 ## Personagens
 ### Protagonista: Helcio
