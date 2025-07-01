@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://be3btta2v07l"]
 
 [ext_resource type="Script" uid="uid://d13g7iusquii2" path="res://scripts/save.gd" id="1_3sv4i"]
-[ext_resource type="Texture2D" uid="uid://cscbwrtfdi8sc" path="res://pics/savepic.png" id="2_r5a0y"]
+[ext_resource type="Texture2D" uid="uid://dk378epm42ybi" path="res://pics/savepic.png" id="2_r5a0y"]
 [ext_resource type="Theme" uid="uid://djyknvanlkv26" path="res://theme/menu_theme.tres" id="3_7obqq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7obqq"]
@@ -57,6 +57,15 @@ offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_r5a0y")
+
 [node name="menu" type="NinePatchRect" parent="."]
 light_mask = 2
 visibility_layer = 2
@@ -72,7 +81,6 @@ offset_right = 575.5
 offset_bottom = 327.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_r5a0y")
 region_rect = Rect2(0, 0, 846, 596)
 axis_stretch_horizontal = 2
 axis_stretch_vertical = 2

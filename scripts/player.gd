@@ -26,8 +26,8 @@ func move():
 
 func hit_pipe():
 	if not is_instance_valid(pipe) or not is_instance_valid(sparks_fx):
-		if not is_instance_valid(sparks_fx):
-			print("Sistema de faíscas não configurado no personagem.")
+		#if not is_instance_valid(sparks_fx):
+			#print("Sistema de faíscas não configurado no personagem.")
 		return
 
 	var attack_reach = 2.0
@@ -51,7 +51,7 @@ func hit_pipe():
 		var impact_position = result.position
 		var impact_normal = result.normal
 		
-		print("Pipe atingiu: ", hit_collider.name)
+		#print("Pipe atingiu: ", hit_collider.name)
 
 		# 1. VERIFICA SE O OBJETO ATINGIDO É UM INIMIGO
 		# A forma mais robusta é checar se ele tem a função "take_damage" que acabamos de criar.
@@ -61,8 +61,8 @@ func hit_pipe():
 			
 		sparks_fx.emit_sparks(impact_position, impact_normal)
 			
-	else:
-		print("Pipe não atingiu nada.")
+	#else:
+		#print("Pipe não atingiu nada.")
 
 func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS

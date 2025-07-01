@@ -116,7 +116,7 @@ func update_health_indicator():
 
 func add_item_to_inventory(item_id, quantity_to_add = 1):
 	if not ITEM_DATA.has(item_id):
-		print("Erro: Item desconhecido: ", item_id)
+		#print("Erro: Item desconhecido: ", item_id)
 		return
 	var existing_idx = -1
 	for i in inventory.size():
@@ -274,13 +274,13 @@ func _on_use_equip_button_pressed():
 
 func equip_item(item: Dictionary):
 	equipped_item_id = item.id
-	print("Equipado: ", item.name)
+	#print("Equipado: ", item.name)
 	update_ui_elements()
 
 func unequip_current_item():
 	if equipped_item_id:
 		var item = get_inventory_item_by_id(equipped_item_id) 
-		print("Desequipado: ", item.get("name", "Item Desconhecido"))
+		#print("Desequipado: ", item.get("name", "Item Desconhecido"))
 		equipped_item_id = null
 	update_ui_elements()
 
@@ -379,13 +379,13 @@ func _on_combine_button_pressed():
 
 		var sel_item_instance = inventory[current_item_index]
 		if not sel_item_instance.get("combinable", false):
-			print(sel_item_instance.name + " não é combinável.")
+			#print(sel_item_instance.name + " não é combinável.")
 			return
 
 		first_item_for_combination = sel_item_instance.duplicate(true)
 		first_item_for_combination["original_inventory_index"] = current_item_index
 		is_combine_mode = true
-		print("Modo Comb.: " + first_item_for_combination.name + " sel. Escolha 2º item.")
+		#print("Modo Comb.: " + first_item_for_combination.name + " sel. Escolha 2º item.")
 	else:
 		if inventory.is_empty() or current_item_index < 0:
 			cancel_combination_mode()
@@ -401,7 +401,7 @@ func _on_combine_button_pressed():
 func cancel_combination_mode():
 	is_combine_mode = false
 	first_item_for_combination = {}
-	print("Modo de combinação cancelado/finalizado.")
+	#print("Modo de combinação cancelado/finalizado.")
 	update_ui_elements()
 
 func execute_combination(item1_data_for_combine: Dictionary, item2_data_for_combine: Dictionary):
@@ -412,7 +412,7 @@ func execute_combination(item1_data_for_combine: Dictionary, item2_data_for_comb
 		var revolver_inv_item = get_inventory_item_by_id("revolver")
 		
 		if revolver_inv_item.current_ammo >= revolver_inv_item.max_ammo:
-			print("Revólver já está cheio.")
+			#print("Revólver já está cheio.")
 			return
 		
 			
@@ -422,7 +422,7 @@ func execute_combination(item1_data_for_combine: Dictionary, item2_data_for_comb
 		if bullets_to_transfer > 0:
 			revolver_inv_item.current_ammo += bullets_to_transfer
 			remove_item_from_inventory("revolver_ammo", bullets_to_transfer)
-			print("Revólver recarregado com %d balas. Munição: %d/%d" % [bullets_to_transfer, revolver_inv_item.current_ammo, revolver_inv_item.max_ammo])
+			#print("Revólver recarregado com %d balas. Munição: %d/%d" % [bullets_to_transfer, revolver_inv_item.current_ammo, revolver_inv_item.max_ammo])
 			for i in inventory.size():
 				if inventory[i].id == "revolver":
 					current_item_index = i
@@ -440,7 +440,7 @@ func execute_combination(item1_data_for_combine: Dictionary, item2_data_for_comb
 			remove_item_from_inventory(id1, 1)
 			remove_item_from_inventory(id2, 1)
 			add_item_to_inventory(result_id, 1)
-			print("Sucesso! Criado: " + ITEM_DATA[result_id].name)
+			#print("Sucesso! Criado: " + ITEM_DATA[result_id].name)
 			var new_item_idx = -1
 			for i in inventory.size():
 				if inventory[i].id == result_id:
@@ -454,9 +454,9 @@ func execute_combination(item1_data_for_combine: Dictionary, item2_data_for_comb
 			if id1 != id2 and equipped_item_id == id2 and get_item_count(id2) == 0:
 				unequip_current_item()
 		else:
-			print("Itens insuficientes para combinar.")
+			#print("Itens insuficientes para combinar.")
 	else:
-		print("Combinação inválida: " + item1_data_for_combine.name + " e " + item2_data_for_combine.name + ".")
+		#print("Combinação inválida: " + item1_data_for_combine.name + " e " + item2_data_for_combine.name + ".")
 
 
 func _on_prev_item_button_pressed(): cycle_inventory(-1)
@@ -482,7 +482,7 @@ func load_persistent_state(data: Dictionary):
 		if loaded_inv is Array:
 			inventory.clear()
 			for item in loaded_inv:
-				print(item)
+				#print(item)
 				if item.has("quantity"):
 					item["quantity"] = int(item["quantity"])
 				inventory.append(item)
