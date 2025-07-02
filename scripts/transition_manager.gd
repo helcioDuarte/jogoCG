@@ -5,6 +5,7 @@ var is_transitioning = false
 var scene_states = {}
 var inventoryState = {}
 var inventoryPath = ""
+var currentRoom = ""
 
 # Função que inicia a transição
 func start(scene_path: String):
@@ -117,3 +118,9 @@ func load_game():
 		self.inventoryState = full_save_data.get("inventory_state", {})
 	else:
 		print("Erro ao ler os dados do arquivo de save.")
+
+func setRoom(room: String):
+	currentRoom = room
+	
+func getRoom():
+	return currentRoom
