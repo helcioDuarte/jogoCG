@@ -453,9 +453,9 @@ func execute_combination(item1_data_for_combine: Dictionary, item2_data_for_comb
 				unequip_current_item()
 			if id1 != id2 and equipped_item_id == id2 and get_item_count(id2) == 0:
 				unequip_current_item()
-		else:
+		#else:
 			#print("Itens insuficientes para combinar.")
-	else:
+	#else:
 		#print("Combinação inválida: " + item1_data_for_combine.name + " e " + item2_data_for_combine.name + ".")
 
 
