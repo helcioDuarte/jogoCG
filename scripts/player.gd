@@ -16,6 +16,7 @@ extends CharacterBody3D
 var current_input_dir = Vector2.ZERO
 var last_frame_input_dir = Vector2.ZERO
 var active_world_movement_direction = Vector3.ZERO
+var is_sprinting: bool = false # <- to usando pra saber se o helsio ta correndo
 
 var _camera_was_just_switched = false
 
@@ -134,7 +135,8 @@ func _physics_process(delta: float):
 	_camera_was_just_switched = false
 	last_frame_input_dir = current_input_dir
 	
-	var current_speed = speed * sprint_multiplier if Input.is_action_pressed("sprint") else speed
+	is_sprinting = Input.is_action_pressed("sprint") and velocity.length() > 0
+	var current_speed = speed * sprint_multiplier if is_sprinting else speed
 	# Aplica o movimento
 	if active_world_movement_direction != Vector3.ZERO:
 		velocity = active_world_movement_direction * current_speed

@@ -2,15 +2,17 @@ extends CharacterBody3D
 
 # Configurações de Visão
 @export var cone_height: float = 15.0 / 2
-@export var cone_radius: float = 5.0 / 4 # ta dividido por 2 pq o tamanho dele ta 0.5
+@export var cone_radius: float = 5.0 / 4
 @export var cone_color: Color = Color(0, 0.5, 1, 0.3)
 
-@export var esf_area_side_length: float = 10.0 # ta dividido por 2 pq o tamanho dele ta 0.5
-@export var esf_area_height: float = 7.0 / 2 # ta dividido por 2 pq o tamanho dele ta 0.5
+@export var esf_area_side_length: float = 10.0
+@export var esf_area_height: float = 7.0 / 2
 @export var esf_area_color: Color = Color(1, 0.8, 0.2, 0.3)
 
 # Comportamento
 @export var velocidade: float = 2.5
+#+ Velocidade com que o alvo se move no caminho durante a patrulha.
+@export var velocidade_patrulha: float = 2.5
 @export var tempo_para_voltar: float = 5.0
 @export var dano_ataque: float = 0
 @export var vida: float = 20
@@ -24,22 +26,22 @@ var jogador: Node3D
 var tempo_desde_perda: float = 0.0
 var debug_visuals_visible: bool = false
 
-
 # Nós de visão e visualização
 var cone_visual_mesh: MeshInstance3D
 var esfera_visual_mesh: MeshInstance3D
 var ataque_visual_mesh: MeshInstance3D
-
 var area_visao_cone: Area3D
 var area_visao_redonda: Area3D
 var todas_as_areas_de_visao: Array[Area3D] = []
 
 # Variaveis de comportamento
-var _pode_causar_dano_neste_ciclo_anim: bool = false # Controla o dano por ciclo de animação
+var _pode_causar_dano_neste_ciclo_anim: bool = false
 
 # Referências @onready
-@onready var path_follow: PathFollow3D = get_parent()
-@onready var animation_player: AnimationPlayer = path_follow.get_node("AnimacaoDoCaminho")
+#~ Arraste o nó PathFollow3D (seu "PontoNoCaminho") para esta variável no Inspetor.
+@export var patrulha_alvo: PathFollow3D
+#- @onready var path_follow: PathFollow3D = get_parent()
+#- @onready var animation_player: AnimationPlayer = path_follow.get_node("AnimacaoDoCaminho")
 @onready var agente: NavigationAgent3D = $NavigationAgent3D
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var ataque_area: Area3D = $AttackRangeArea
@@ -48,9 +50,9 @@ var _pode_causar_dano_neste_ciclo_anim: bool = false # Controla o dano por ciclo
 
 # ========== INICIALIZAÇÃO ==========
 func _ready():
-	animation_player.play("AnimaçãoDoCaminho")
-	animation_tree.set("parameters/conditions/walk", true)
-	animation_tree.set("parameters/conditions/idle", false)
+	#- animation_player.play("AnimaçãoDoCaminho")
+	#+ Começa no estado de patrulha, então a animação de andar deve estar ativa.
+	_set_anim_state(false, true, false)
 
 	_criar_area_visao_cone()
 	_criar_area_visao_esferica()
@@ -88,9 +90,7 @@ func _ready():
 func _physics_process(delta: float):
 	match estado:
 		Estado.PATRULHANDO:
-			_set_anim_state(false, true, false)
-			velocity = Vector3.ZERO
-			move_and_slide()
+			_patrulhar(delta) #~ Lógica de patrulha foi movida para uma função própria
 		Estado.PERSEGUINDO:
 			_perseguir_jogador(delta)
 		Estado.VOLTANDO:
@@ -105,6 +105,33 @@ func _unhandled_input(event: InputEvent):
 
 
 # ========== COMPORTAMENTOS ==========
+
+#+ NOVA FUNÇÃO PARA PATRULHA
+func _patrulhar(delta: float):
+	_set_anim_state(false, true, false)
+	
+	if not is_instance_valid(patrulha_alvo):
+		velocity = Vector3.ZERO
+		move_and_slide()
+		return
+
+	# Move o ponto-alvo ao longo do caminho.
+	patrulha_alvo.progress += velocidade_patrulha * delta
+
+	# Pega a posição global do alvo para o agente de navegação
+	agente.target_position = patrulha_alvo.global_position
+	
+	# Calcula a direção do inimigo até o próximo ponto do caminho gerado pelo agente.
+	var proximo_ponto = agente.get_next_path_position()
+	var direcao = global_position.direction_to(proximo_ponto)
+
+	# Define a velocidade na direção do alvo.
+	velocity = direcao * velocidade
+
+	move_and_slide()
+	_suavizar_rotacao(proximo_ponto, delta)
+
+
 func _perseguir_jogador(delta: float):
 	if not is_instance_valid(jogador):
 		tempo_desde_perda += delta
@@ -114,7 +141,8 @@ func _perseguir_jogador(delta: float):
 
 		if tempo_desde_perda > tempo_para_voltar:
 			estado = Estado.VOLTANDO
-			agente.target_position = path_follow.global_position
+			#~ O alvo para voltar é a posição atual do ponto de patrulha
+			agente.target_position = patrulha_alvo.global_position
 		return
 
 	tempo_desde_perda = 0.0
@@ -130,13 +158,10 @@ func _perseguir_jogador(delta: float):
 
 func _retornar_para_path(delta: float):
 	_set_anim_state(false, true, false)
-
+	
+	#~ Quando o agente de navegação termina de retornar, simplesmente muda o estado.
 	if agente.is_navigation_finished():
-		global_position = path_follow.global_position
-		global_rotation = path_follow.global_rotation
 		estado = Estado.PATRULHANDO
-		_reativar_path()
-		animation_player.play("AnimaçãoDoCaminho")
 		return
 
 	var proximo_ponto = agente.get_next_path_position()
@@ -147,6 +172,7 @@ func _retornar_para_path(delta: float):
 
 
 func _atacar_jogador(delta: float):
+	# (Sua função de ataque permanece a mesma)
 	_set_anim_state(false, false, true)
 
 	if is_instance_valid(jogador):
@@ -154,6 +180,7 @@ func _atacar_jogador(delta: float):
 			var alvo_para_olhar = jogador.global_position
 			alvo_para_olhar.y = global_position.y
 			look_at(alvo_para_olhar, Vector3.UP)
+
 
 func _iniciar_novo_ciclo_ataque():
 	if estado == Estado.ATACANDO:
@@ -178,15 +205,11 @@ func _ponto_de_impacto_do_ataque():
 # ========== DETECÇÃO ==========
 func _on_body_entered(body: Node3D):
 	if body.is_in_group("player"):
-		if estado != Estado.PERSEGUINDO or not is_instance_valid(jogador):
-			if estado != Estado.PERSEGUINDO:
-				_desanexar_do_path()
-				animation_player.stop()
-
-			estado = Estado.PERSEGUINDO
-			jogador = body
-			tempo_desde_perda = 0.0
-			_set_anim_state(false, true, false)
+		#~ Não precisa mais desanexar do path, apenas muda o estado.
+		estado = Estado.PERSEGUINDO
+		jogador = body
+		tempo_desde_perda = 0.0
+		_set_anim_state(false, true, false)
 
 
 func _on_body_exited(body: Node3D):
@@ -200,7 +223,7 @@ func _on_body_entered_atack(body: Node3D):
 
 func _on_body_exited_atack(body: Node3D):
 	if body.is_in_group("player"):
-		if is_instance_valid(jogador): 
+		if is_instance_valid(jogador):
 			var jogador_ainda_em_area_de_visao_geral = false
 			for area_node in todas_as_areas_de_visao:
 				if is_instance_valid(area_node) and area_node.get_overlapping_bodies().has(jogador):
@@ -228,30 +251,8 @@ func _verificar_visibilidade_jogador_apos_saida():
 
 
 # ========== TRANSFORMAÇÕES ==========
-func _desanexar_do_path():
-	if get_parent() == path_follow:
-		var current_transform = global_transform
-		var root_node = path_follow.get_parent()
-		if root_node:
-			path_follow.remove_child(self)
-			root_node.add_child(self)
-			owner = root_node
-			global_transform = current_transform
-		else:
-			printerr("Erro ao desanexar: pai do PathFollow3D não encontrado.")
-
-
-func _reativar_path():
-	if get_parent() and path_follow:
-		var current_parent = get_parent()
-		if current_parent != path_follow:
-			current_parent.remove_child(self)
-			path_follow.add_child(self)
-			owner = path_follow
-		self.transform = Transform3D.IDENTITY
-	else:
-		printerr("Erro ao reativar path.")
-
+#- REMOVIDO: Funções _desanexar_do_path e _reativar_path não são mais necessárias
+#- com a nova estrutura de nós.
 
 func _suavizar_rotacao(alvo: Vector3, delta: float, velocidade_rot: float = 2.0):
 	var direcao = (alvo - global_position) * Vector3(1, 0, 1)
@@ -259,9 +260,10 @@ func _suavizar_rotacao(alvo: Vector3, delta: float, velocidade_rot: float = 2.0)
 	direcao = direcao.normalized()
 	var alvo_y = atan2(-direcao.x, -direcao.z)
 	rotation.y = lerp_angle(rotation.y, alvo_y, velocidade_rot * delta)
-
+	
 
 # ========== VISUALIZAÇÃO ==========
+# (Todas as suas funções de visualização permanecem as mesmas)
 func _atualizar_visibilidade_debug_visuals():
 	if cone_visual_mesh != null:
 		cone_visual_mesh.visible = debug_visuals_visible
@@ -330,6 +332,7 @@ func _set_anim_state(idle := false, walk := false, attack := false):
 
 
 # ========== ÁREAS DE VISÃO ==========
+# (Todas as suas funções de criação de áreas permanecem as mesmas)
 func _criar_area_visao_cone():
 	area_visao_cone = Area3D.new()
 	area_visao_cone.name = "AreaDeVisao"
@@ -404,14 +407,13 @@ func _criar_area_visao_esferica():
 	area_visao_redonda.body_entered.connect(_on_body_entered)
 	area_visao_redonda.body_exited.connect(_on_body_exited)
 
-# Adicione esta função ao script do seu inimigo
 
 func take_damage(amount: int):
 	vida -= amount
 	print(self.name, " tomou ", amount, " de dano. Vida restante: ", vida)
 	if vida <= 0:
-		die() # Você precisaria de uma função para a morte do inimigo
+		die() 
 
 func die():
 	print(self.name, " morreu!")
-	queue_free() # A forma mais simples de "matar" o inimigo
+	queue_free()
