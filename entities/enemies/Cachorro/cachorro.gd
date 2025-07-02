@@ -11,15 +11,15 @@ extends CharacterBody3D
 
 # Comportamento
 @export var velocidade: float = 2.5
-#+ Velocidade com que o alvo se move no caminho durante a patrulha.
 @export var velocidade_patrulha: float = 2.5
 @export var tempo_para_voltar: float = 5.0
 @export var dano_ataque: float = 0
-@export var vida: float = 20
+@export var vida: float = 10
 @export var velocidade_rot: float = 5.0
 
 # Estados de IA
-enum Estado { PATRULHANDO, PERSEGUINDO, VOLTANDO, ATACANDO }
+#+ Adicionado o estado MORTO
+enum Estado { PATRULHANDO, PERSEGUINDO, VOLTANDO, ATACANDO, MORTO }
 var estado: Estado = Estado.PATRULHANDO
 
 # Variáveis de referência
@@ -39,11 +39,9 @@ var todas_as_areas_de_visao: Array[Area3D] = []
 var _pode_causar_dano_neste_ciclo_anim: bool = false
 
 # Referências @onready
-#~ Arraste o nó PathFollow3D (seu "PontoNoCaminho") para esta variável no Inspetor.
 @export var patrulha_alvo: PathFollow3D
-#- @onready var path_follow: PathFollow3D = get_parent()
-#- @onready var animation_player: AnimationPlayer = path_follow.get_node("AnimacaoDoCaminho")
 @onready var agente: NavigationAgent3D = $NavigationAgent3D
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var ataque_area: Area3D = $AttackRangeArea
 @onready var ataque_shape: CollisionShape3D = ataque_area.get_node("Ataque")
@@ -51,9 +49,7 @@ var _pode_causar_dano_neste_ciclo_anim: bool = false
 
 # ========== INICIALIZAÇÃO ==========
 func _ready():
-	#- animation_player.play("AnimaçãoDoCaminho")
-	#+ Começa no estado de patrulha, então a animação de andar deve estar ativa.
-	_set_anim_state(false, true, false)
+	_set_anim_state(false, true, false, false)
 
 	_criar_area_visao_cone()
 	_criar_area_visao_esferica()
@@ -82,16 +78,24 @@ func _ready():
 
 	ataque_area.body_entered.connect(_on_body_entered_atack)
 	ataque_area.body_exited.connect(_on_body_exited_atack)
-
+	
+	animation_player.animation_finished.connect(_on_animation_finished)
+	
 	_criar_visual_area_ataque()
 	_atualizar_visibilidade_debug_visuals()
 
 
 # ========== CICLO DE VIDA ==========
 func _physics_process(delta: float):
+	#+ Apenas inimigos que não estão mortos podem se mover ou agir.
+	if estado == Estado.MORTO:
+		velocity = Vector3.ZERO
+		move_and_slide()
+		return
+
 	match estado:
 		Estado.PATRULHANDO:
-			_patrulhar(delta) #~ Lógica de patrulha foi movida para uma função própria
+			_patrulhar(delta)
 		Estado.PERSEGUINDO:
 			_perseguir_jogador(delta)
 		Estado.VOLTANDO:
@@ -107,26 +111,20 @@ func _unhandled_input(event: InputEvent):
 
 # ========== COMPORTAMENTOS ==========
 
-#+ NOVA FUNÇÃO PARA PATRULHA
 func _patrulhar(delta: float):
-	_set_anim_state(false, true, false)
+	_set_anim_state(false, true, false, false)
 	
 	if not is_instance_valid(patrulha_alvo):
 		velocity = Vector3.ZERO
 		move_and_slide()
 		return
 
-	# Move o ponto-alvo ao longo do caminho.
 	patrulha_alvo.progress += velocidade_patrulha * delta
-
-	# Pega a posição global do alvo para o agente de navegação
 	agente.target_position = patrulha_alvo.global_position
 	
-	# Calcula a direção do inimigo até o próximo ponto do caminho gerado pelo agente.
 	var proximo_ponto = agente.get_next_path_position()
 	var direcao = global_position.direction_to(proximo_ponto)
 
-	# Define a velocidade na direção do alvo.
 	velocity = direcao * velocidade
 
 	move_and_slide()
@@ -136,18 +134,17 @@ func _patrulhar(delta: float):
 func _perseguir_jogador(delta: float):
 	if not is_instance_valid(jogador):
 		tempo_desde_perda += delta
-		_set_anim_state(true, false, false)
+		_set_anim_state(true, false, false, false)
 		velocity = Vector3.ZERO
 		move_and_slide()
 
 		if tempo_desde_perda > tempo_para_voltar:
 			estado = Estado.VOLTANDO
-			#~ O alvo para voltar é a posição atual do ponto de patrulha
 			agente.target_position = patrulha_alvo.global_position
 		return
 
 	tempo_desde_perda = 0.0
-	_set_anim_state(false, true, false)
+	_set_anim_state(false, true, false, false)
 
 	agente.target_position = jogador.global_transform.origin
 	var proximo_ponto = agente.get_next_path_position()
@@ -158,9 +155,8 @@ func _perseguir_jogador(delta: float):
 
 
 func _retornar_para_path(delta: float):
-	_set_anim_state(false, true, false)
+	_set_anim_state(false, true, false, false)
 	
-	#~ Quando o agente de navegação termina de retornar, simplesmente muda o estado.
 	if agente.is_navigation_finished():
 		estado = Estado.PATRULHANDO
 		return
@@ -173,8 +169,7 @@ func _retornar_para_path(delta: float):
 
 
 func _atacar_jogador(delta: float):
-	# (Sua função de ataque permanece a mesma)
-	_set_anim_state(false, false, true)
+	_set_anim_state(false, false, true, false)
 
 	if is_instance_valid(jogador):
 		if global_position.distance_squared_to(jogador.global_position) > 0.01:
@@ -206,11 +201,10 @@ func _ponto_de_impacto_do_ataque():
 # ========== DETECÇÃO ==========
 func _on_body_entered(body: Node3D):
 	if body.is_in_group("player"):
-		#~ Não precisa mais desanexar do path, apenas muda o estado.
 		estado = Estado.PERSEGUINDO
 		jogador = body
 		tempo_desde_perda = 0.0
-		_set_anim_state(false, true, false)
+		_set_anim_state(false, true, false, false)
 
 
 func _on_body_exited(body: Node3D):
@@ -252,29 +246,18 @@ func _verificar_visibilidade_jogador_apos_saida():
 
 
 # ========== TRANSFORMAÇÕES ==========
-#- REMOVIDO: Funções _desanexar_do_path e _reativar_path não são mais necessárias
-#- com a nova estrutura de nós.
-
 func _suavizar_rotacao_pela_velocidade(delta: float):
-	# Pega a direção do movimento atual, ignorando o eixo Y.
 	var direcao_movimento = velocity * Vector3(1, 0, 1)
 
-	# Se não houver movimento significativo, não faz nada.
 	if direcao_movimento.length_squared() < 0.0001:
 		return
 
-	# Normaliza o vetor para ter apenas a direção.
 	direcao_movimento = direcao_movimento.normalized()
-
-	# Calcula o ângulo Y (rotação horizontal) com base na direção do movimento.
 	var angulo_alvo_y = atan2(-direcao_movimento.x, -direcao_movimento.z)
-
-	# Interpola suavemente a rotação atual em direção ao ângulo alvo.
 	rotation.y = lerp_angle(rotation.y, angulo_alvo_y, velocidade_rot * delta)
 	
 
 # ========== VISUALIZAÇÃO ==========
-# (Todas as suas funções de visualização permanecem as mesmas)
 func _atualizar_visibilidade_debug_visuals():
 	if cone_visual_mesh != null:
 		cone_visual_mesh.visible = debug_visuals_visible
@@ -314,7 +297,7 @@ func _criar_visual_area_ataque():
 	elif ataque_shape.shape is CylinderShape3D:
 		var mesh = CylinderMesh.new()
 		var cylinder_shape = ataque_shape.shape as CylinderShape3D
-		mesh.top_radius = cylinder_shape.radius # CylinderShape3D só tem 'radius'
+		mesh.top_radius = cylinder_shape.radius
 		mesh.bottom_radius = cylinder_shape.radius
 		mesh.height = cylinder_shape.height
 		visual.mesh = mesh
@@ -336,14 +319,15 @@ func _criar_visual_area_ataque():
 
 
 # ========== UTILITÁRIOS ==========
-func _set_anim_state(idle := false, walk := false, attack := false):
+#+ Adicionado o parâmetro 'die'
+func _set_anim_state(idle := false, walk := false, attack := false, die := false):
 	animation_tree.set("parameters/conditions/idle", idle)
 	animation_tree.set("parameters/conditions/walk", walk)
 	animation_tree.set("parameters/conditions/attack", attack)
+	animation_tree.set("parameters/conditions/die", die)
 
 
 # ========== ÁREAS DE VISÃO ==========
-# (Todas as suas funções de criação de áreas permanecem as mesmas)
 func _criar_area_visao_cone():
 	area_visao_cone = Area3D.new()
 	area_visao_cone.name = "AreaDeVisao"
@@ -356,7 +340,7 @@ func _criar_area_visao_cone():
 	shape.height = altura_cone
 	collision.shape = shape
 	collision.rotation_degrees = Vector3(90, 0, 0)
-	collision.position = Vector3(0, 1.0, -altura_cone / 2.0) 
+	collision.position = Vector3(0, 0.5, -altura_cone / 2.0) 
 	area_visao_cone.add_child(collision)
 	collision.owner = area_visao_cone
 
@@ -419,12 +403,45 @@ func _criar_area_visao_esferica():
 	area_visao_redonda.body_exited.connect(_on_body_exited)
 
 
+# ========== MORTE E DANO ==========
 func take_damage(amount: int):
+	#+ Impede que tome dano se já estiver morto
+	if estado == Estado.MORTO:
+		return
+		
 	vida -= amount
 	print(self.name, " tomou ", amount, " de dano. Vida restante: ", vida)
 	if vida <= 0:
 		die() 
 
 func die():
+	if estado == Estado.MORTO:
+		return
+
 	print(self.name, " morreu!")
-	queue_free()
+	estado = Estado.MORTO
+
+	# Para o agente de navegação para que ele não interfira na animação.
+	agente.set_velocity(Vector3.ZERO)
+
+	# Aciona a animação de morte na AnimationTree.
+	_set_anim_state(false, false, false, true)
+
+	# Desativa as colisões para que o inimigo não interaja mais.
+	for area in todas_as_areas_de_visao:
+		if is_instance_valid(area):
+			area.monitoring = false
+	if is_instance_valid(ataque_area):
+		ataque_area.monitoring = false
+
+	var corpo_colisao = find_child("CollisionShape3D", true, false)
+	if corpo_colisao:
+		corpo_colisao.set_deferred("disabled", true)
+
+#+ NOVA FUNÇÃO CHAMADA PELO SINAL
+func _on_animation_finished(anim_name: StringName):
+	# Verifica se a animação que acabou de terminar é a de morte.
+	# !! IMPORTANTE: Substitua "die" pelo nome exato da sua animação de morte !!
+	if anim_name == "die":
+		# Agora que a animação terminou, desativamos a árvore para travar na pose final.
+		animation_tree.active = false
