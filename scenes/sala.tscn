@@ -1,18 +1,24 @@
-[gd_scene load_steps=205 format=4 uid="uid://b076obi5wlogo"]
+[gd_scene load_steps=208 format=4 uid="uid://b076obi5wlogo"]
 
-[ext_resource type="Texture2D" uid="uid://634nprj4ydrq" path="res://textures/pisocomp.jpg" id="1_pg3vg"]
-[ext_resource type="Texture2D" uid="uid://03qx55l2vs61" path="res://textures/paredecomp.jpg" id="2_aq07l"]
-[ext_resource type="Texture2D" uid="uid://cjtiwxdqfr142" path="res://textures/tetocomp.jpg" id="3_aqf5g"]
-[ext_resource type="Texture2D" uid="uid://dsqjks6sk5cc5" path="res://textures/corrimao_comp.jpg" id="4_12o68"]
-[ext_resource type="Texture2D" uid="uid://cm0vgvitxcxo5" path="res://textures/Texturelabs_Metal_comp.jpg" id="5_rssmv"]
-[ext_resource type="Texture2D" uid="uid://lpru7yy0aa60" path="res://textures/plasticoazul_comp.png" id="6_ess2x"]
-[ext_resource type="Texture2D" uid="uid://cenw5vr5avvme" path="res://textures/p.png" id="7_a2mcl"]
-[ext_resource type="Texture2D" uid="uid://ce0gwyrfuhvr2" path="res://textures/quadroverde_comp.jpg" id="8_u8mrn"]
-[ext_resource type="Texture2D" uid="uid://bq1v5katjlthc" path="res://textures/door_industrial_01_dark.png" id="9_1jbqn"]
+[ext_resource type="Script" uid="uid://w544843th8kj" path="res://scripts/controladorDaSala.gd" id="1_ess2x"]
+[ext_resource type="Texture2D" uid="uid://mg5ov7c5veog" path="res://textures/pisocomp.jpg" id="1_pg3vg"]
+[ext_resource type="PackedScene" uid="uid://b88s2we6jhd57" path="res://entities/enemies/Cachorro/cachorrosatanico.tscn" id="2_a2mcl"]
+[ext_resource type="Texture2D" uid="uid://bdlmr8erwepiq" path="res://textures/paredecomp.jpg" id="2_aq07l"]
+[ext_resource type="Texture2D" uid="uid://b3rkb7jkl2ttl" path="res://textures/tetocomp.jpg" id="3_aqf5g"]
+[ext_resource type="Texture2D" uid="uid://cs2gcrect0d3t" path="res://textures/corrimao_comp.jpg" id="4_12o68"]
+[ext_resource type="Texture2D" uid="uid://btib8e7vefhf8" path="res://textures/Texturelabs_Metal_comp.jpg" id="5_rssmv"]
+[ext_resource type="Texture2D" uid="uid://d13pkaarqqkal" path="res://textures/plasticoazul_comp.png" id="6_ess2x"]
+[ext_resource type="Texture2D" uid="uid://bun3hfmythdyu" path="res://textures/p.png" id="7_a2mcl"]
+[ext_resource type="Texture2D" uid="uid://sym662ac3j3a" path="res://textures/quadroverde_comp.jpg" id="8_u8mrn"]
+[ext_resource type="Texture2D" uid="uid://4siec5pjpmx6" path="res://textures/door_industrial_01_dark.png" id="9_1jbqn"]
 [ext_resource type="PackedScene" uid="uid://rxinvobacirt" path="res://entities/player.tscn" id="10_pxogb"]
 [ext_resource type="Script" uid="uid://b4l20vgp1cixy" path="res://scripts/cameras/lookCamera.gd" id="11_aqf5g"]
 [ext_resource type="Script" uid="uid://brxlx3bv071et" path="res://scripts/cameras/cameraTrigger.gd" id="12_12o68"]
 [ext_resource type="PackedScene" uid="uid://catogyqckj5p1" path="res://entities/door.tscn" id="13_12o68"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_12o68"]
+vertices = PackedVector3Array(-12.5, 6.5, -5.40909, -12.5, 6.5, 4.59091, 6.5, 6.5, 4.59091, 6.5, 6.5, -5.40909, -10.75, 1, -2.65909, -8, 1, -2.90909, -10.5, 1, -3.15909, -10.75, 1, -0.409088, -10.25, 1, -0.909088, -10.75, 1, -1.15909, -11.5, 1, 3.59091, -10.75, 1, 3.59091, -10.5, 1, 3.09091, -11.5, 1, -4.40909, -10.75, 1, -4.40909, 0.75, 1, 0.590912, 0, 1, 0.840912, 1, 1, 1.09091, 1.5, 1, 2.59091, 1, 1, 2.84091, 1.25, 1, 3.59091, 5.25, 1, 3.59091, 1.5, 1, 1.84091, 3.75, 1, -1.15909, 2, 1, -1.90909, 1.5, 1, -1.15909, 5.25, 1, -2.15909, 4.5, 1, -2.15909, 3, 1, -4.40909, 1.5, 1, -4.40909, 1.5, 1, -3.40909, 1, 1, -3.15909, 0.5, 1, -0.909088, -3.5, 1, -2.65909, -1.5, 1, -2.65909, -1.75, 1, -3.15909, -3.5, 1, -3.15909, -1, 1, -3.15909, -0.5, 1, -2.65909, 0, 1, -2.90909, -3.5, 1, -1.15909, -3.5, 1, -0.659088, -2.75, 1, -0.659088, -1.75, 1, 0.840912, -0.75, 1, 1.09091, -1.25, 1, 0.340912)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(6, 5, 4), PackedInt32Array(9, 8, 7), PackedInt32Array(11, 10, 12), PackedInt32Array(12, 10, 7), PackedInt32Array(7, 10, 13), PackedInt32Array(6, 4, 14), PackedInt32Array(14, 4, 13), PackedInt32Array(9, 7, 13), PackedInt32Array(9, 13, 4), PackedInt32Array(16, 15, 17), PackedInt32Array(19, 18, 20), PackedInt32Array(20, 18, 21), PackedInt32Array(17, 15, 22), PackedInt32Array(22, 15, 25), PackedInt32Array(22, 25, 24), PackedInt32Array(22, 24, 23), PackedInt32Array(23, 27, 26), PackedInt32Array(29, 28, 30), PackedInt32Array(30, 28, 24), PackedInt32Array(18, 22, 21), PackedInt32Array(21, 22, 23), PackedInt32Array(21, 23, 26), PackedInt32Array(30, 24, 31), PackedInt32Array(31, 24, 25), PackedInt32Array(25, 15, 32), PackedInt32Array(36, 35, 33), PackedInt32Array(33, 35, 34), PackedInt32Array(37, 39, 38), PackedInt32Array(42, 41, 40), PackedInt32Array(45, 44, 43)]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aqf5g"]
 albedo_texture = ExtResource("1_pg3vg")
@@ -1603,546 +1609,552 @@ size = Vector3(26.1086, 1, 22.6176)
 [sub_resource type="Environment" id="Environment_aqf5g"]
 fog_density = 0.1075
 
-[node name="Node3D" type="Node3D"]
+[node name="Node3D" type="Node3D" node_paths=PackedStringArray("ponto_de_spawn")]
+script = ExtResource("1_ess2x")
+cena_inimigo = ExtResource("2_a2mcl")
+ponto_de_spawn = NodePath("Marker3D")
 
-[node name="TBLoader" type="TBLoader" parent="."]
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_12o68")
+
+[node name="TBLoader" type="TBLoader" parent="NavigationRegion3D"]
 map_resource = "res://levels/sala.map"
 
-[node name="Default Layer" type="Node3D" parent="TBLoader"]
+[node name="Default Layer" type="Node3D" parent="NavigationRegion3D/TBLoader"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.19442, 2.1743, -1.70714)
 
-[node name="entity_0_geometry" type="MeshInstance3D" parent="TBLoader/Default Layer"]
+[node name="entity_0_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/Default Layer"]
 mesh = SubResource("ArrayMesh_u8mrn")
 
-[node name="entity_0_geometry_col" type="StaticBody3D" parent="TBLoader/Default Layer"]
+[node name="entity_0_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/Default Layer"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/Default Layer/entity_0_geometry_col"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/Default Layer/entity_0_geometry_col"]
 shape = SubResource("ConcavePolygonShape3D_1jbqn")
 
-[node name="rebocoPorta" type="MeshInstance3D" parent="TBLoader/Default Layer"]
+[node name="rebocoPorta" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/Default Layer"]
 transform = Transform3D(1.5, 0, 0, 0, 2, 0, 0, 0, 0.9, 0.896302, -0.463587, 6.25)
 material_override = SubResource("StandardMaterial3D_u8mrn")
 mesh = SubResource("BoxMesh_1jbqn")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="TBLoader/Default Layer/rebocoPorta"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/Default Layer/rebocoPorta"]
 visible = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/Default Layer/rebocoPorta/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/Default Layer/rebocoPorta/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_pxogb")
 
-[node name="fileira" type="Node3D" parent="TBLoader"]
+[node name="fileira" type="Node3D" parent="NavigationRegion3D/TBLoader"]
 
-[node name="entity_1_geometry" type="MeshInstance3D" parent="TBLoader/fileira"]
+[node name="entity_1_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/fileira"]
 mesh = SubResource("ArrayMesh_pxogb")
 
-[node name="entity_1_geometry_col" type="StaticBody3D" parent="TBLoader/fileira"]
+[node name="entity_1_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/fileira"]
 
-[node name="cadeira aluno" type="Node3D" parent="TBLoader"]
+[node name="cadeira aluno" type="Node3D" parent="NavigationRegion3D/TBLoader"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.0059, 1.19172, 3.77333)
 
-[node name="entity_2_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno"]
+[node name="entity_2_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno"]
 mesh = SubResource("ArrayMesh_j3qns")
 
-[node name="entity_2_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno"]
+[node name="entity_2_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno/entity_2_geometry_col"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno/entity_2_geometry_col"]
 shape = SubResource("ConcavePolygonShape3D_4rnia")
 
-[node name="cadeira aluno2" type="Node3D" parent="TBLoader"]
+[node name="cadeira aluno2" type="Node3D" parent="NavigationRegion3D/TBLoader"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.56878, 1.19172, 3.63448)
 
-[node name="entity_3_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno2"]
+[node name="entity_3_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno2"]
 mesh = SubResource("ArrayMesh_xtqig")
 
-[node name="entity_3_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno2"]
+[node name="entity_3_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno2"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno2/entity_3_geometry_col"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno2/entity_3_geometry_col"]
 shape = SubResource("ConcavePolygonShape3D_s1q4q")
 
-[node name="cadeira aluno3" type="Node3D" parent="TBLoader"]
+[node name="cadeira aluno3" type="Node3D" parent="NavigationRegion3D/TBLoader"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.14835, 1.20422, 3.77333)
 
-[node name="entity_4_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno3"]
+[node name="entity_4_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno3"]
 mesh = SubResource("ArrayMesh_ts382")
 
-[node name="entity_4_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno3"]
+[node name="entity_4_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno3"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno3/entity_4_geometry_col"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno3/entity_4_geometry_col"]
 shape = SubResource("ConcavePolygonShape3D_kvj3p")
 
-[node name="cadeira aluno4" type="Node3D" parent="TBLoader"]
+[node name="cadeira aluno4" type="Node3D" parent="NavigationRegion3D/TBLoader"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.71334, 1.20422, 3.77055)
 
-[node name="entity_5_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno4"]
+[node name="entity_5_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno4"]
 mesh = SubResource("ArrayMesh_2e7gp")
 
-[node name="entity_5_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno4"]
+[node name="entity_5_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno4"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno4/entity_5_geometry_col"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno4/entity_5_geometry_col"]
 shape = SubResource("ConcavePolygonShape3D_2kkfq")
 
-[node name="cadeira aluno5" type="Node3D" parent="TBLoader"]
+[node name="cadeira aluno5" type="Node3D" parent="NavigationRegion3D/TBLoader"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.20475, 1.20422, 3.77333)
 
-[node name="entity_6_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno5"]
+[node name="entity_6_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno5"]
 mesh = SubResource("ArrayMesh_0ofqp")
 
-[node name="entity_6_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno5"]
+[node name="entity_6_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno5"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno5/entity_6_geometry_col"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno5/entity_6_geometry_col"]
 shape = SubResource("ConcavePolygonShape3D_8h7kk")
 
-[node name="cadeira aluno6" type="Node3D" parent="TBLoader"]
+[node name="cadeira aluno6" type="Node3D" parent="NavigationRegion3D/TBLoader"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.67367, 1.19172, 3.7411)
 
-[node name="entity_7_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno6"]
+[node name="entity_7_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno6"]
 mesh = SubResource("ArrayMesh_dkotd")
 
-[node name="entity_7_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno6"]
+[node name="entity_7_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno6"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno6/entity_7_geometry_col"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno6/entity_7_geometry_col"]
 shape = SubResource("ConcavePolygonShape3D_7oli4")
 
-[node name="cadeira aluno7" type="Node3D" parent="TBLoader"]
+[node name="cadeira aluno7" type="Node3D" parent="NavigationRegion3D/TBLoader"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.22921, 1.19172, 3.80633)
 
-[node name="entity_8_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno7"]
+[node name="entity_8_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno7"]
 mesh = SubResource("ArrayMesh_6g6my")
 
-[node name="entity_8_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno7"]
+[node name="entity_8_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno7"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno7/entity_8_geometry_col"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno7/entity_8_geometry_col"]
 shape = SubResource("ConcavePolygonShape3D_tksgh")
 
-[node name="cadeira aluno8" type="Node3D" parent="TBLoader"]
+[node name="cadeira aluno8" type="Node3D" parent="NavigationRegion3D/TBLoader"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.26898, 1.19172, 3.77333)
 
-[node name="entity_9_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno8"]
+[node name="entity_9_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno8"]
 mesh = SubResource("ArrayMesh_2jrfr")
 
-[node name="entity_9_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno8"]
+[node name="entity_9_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno8"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno8/entity_9_geometry_col"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno8/entity_9_geometry_col"]
 shape = SubResource("ConcavePolygonShape3D_lsra4")
 
-[node name="fileira2" type="Node3D" parent="TBLoader"]
+[node name="fileira2" type="Node3D" parent="NavigationRegion3D/TBLoader"]
 
-[node name="entity_10_geometry" type="MeshInstance3D" parent="TBLoader/fileira2"]
+[node name="entity_10_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/fileira2"]
 mesh = SubResource("ArrayMesh_s7v87")
 
-[node name="entity_10_geometry_col" type="StaticBody3D" parent="TBLoader/fileira2"]
+[node name="entity_10_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/fileira2"]
 
-[node name="cadeira aluno9" type="Node3D" parent="TBLoader"]
+[node name="cadeira aluno9" type="Node3D" parent="NavigationRegion3D/TBLoader"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.9781, 1.19172, 2.07944)
 
-[node name="entity_11_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno9"]
+[node name="entity_11_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno9"]
 mesh = SubResource("ArrayMesh_7fgej")
 
-[node name="entity_11_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno9"]
+[node name="entity_11_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno9"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno9/entity_11_geometry_col"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno9/entity_11_geometry_col"]
 shape = SubResource("ConcavePolygonShape3D_petty")
 
-[node name="cadeira aluno10" type="Node3D" parent="TBLoader"]
+[node name="cadeira aluno10" type="Node3D" parent="NavigationRegion3D/TBLoader"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.5063, 1.19172, 2.07944)
 
-[node name="entity_12_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno10"]
+[node name="entity_12_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno10"]
 mesh = SubResource("ArrayMesh_grkup")
 
-[node name="entity_12_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno10"]
+[node name="entity_12_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno10"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno10/entity_12_geometry_col"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno10/entity_12_geometry_col"]
 shape = SubResource("ConcavePolygonShape3D_ykxpm")
 
-[node name="cadeira aluno11" type="Node3D" parent="TBLoader"]
+[node name="cadeira aluno11" type="Node3D" parent="NavigationRegion3D/TBLoader"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.09261, 1.20422, 1.98692)
 
-[node name="entity_13_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno11"]
+[node name="entity_13_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno11"]
 mesh = SubResource("ArrayMesh_t4w1x")
 
-[node name="entity_13_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno11"]
+[node name="entity_13_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno11"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno11/entity_13_geometry_col"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno11/entity_13_geometry_col"]
 shape = SubResource("ConcavePolygonShape3D_4bfk0")
 
-[node name="cadeira aluno12" type="Node3D" parent="TBLoader"]
+[node name="cadeira aluno12" type="Node3D" parent="NavigationRegion3D/TBLoader"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.68557, 1.20422, 2.07666)
 
-[node name="entity_14_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno12"]
+[node name="entity_14_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno12"]
 mesh = SubResource("ArrayMesh_ole11")
 
-[node name="entity_14_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno12"]
+[node name="entity_14_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno12"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno12/entity_14_geometry_col"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno12/entity_14_geometry_col"]
 shape = SubResource("ConcavePolygonShape3D_8yue1")
 
-[node name="cadeira aluno13" type="Node3D" parent="TBLoader"]
+[node name="cadeira aluno13" type="Node3D" parent="NavigationRegion3D/TBLoader"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.15389, 1.20422, 2.14059)
 
-[node name="entity_15_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno13"]
+[node name="entity_15_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno13"]
 mesh = SubResource("ArrayMesh_yu1tg")
 
-[node name="entity_15_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno13"]
+[node name="entity_15_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno13"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno13/entity_15_geometry_col"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno13/entity_15_geometry_col"]
 shape = SubResource("ConcavePolygonShape3D_uo3mt")
 
-[node name="cadeira aluno14" type="Node3D" parent="TBLoader"]
+[node name="cadeira aluno14" type="Node3D" parent="NavigationRegion3D/TBLoader"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.64686, 1.19172, 2.07944)
 
-[node name="entity_16_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno14"]
+[node name="entity_16_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno14"]
 mesh = SubResource("ArrayMesh_eqldx")
 
-[node name="entity_16_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno14"]
+[node name="entity_16_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno14"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno14/entity_16_geometry_col"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno14/entity_16_geometry_col"]
 shape = SubResource("ConcavePolygonShape3D_ypgi2")
 
-[node name="cadeira aluno15" type="Node3D" parent="TBLoader"]
+[node name="cadeira aluno15" type="Node3D" parent="NavigationRegion3D/TBLoader"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.20238, 1.19172, 2.10525)
 
-[node name="entity_17_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno15"]
+[node name="entity_17_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno15"]
 mesh = SubResource("ArrayMesh_15mw6")
 
-[node name="entity_17_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno15"]
+[node name="entity_17_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno15"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno15/entity_17_geometry_col"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno15/entity_17_geometry_col"]
 shape = SubResource("ConcavePolygonShape3D_n0gf6")
 
-[node name="cadeira aluno16" type="Node3D" parent="TBLoader"]
+[node name="cadeira aluno16" type="Node3D" parent="NavigationRegion3D/TBLoader"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.53355, 1.19172, 2.19116)
 
-[node name="entity_18_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno16"]
+[node name="entity_18_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno16"]
 mesh = SubResource("ArrayMesh_egg2u")
 
-[node name="entity_18_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno16"]
+[node name="entity_18_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno16"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno16/entity_18_geometry_col"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno16/entity_18_geometry_col"]
 shape = SubResource("ConcavePolygonShape3D_4he8r")
 
-[node name="fileira3" type="Node3D" parent="TBLoader"]
+[node name="fileira3" type="Node3D" parent="NavigationRegion3D/TBLoader"]
 
-[node name="entity_19_geometry" type="MeshInstance3D" parent="TBLoader/fileira3"]
+[node name="entity_19_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/fileira3"]
 mesh = SubResource("ArrayMesh_2rjvt")
 
-[node name="entity_19_geometry_col" type="StaticBody3D" parent="TBLoader/fileira3"]
+[node name="entity_19_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/fileira3"]
 
-[node name="cadeira aluno17" type="Node3D" parent="TBLoader"]
+[node name="cadeira aluno17" type="Node3D" parent="NavigationRegion3D/TBLoader"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.81495, 1.19172, 0.273703)
 
-[node name="entity_20_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno17"]
+[node name="entity_20_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno17"]
 mesh = SubResource("ArrayMesh_6r561")
 
-[node name="entity_20_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno17"]
+[node name="entity_20_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno17"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno17/entity_20_geometry_col"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno17/entity_20_geometry_col"]
 shape = SubResource("ConcavePolygonShape3D_73stm")
 
-[node name="cadeira aluno18" type="Node3D" parent="TBLoader"]
+[node name="cadeira aluno18" type="Node3D" parent="NavigationRegion3D/TBLoader"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.44334, 1.19172, 0.222466)
 
-[node name="entity_21_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno18"]
+[node name="entity_21_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno18"]
 mesh = SubResource("ArrayMesh_hkjbb")
 
-[node name="entity_21_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno18"]
+[node name="entity_21_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno18"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno18/entity_21_geometry_col"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno18/entity_21_geometry_col"]
 shape = SubResource("ConcavePolygonShape3D_opcyx")
 
-[node name="cadeira aluno19" type="Node3D" parent="TBLoader"]
+[node name="cadeira aluno19" type="Node3D" parent="NavigationRegion3D/TBLoader"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.06504, 1.20422, 0.191088)
 
-[node name="entity_22_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno19"]
+[node name="entity_22_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno19"]
 mesh = SubResource("ArrayMesh_fiodq")
 
-[node name="entity_22_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno19"]
+[node name="entity_22_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno19"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno19/entity_22_geometry_col"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno19/entity_22_geometry_col"]
 shape = SubResource("ConcavePolygonShape3D_w1kbs")
 
-[node name="cadeira aluno20" type="Node3D" parent="TBLoader"]
+[node name="cadeira aluno20" type="Node3D" parent="NavigationRegion3D/TBLoader"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.62796, 1.20422, 0.153121)
 
-[node name="entity_23_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno20"]
+[node name="entity_23_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno20"]
 mesh = SubResource("ArrayMesh_stc0n")
 
-[node name="entity_23_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno20"]
+[node name="entity_23_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno20"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno20/entity_23_geometry_col"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno20/entity_23_geometry_col"]
 shape = SubResource("ConcavePolygonShape3D_fpsyy")
 
-[node name="cadeira aluno21" type="Node3D" parent="TBLoader"]
+[node name="cadeira aluno21" type="Node3D" parent="NavigationRegion3D/TBLoader"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.11392, 1.20422, 0.223184)
 
-[node name="entity_24_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno21"]
+[node name="entity_24_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno21"]
 mesh = SubResource("ArrayMesh_py2a4")
 
-[node name="entity_24_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno21"]
+[node name="entity_24_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno21"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno21/entity_24_geometry_col"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno21/entity_24_geometry_col"]
 shape = SubResource("ConcavePolygonShape3D_iqrkw")
 
-[node name="cadeira aluno22" type="Node3D" parent="TBLoader"]
+[node name="cadeira aluno22" type="Node3D" parent="NavigationRegion3D/TBLoader"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.59132, 1.19172, 0.191088)
 
-[node name="entity_25_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno22"]
+[node name="entity_25_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno22"]
 mesh = SubResource("ArrayMesh_aammr")
 
-[node name="entity_25_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno22"]
+[node name="entity_25_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno22"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno22/entity_25_geometry_col"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno22/entity_25_geometry_col"]
 shape = SubResource("ConcavePolygonShape3D_djxdg")
 
-[node name="cadeira aluno23" type="Node3D" parent="TBLoader"]
+[node name="cadeira aluno23" type="Node3D" parent="NavigationRegion3D/TBLoader"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.66563, 1.19172, -0.616444)
 
-[node name="entity_26_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno23"]
+[node name="entity_26_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno23"]
 mesh = SubResource("ArrayMesh_5cqi7")
 
-[node name="entity_26_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno23"]
+[node name="entity_26_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno23"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno23/entity_26_geometry_col"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno23/entity_26_geometry_col"]
 shape = SubResource("ConcavePolygonShape3D_dh4p2")
 
-[node name="cadeira aluno24" type="Node3D" parent="TBLoader"]
+[node name="cadeira aluno24" type="Node3D" parent="NavigationRegion3D/TBLoader"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.33735, 1.19172, 0.102072)
 
-[node name="entity_27_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno24"]
+[node name="entity_27_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno24"]
 mesh = SubResource("ArrayMesh_7t7ve")
 
-[node name="entity_27_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno24"]
+[node name="entity_27_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno24"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno24/entity_27_geometry_col"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno24/entity_27_geometry_col"]
 shape = SubResource("ConcavePolygonShape3D_4jmpg")
 
-[node name="fileira4" type="Node3D" parent="TBLoader"]
+[node name="fileira4" type="Node3D" parent="NavigationRegion3D/TBLoader"]
 
-[node name="entity_28_geometry" type="MeshInstance3D" parent="TBLoader/fileira4"]
+[node name="entity_28_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/fileira4"]
 mesh = SubResource("ArrayMesh_hk1ae")
 
-[node name="entity_28_geometry_col" type="StaticBody3D" parent="TBLoader/fileira4"]
+[node name="entity_28_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/fileira4"]
 
-[node name="cadeira aluno25" type="Node3D" parent="TBLoader"]
+[node name="cadeira aluno25" type="Node3D" parent="NavigationRegion3D/TBLoader"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.92257, 1.19172, -1.86388)
 
-[node name="entity_29_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno25"]
+[node name="entity_29_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno25"]
 mesh = SubResource("ArrayMesh_uyu51")
 
-[node name="entity_29_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno25"]
+[node name="entity_29_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno25"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno25/entity_29_geometry_col"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno25/entity_29_geometry_col"]
 shape = SubResource("ConcavePolygonShape3D_a48qm")
 
-[node name="cadeira aluno26" type="Node3D" parent="TBLoader"]
+[node name="cadeira aluno26" type="Node3D" parent="NavigationRegion3D/TBLoader"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.45076, 1.19172, -1.86388)
 
-[node name="entity_30_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno26"]
+[node name="entity_30_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno26"]
 mesh = SubResource("ArrayMesh_ldawi")
 
-[node name="entity_30_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno26"]
+[node name="entity_30_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno26"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno26/entity_30_geometry_col"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno26/entity_30_geometry_col"]
 shape = SubResource("ConcavePolygonShape3D_eadbs")
 
-[node name="cadeira aluno27" type="Node3D" parent="TBLoader"]
+[node name="cadeira aluno27" type="Node3D" parent="NavigationRegion3D/TBLoader"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.06504, 1.20422, -1.86388)
 
-[node name="entity_31_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno27"]
+[node name="entity_31_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno27"]
 mesh = SubResource("ArrayMesh_j3bcf")
 
-[node name="entity_31_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno27"]
+[node name="entity_31_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno27"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno27/entity_31_geometry_col"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno27/entity_31_geometry_col"]
 shape = SubResource("ConcavePolygonShape3D_djqjk")
 
-[node name="cadeira aluno28" type="Node3D" parent="TBLoader"]
+[node name="cadeira aluno28" type="Node3D" parent="NavigationRegion3D/TBLoader"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.63003, 1.20422, -1.86666)
 
-[node name="entity_32_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno28"]
+[node name="entity_32_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno28"]
 mesh = SubResource("ArrayMesh_s0fvx")
 
-[node name="entity_32_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno28"]
+[node name="entity_32_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno28"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno28/entity_32_geometry_col"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno28/entity_32_geometry_col"]
 shape = SubResource("ConcavePolygonShape3D_twprn")
 
-[node name="cadeira aluno29" type="Node3D" parent="TBLoader"]
+[node name="cadeira aluno29" type="Node3D" parent="NavigationRegion3D/TBLoader"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.09836, 1.20422, -1.80273)
 
-[node name="entity_33_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno29"]
+[node name="entity_33_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno29"]
 mesh = SubResource("ArrayMesh_7vb3f")
 
-[node name="entity_33_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno29"]
+[node name="entity_33_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno29"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno29/entity_33_geometry_col"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno29/entity_33_geometry_col"]
 shape = SubResource("ConcavePolygonShape3D_q08xh")
 
-[node name="cadeira aluno30" type="Node3D" parent="TBLoader"]
+[node name="cadeira aluno30" type="Node3D" parent="NavigationRegion3D/TBLoader"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.59132, 1.19172, -1.86388)
 
-[node name="entity_34_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno30"]
+[node name="entity_34_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno30"]
 mesh = SubResource("ArrayMesh_1naqa")
 
-[node name="entity_34_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno30"]
+[node name="entity_34_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno30"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno30/entity_34_geometry_col"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno30/entity_34_geometry_col"]
 shape = SubResource("ConcavePolygonShape3D_0xhbj")
 
-[node name="cadeira aluno31" type="Node3D" parent="TBLoader"]
+[node name="cadeira aluno31" type="Node3D" parent="NavigationRegion3D/TBLoader"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.13268, 1.19172, -1.93922)
 
-[node name="entity_35_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno31"]
+[node name="entity_35_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno31"]
 mesh = SubResource("ArrayMesh_sju5y")
 
-[node name="entity_35_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno31"]
+[node name="entity_35_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno31"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno31/entity_35_geometry_col"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno31/entity_35_geometry_col"]
 shape = SubResource("ConcavePolygonShape3D_srwk1")
 
-[node name="cadeira aluno32" type="Node3D" parent="TBLoader"]
+[node name="cadeira aluno32" type="Node3D" parent="NavigationRegion3D/TBLoader"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35229, 1.19172, -1.86388)
 
-[node name="entity_36_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno32"]
+[node name="entity_36_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno32"]
 mesh = SubResource("ArrayMesh_a68e7")
 
-[node name="entity_36_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno32"]
+[node name="entity_36_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno32"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno32/entity_36_geometry_col"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno32/entity_36_geometry_col"]
 shape = SubResource("ConcavePolygonShape3D_5n7nq")
 
-[node name="fileira5" type="Node3D" parent="TBLoader"]
+[node name="fileira5" type="Node3D" parent="NavigationRegion3D/TBLoader"]
 
-[node name="entity_37_geometry" type="MeshInstance3D" parent="TBLoader/fileira5"]
+[node name="entity_37_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/fileira5"]
 mesh = SubResource("ArrayMesh_a30er")
 
-[node name="entity_37_geometry_col" type="StaticBody3D" parent="TBLoader/fileira5"]
+[node name="entity_37_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/fileira5"]
 
-[node name="cadeira aluno33" type="Node3D" parent="TBLoader"]
+[node name="cadeira aluno33" type="Node3D" parent="NavigationRegion3D/TBLoader"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.92615, 1.19172, -3.98602)
 
-[node name="entity_38_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno33"]
+[node name="entity_38_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno33"]
 mesh = SubResource("ArrayMesh_kxplx")
 
-[node name="entity_38_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno33"]
+[node name="entity_38_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno33"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno33/entity_38_geometry_col"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno33/entity_38_geometry_col"]
 shape = SubResource("ConcavePolygonShape3D_y6avi")
 
-[node name="cadeira aluno34" type="Node3D" parent="TBLoader"]
+[node name="cadeira aluno34" type="Node3D" parent="NavigationRegion3D/TBLoader"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.45076, 1.19172, -3.96051)
 
-[node name="entity_39_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno34"]
+[node name="entity_39_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno34"]
 mesh = SubResource("ArrayMesh_kouhu")
 
-[node name="entity_39_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno34"]
+[node name="entity_39_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno34"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno34/entity_39_geometry_col"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno34/entity_39_geometry_col"]
 shape = SubResource("ConcavePolygonShape3D_l1v2w")
 
-[node name="cadeira aluno35" type="Node3D" parent="TBLoader"]
+[node name="cadeira aluno35" type="Node3D" parent="NavigationRegion3D/TBLoader"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.25527, 1.20422, -4.01018)
 
-[node name="entity_40_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno35"]
+[node name="entity_40_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno35"]
 mesh = SubResource("ArrayMesh_tid0w")
 
-[node name="entity_40_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno35"]
+[node name="entity_40_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno35"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno35/entity_40_geometry_col"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno35/entity_40_geometry_col"]
 shape = SubResource("ConcavePolygonShape3D_rsvuy")
 
-[node name="cadeira aluno36" type="Node3D" parent="TBLoader"]
+[node name="cadeira aluno36" type="Node3D" parent="NavigationRegion3D/TBLoader"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.63003, 1.20422, -3.96329)
 
-[node name="entity_41_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno36"]
+[node name="entity_41_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno36"]
 mesh = SubResource("ArrayMesh_3cyos")
 
-[node name="entity_41_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno36"]
+[node name="entity_41_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno36"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno36/entity_41_geometry_col"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno36/entity_41_geometry_col"]
 shape = SubResource("ConcavePolygonShape3D_n84sm")
 
-[node name="cadeira aluno37" type="Node3D" parent="TBLoader"]
+[node name="cadeira aluno37" type="Node3D" parent="NavigationRegion3D/TBLoader"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.11779, 1.20422, -4.02687)
 
-[node name="entity_42_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno37"]
+[node name="entity_42_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno37"]
 mesh = SubResource("ArrayMesh_emqnt")
 
-[node name="entity_42_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno37"]
+[node name="entity_42_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno37"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno37/entity_42_geometry_col"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno37/entity_42_geometry_col"]
 shape = SubResource("ConcavePolygonShape3D_bboq5")
 
-[node name="cadeira aluno38" type="Node3D" parent="TBLoader"]
+[node name="cadeira aluno38" type="Node3D" parent="NavigationRegion3D/TBLoader"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.59132, 1.19172, -3.96051)
 
-[node name="entity_43_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno38"]
+[node name="entity_43_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno38"]
 mesh = SubResource("ArrayMesh_y3bgu")
 
-[node name="entity_43_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno38"]
+[node name="entity_43_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno38"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno38/entity_43_geometry_col"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno38/entity_43_geometry_col"]
 shape = SubResource("ConcavePolygonShape3D_y0qhd")
 
-[node name="cadeira aluno39" type="Node3D" parent="TBLoader"]
+[node name="cadeira aluno39" type="Node3D" parent="NavigationRegion3D/TBLoader"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.14325, 1.19172, -3.93517)
 
-[node name="entity_44_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno39"]
+[node name="entity_44_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno39"]
 mesh = SubResource("ArrayMesh_urcpl")
 
-[node name="entity_44_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno39"]
+[node name="entity_44_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno39"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno39/entity_44_geometry_col"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno39/entity_44_geometry_col"]
 shape = SubResource("ConcavePolygonShape3D_x6j60")
 
-[node name="cadeira aluno40" type="Node3D" parent="TBLoader"]
+[node name="cadeira aluno40" type="Node3D" parent="NavigationRegion3D/TBLoader"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.351841, 1.19172, -4.0116)
 
-[node name="entity_45_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno40"]
+[node name="entity_45_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno40"]
 mesh = SubResource("ArrayMesh_kmoui")
 
-[node name="entity_45_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno40"]
+[node name="entity_45_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno40"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno40/entity_45_geometry_col"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno40/entity_45_geometry_col"]
 shape = SubResource("ConcavePolygonShape3D_r41b1")
 
-[node name="guadro" type="Node3D" parent="TBLoader"]
+[node name="guadro" type="Node3D" parent="NavigationRegion3D/TBLoader"]
 
-[node name="entity_46_geometry" type="MeshInstance3D" parent="TBLoader/guadro"]
+[node name="entity_46_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/guadro"]
 mesh = SubResource("ArrayMesh_0mlei")
 
-[node name="entity_46_geometry_col" type="StaticBody3D" parent="TBLoader/guadro"]
+[node name="entity_46_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/guadro"]
 
-[node name="quadro" type="Node3D" parent="TBLoader"]
+[node name="quadro" type="Node3D" parent="NavigationRegion3D/TBLoader"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.01382, 2.39743, -0.626559)
 
-[node name="entity_47_geometry" type="MeshInstance3D" parent="TBLoader/quadro"]
+[node name="entity_47_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/quadro"]
 mesh = SubResource("ArrayMesh_l2mur")
 
-[node name="entity_47_geometry_col" type="StaticBody3D" parent="TBLoader/quadro"]
+[node name="entity_47_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/quadro"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/quadro/entity_47_geometry_col"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/quadro/entity_47_geometry_col"]
 shape = SubResource("ConcavePolygonShape3D_lrs4e")
 
-[node name="apagador" type="Node3D" parent="TBLoader"]
+[node name="apagador" type="Node3D" parent="NavigationRegion3D/TBLoader"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.97017, 1.655, -2.37216)
 
-[node name="entity_48_geometry" type="MeshInstance3D" parent="TBLoader/apagador"]
+[node name="entity_48_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/apagador"]
 mesh = SubResource("ArrayMesh_10x3m")
 
-[node name="entity_48_geometry_col" type="StaticBody3D" parent="TBLoader/apagador"]
+[node name="entity_48_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/apagador"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/apagador/entity_48_geometry_col"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/apagador/entity_48_geometry_col"]
 shape = SubResource("ConcavePolygonShape3D_al5tg")
 
-[node name="mesa do putao" type="Node3D" parent="TBLoader"]
+[node name="mesa do putao" type="Node3D" parent="NavigationRegion3D/TBLoader"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.62688, 1.24042, -3.02613)
 
-[node name="entity_49_geometry" type="MeshInstance3D" parent="TBLoader/mesa do putao"]
+[node name="entity_49_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/mesa do putao"]
 mesh = SubResource("ArrayMesh_1yelf")
 
-[node name="entity_49_geometry_col" type="StaticBody3D" parent="TBLoader/mesa do putao"]
+[node name="entity_49_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/mesa do putao"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/mesa do putao/entity_49_geometry_col"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/mesa do putao/entity_49_geometry_col"]
 shape = SubResource("ConcavePolygonShape3D_5bxjj")
 
 [node name="player" parent="." instance=ExtResource("10_pxogb")]
@@ -2173,6 +2185,9 @@ environment = SubResource("Environment_aqf5g")
 [node name="Door" parent="." instance=ExtResource("13_12o68")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1.1, 0, -1, 0, -4.37114e-08, 3.15459, 1.83708, 4.09031)
 destination = "res://scenes/overworld.tscn"
+
+[node name="Marker3D" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.31436, 0.7273, -0.414535)
 
 [connection signal="body_entered" from="Node3D/Node3D/cameraEntrada/cameraTrigger" to="Node3D/Node3D/cameraEntrada/cameraTrigger" method="enter"]
 [connection signal="body_exited" from="Node3D/Node3D/cameraEntrada/cameraTrigger" to="Node3D/Node3D/cameraEntrada/cameraTrigger" method="leave"]

@@ -6,7 +6,7 @@ var currentFrame = 0.0
 
 func animationFinished(goal):
 	if getState() == goal :
-		return 0
+		return 
 	return 1
 
 func animateMovement(velocity, speed):

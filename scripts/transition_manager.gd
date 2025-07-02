@@ -6,6 +6,7 @@ var scene_states = {}
 var inventoryState = {}
 var inventoryPath = ""
 var currentRoom = ""
+var deve_spawnar_inimigo_na_proxima_sala: bool = false # add
 
 # Função que inicia a transição
 func start(scene_path: String):

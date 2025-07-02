@@ -87,7 +87,6 @@ func _ready():
 
 # ========== CICLO DE VIDA ==========
 func _physics_process(delta: float):
-	#+ Apenas inimigos que não estão mortos podem se mover ou agir.
 	if estado == Estado.MORTO:
 		velocity = Vector3.ZERO
 		move_and_slide()
@@ -421,13 +420,10 @@ func die():
 	print(self.name, " morreu!")
 	estado = Estado.MORTO
 
-	# Para o agente de navegação para que ele não interfira na animação.
 	agente.set_velocity(Vector3.ZERO)
 
-	# Aciona a animação de morte na AnimationTree.
 	_set_anim_state(false, false, false, true)
 
-	# Desativa as colisões para que o inimigo não interaja mais.
 	for area in todas_as_areas_de_visao:
 		if is_instance_valid(area):
 			area.monitoring = false
@@ -438,10 +434,28 @@ func die():
 	if corpo_colisao:
 		corpo_colisao.set_deferred("disabled", true)
 
-#+ NOVA FUNÇÃO CHAMADA PELO SINAL
 func _on_animation_finished(anim_name: StringName):
-	# Verifica se a animação que acabou de terminar é a de morte.
-	# !! IMPORTANTE: Substitua "die" pelo nome exato da sua animação de morte !!
 	if anim_name == "die":
-		# Agora que a animação terminou, desativamos a árvore para travar na pose final.
 		animation_tree.active = false
+		
+# Em cachorro.gd
+
+func scan_for_player_on_spawn():
+	await get_tree().physics_frame
+	
+	for area in todas_as_areas_de_visao:
+		print(area)
+		if not is_instance_valid(area): continue
+		
+		var corpos_dentro = area.get_overlapping_bodies()
+		
+		for corpo_encontrado in corpos_dentro:
+			print(corpo_encontrado)
+			if corpo_encontrado.is_in_group("player"):
+				print("Jogador detectado no spawn!")
+				_on_body_entered(corpo_encontrado)
+				return
+				
+	print("Não encontrei o jogador no spawn.")
+	_set_anim_state(true, false, false, false) # Animação de idle
+	estado = Estado.PATRULHANDO
