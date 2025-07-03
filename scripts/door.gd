@@ -30,7 +30,6 @@ func _process(_delta: float) -> void:
 		elif openBuffer > 0: # só tenta abrir a porta de novo após fechar o diálogo
 			openBuffer -= 1
 		else:
-			$"../BloqueadoEffect".play()
 			openBuffer = message.size()
 			$textBox.start_dialogue(message)
 			

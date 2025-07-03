@@ -16,6 +16,9 @@ func _on_body_entered(body):
 	has_been_triggered = true
 	textBox.start_dialogue(messages)
 
+func setTrigger(b):
+	has_been_triggered = b
+
 func save_state() -> Dictionary:
 	return {
 		"has_been_triggered": has_been_triggered
