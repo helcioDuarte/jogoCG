@@ -8,7 +8,9 @@ func _ready():
 # Conecte o sinal 'pressed' do seu botão de Salvar a esta função.
 func _on_new_game_button_pressed():
 	$AcceptEffect.play()
-	TransitionManager.start("res://scenes/overworld.tscn")
+	$VBoxContainer.visible = false
+	$VideoStreamPlayer.visible = true
+	$VideoStreamPlayer.play()
 # Conecte o sinal 'pressed' do seu botão de Carregar a esta função.
 func _on_load_button_pressed():
 	$AcceptEffect.play()
@@ -18,3 +20,7 @@ func _on_load_button_pressed():
 
 func _on_exit_button_pressed():
 	get_tree().quit()
+
+
+func videoFinished() -> void:
+	TransitionManager.start("res://scenes/overworld.tscn")
