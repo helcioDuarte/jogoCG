@@ -100,13 +100,13 @@ func save_game():
 	var file = FileAccess.open("user://save.dat", FileAccess.WRITE)
 	# Usa JSON.stringify para criar um arquivo de texto legível e compatível
 	file.store_string(JSON.stringify(full_save_data))
-	print("Jogo Salvo.")
+	#print("Jogo Salvo.")
 
 # Carrega o estado do jogo e inicia a transição para a cena salva.
 func load_game():
 	var file_path = "user://save.dat"
 	if not FileAccess.file_exists(file_path):
-		print("Arquivo de save não encontrado.")
+		#print("Arquivo de save não encontrado.")
 		return
 
 	var file = FileAccess.open(file_path, FileAccess.READ)

@@ -2,16 +2,15 @@ extends CharacterBody3D
 
 @export var speed = 13.0
 @export var sprint_multiplier = 2.0
-@export var impact_spark_system_path: NodePath
 @export var pipe_damage = 10
 
-@onready var sparks_fx = get_node_or_null(impact_spark_system_path) if impact_spark_system_path else null
 @onready var camera_node = get_viewport().get_camera_3d()
 @onready var inventory = $InventoryPanel
 @onready var animations = $model
 @onready var pipe = $model/Armature/Skeleton3D/BoneAttachment3D/pipe
 @onready var step_up_ray = $StepUpRay
 @onready var other_ray = $OtherRay
+@onready var boneco_andando = $BonecoAndando
 
 var nearby_placeholder = null
 var current_input_dir = Vector2.ZERO
@@ -20,6 +19,7 @@ var active_world_movement_direction = Vector3.ZERO
 var is_sprinting: bool = false # <- to usando pra saber se o helsio ta correndo
 
 var _camera_was_just_switched = false
+var is_playing_walk_sound = false
 
 func move():
 	if velocity.length() > 0 and step_up_ray.is_colliding() and not other_ray.is_colliding():
@@ -27,44 +27,25 @@ func move():
 	move_and_slide()
 
 func hit_pipe():
-	if not is_instance_valid(pipe) or not is_instance_valid(sparks_fx):
-		if not is_instance_valid(sparks_fx):
-			print("Sistema de faíscas não configurado no personagem.")
-		return
-
 	var attack_reach = 2.0
 	var ray_origin = pipe.global_transform.origin
 	var forward_direction = - camera_node.global_transform.basis.z.normalized() if is_instance_valid(camera_node) else -global_transform.basis.z.normalized()
 	var ray_end = ray_origin + forward_direction * attack_reach
 
-	# Prepara a query do raycast
 	var space_state = get_world_3d().direct_space_state
 	var query = PhysicsRayQueryParameters3D.create(ray_origin, ray_end)
 	
-	# IMPORTANTE: Configure a máscara para detectar paredes (camada 1) E inimigos (ex: camada 2)
-	query.collision_mask = 1 | 2 # Exemplo para detectar camadas 1 e 2
+	query.collision_mask = 1 | 2
 
-	# Executa o raycast
 	var result = space_state.intersect_ray(query)
 
-	# Se atingiu alguma coisa
 	if result:
 		var hit_collider = result.collider
 		var impact_position = result.position
 		var impact_normal = result.normal
 		
-		print("Pipe atingiu: ", hit_collider.name)
-
-		# 1. VERIFICA SE O OBJETO ATINGIDO É UM INIMIGO
-		# A forma mais robusta é checar se ele tem a função "take_damage" que acabamos de criar.
 		if hit_collider and hit_collider.has_method("take_damage"):
-			# Se tiver, chama a função para causar dano.
 			hit_collider.call("take_damage", pipe_damage)
-			
-		sparks_fx.emit_sparks(impact_position, impact_normal)
-			
-	else:
-		print("Pipe não atingiu nada.")
 
 func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -83,11 +64,12 @@ func handle_inventory_input():
 		inventory.visible = not inventory.visible
 		get_tree().paused = inventory.visible
 		if inventory.visible:
+			stop_sound()
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		else:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		
-		get_viewport().set_input_as_handled() # Evita que o input seja processado por outros nós
+		get_viewport().set_input_as_handled()
 
 func switch_camera():
 	camera_node = get_viewport().get_camera_3d()
@@ -150,17 +132,22 @@ func _physics_process(delta: float):
 	last_frame_input_dir = current_input_dir
 	
 	is_sprinting = Input.is_action_pressed("sprint") and velocity.length() > 0
-	var current_speed = speed * sprint_multiplier if is_sprinting else speed
+	var current_speed = speed * sprint_multiplier if Input.is_action_pressed("sprint") else speed
 	# Aplica o movimento
 	if active_world_movement_direction != Vector3.ZERO:
 		velocity = active_world_movement_direction * current_speed
 	else:
-		# Sem direção ativa, para imediatamente.
-		velocity = Vector3.ZERO # <--- PARADA IMEDIATA
-	if Input.is_action_pressed("sprint") and velocity.length() != 0:
-		animations.changeWalkRun("run")
+		velocity = Vector3.ZERO
+	
+	if velocity.length() != 0:
+		play_sound()
+		if Input.is_action_pressed("sprint"):
+			animations.changeWalkRun("run")
+		else:
+			animations.changeWalkRun("walk")
 	else:
-		animations.changeWalkRun("walk")
+		stop_sound()
+		animations.changeWalkRun("idle")
 		
 	if Input.is_action_just_pressed("hit"):
 		if animations.animationFinished("Slash"):
@@ -187,6 +174,16 @@ func _physics_process(delta: float):
 		else:
 			look_at(global_position + target_dir, Vector3.UP)
 
+func play_sound():
+	if not is_playing_walk_sound:
+		boneco_andando.play()
+		is_playing_walk_sound = true
+
+func stop_sound():
+	if is_playing_walk_sound:
+		boneco_andando.stop()
+		is_playing_walk_sound = false
+
 func save_state() -> Dictionary:
 	return {
 		"position": global_position,
@@ -196,16 +193,16 @@ func save_state() -> Dictionary:
 func load_state(data: Dictionary):
 	if get_tree().current_scene.name == "overworld":
 		if data.has("position"):
-			if data["position"] is String: # se o jogo é carregado os valores viram string por algum motivo
-				data["position"] = data["position"].replace("(", "").replace(")", "").split(", ") # nojento
+			if data["position"] is String:
+				data["position"] = data["position"].replace("(", "").replace(")", "").split(", ")
 				global_position.x = float(data["position"][0])
 				global_position.y = float(data["position"][1])
 				global_position.z = float(data["position"][2])
 			else:
 				global_position = data["position"]
 		if data.has("rotation"):
-			if data["rotation"] is String: # se o jogo é carregado os valores viram string por algum motivo
-				data["rotation"] = data["rotation"].replace("(", "").replace(")", "").split(", ") # nojento
+			if data["rotation"] is String:
+				data["rotation"] = data["rotation"].replace("(", "").replace(")", "").split(", ")
 				rotation.x = float(data["rotation"][0])
 				rotation.y = float(data["rotation"][1])
 				rotation.z = float(data["rotation"][2])

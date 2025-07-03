@@ -40,5 +40,5 @@
 	- [ ] cutscenes (in game)
 	- [ ] cutscenes (ia)
 	- [ ] cutscenes (live action)
-	- [ ] menu
+	- [X] menu
 	- [ ] audio

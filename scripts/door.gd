@@ -9,6 +9,7 @@ var player = null
 var canEnter = false
 var openBuffer = 0
 
+
 func enter(body):
 	if body.name == "player":
 		player = player if player != null else body
@@ -24,11 +25,11 @@ func _process(_delta: float) -> void:
 	
 	if Input.is_action_just_pressed("interact"):
 		if open:
-			
 			# 1. Antes de transicionar, definimos o estado no nosso gerenciador global.
 			TransitionManager.deve_spawnar_inimigo_na_proxima_sala = spawna_inimigo_nesta_sala
 			
 			TransitionManager.setRoom(name)
+			$"../PortaAbrindo".play()
 			TransitionManager.start(destination)
 		elif openBuffer > 0: # só tenta abrir a porta de novo após fechar o diálogo
 			openBuffer -= 1
