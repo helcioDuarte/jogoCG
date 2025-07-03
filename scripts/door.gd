@@ -1,10 +1,13 @@
+# door.gd
 extends MeshInstance3D
 
 @export var destination = "res://scenes/sala.tscn"
 # @export var room = "overworld"
 @export var open = true
 @export var message: Array[String] = ["Trancado..."]
-@export var spawna_inimigo_nesta_sala: bool = false # add
+@export var cenas_inimigos_para_spawnar: Array[PackedScene] = []
+@export var cenas_itens_para_spawnar: Array[PackedScene] = [] 
+
 var player = null
 var canEnter = false
 var openBuffer = 0
@@ -25,8 +28,11 @@ func _process(_delta: float) -> void:
 	
 	if Input.is_action_just_pressed("interact"):
 		if open:
-			# 1. Antes de transicionar, definimos o estado no nosso gerenciador global.
-			TransitionManager.deve_spawnar_inimigo_na_proxima_sala = spawna_inimigo_nesta_sala
+			
+			# 1. Antes de transicionar, definimos os estados no nosso gerenciador global.
+			# TransitionManager.deve_spawnar_inimigo_na_proxima_sala = spawna_inimigo_nesta_sala # REMOVIDO
+			TransitionManager.inimigos_para_spawnar = cenas_inimigos_para_spawnar # NOVO
+			TransitionManager.itens_para_spawnar = cenas_itens_para_spawnar
 			
 			TransitionManager.setRoom(name)
 			$"../PortaAbrindo".play()

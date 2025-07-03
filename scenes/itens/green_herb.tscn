@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=4 uid="uid://bhax1ij43gwvg"]
+
+[ext_resource type="ArrayMesh" uid="uid://fycakhqpws06" path="res://models/GreenHerb.res" id="1_6t46j"]
+[ext_resource type="Material" uid="uid://bpyo07plkdadg" path="res://textures/outline.tres" id="2_qkwp4"]
+[ext_resource type="PackedScene" uid="uid://b6l6p2b3hv2e1" path="res://entities/item_pickup_area.tscn" id="3_nxj4a"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_7s4s2"]
+_surfaces = [{
+"aabb": AABB(-70.746, -70.6753, -310.555, 141.492, 141.421, 310.891),
+"attribute_data": PackedByteArray("9/z2PslgyTywQLA8yWDJPPf89j6/nL4+sECwPL+cvj7/Mv8+x4zGPvy0ez//In8//LR7P8eMxj7/Mv8+/yJ/P+CAXzzHjMY+/zL/Pv8ifz//Mv8+x4zGPuCAXzz/In8/vP67Pr+cvj6BAIE+v5y+PscERz6/nL4+jAQMPslgyTzOvk0/tpa1Ps6+TT/T4NI8sPkvP5dglz342Hc/w8RCPtl+2T6/nL4+2X7ZPslgyTy8/rs+yWDJPJ+Anj6/nL4+n4CePslgyTyBAIE+yWDJPMcERz7JYMk8jAQMPr+cvj6iEKI9v5y+PqIQoj3JYMk8pKQjP8PEQj6w+S8/neycPuyDaz+XYJc97INrP53snD6QXRA/rOSrPo4CDj+hiKA+kF0QP5UulT6WChY/sZqwPpYKFj+QeJA+nLgbP5UulT6cuBs/rOSrPp4THj+hiKA+"),
+"format": 34359742487,
+"index_count": 96,
+"index_data": PackedByteArray("AAACABQAAAAUABUAFQAUAAwAFQAMABYAFgAMABcAFgAXABgAGAAXAA0AGAANABkAGQANAA4AGQAOABoAGgAOABsAGgAbAA8ADwAbABwADwAcAB0AHQAcAAMAHQADAAEABAAGAAUABAAFAAcACAAKAAkACAAJAAsAEgAfAB4AHwASABAAEAASABEAEAARACAAEAAgACEAIQAgABMAIgAkACMAJAAiACUAJAAlACYAJgAlACcAJwAlACgAJwAoACkA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 42,
+"vertex_data": PackedByteArray("7gT7O3cTq8HCHaw+7gT7O3cTq8HCHaw+Gvz6O8LXGsJfVG/CGvz6O8LXGsJfVG/CxVmNwvl9jUKoh23C33yNQsVZjcL/RpvD+X2NQsVZjcKoh23CxVmNwt98jUL/RpvD+X2NwsVZjcKoh23Cq1iNQt98jUL/RpvDq1iNQvl9jUKoh23C+X2NwsVZjcL/RpvDjdUaQjm+ILxfVG/CfPz6O43VGkJfVG/C0O7awa8D20FfVG/CdxOrweby+jvDHaw+Gvz6O8LXGsJfVG/CfPz6O43VGkJfVG/C0O7awa8D20FfVG/CjdUaQjm+ILxfVG/CYuraQR0I28FfVG/C7NFxQWcNcsGcHaw+DQ+rQXO5ILzDHaw+rwPbQWLq2kFfVG/ChwRyQezRcUGdHaw++vL6Ow0Pq0HDHaw+zNpxwYcEckGcHaw+wtcawn78+jtfVG/CHQjbwdDu2sFfVG/CZw1ywczaccGcHaw+wtcawn78+jtfVG/CHQjbwdDu2sFfVG/CrwPbQWLq2kFfVG/CYuraQR0I28FfVG/CZw1ywczaccGcHaw+dxOrweby+jvDHaw+zNpxwYcEckGcHaw+7gT7O3cTq8HCHaw++vL6Ow0Pq0HDHaw+hwRyQezRcUGdHaw+7NFxQWcNcsGcHaw+DQ+rQXO5ILzDHaw+/39PQuUTM1MAgFJCZyYNNqCwAgBbHZRFXE8BACcLUjEBwP6//b8AYAHA/r/9vwBgAcD+v/2/AGABwP6//b8AYP4/AcD+vwAg/j8BwP6/ACD+PwHA/r8AIP4/AcD+vwAg+/9dT/t//H+hsP7//f//P6YsWNP/v/8fUEL+f/9/AAAAAAAA//8AQAAAAAD//wBA//8AAP3/AED//wAA/f8AQFfTpiz/P/9fW6SjW/8//1+tvf5//X/+f1fTV9P/vwBgW6RapP6/AGD/f669/f8AQKNbW6T/v/8fAACjsACAAAClLKYsAEAAIKJbo1v/P/8f//8AAP3/AED//wAA/f8AQP//AAD9/wBA//8AAP3/AED9f/9//f//v/1//3/9//+//X//f/3//7/9f/9//f//v/1//3/9//+//X//f/3//7/9f/9//f//v/1//3/9//+/")
+}]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_6t46j"]
+height = 98.2592
+radius = 28.4238
+
+[node name="GreenHerb" type="MeshInstance3D"]
+transform = Transform3D(0.01, 0, 0, 0, -4.37114e-10, -0.01, 0, 0.01, -4.37114e-10, 0, 0, 0)
+mesh = ExtResource("1_6t46j")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("ArrayMesh_7s4s2")
+surface_material_override/0 = ExtResource("2_qkwp4")
+
+[node name="itemPickupArea" parent="." instance=ExtResource("3_nxj4a")]
+
+[node name="area" parent="itemPickupArea" index="0"]
+transform = Transform3D(3, 0, 0, 0, -1.31134e-07, -3, 0, 3, -1.31134e-07, 0, 2.39491e-06, -144.789)
+shape = SubResource("CylinderShape3D_6t46j")
+
+[editable path="itemPickupArea"]
