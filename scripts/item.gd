@@ -9,6 +9,9 @@ func _ready():
 	outline.material_overlay = load("res://textures/outline.tres")
 
 func enter(body):
+	if not get_parent().visible:
+		return
+
 	if body.name == "player":
 		player = player if player != null else body
 		outline.visible = true

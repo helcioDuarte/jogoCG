@@ -1,18 +1,26 @@
-[gd_scene load_steps=737 format=4 uid="uid://8jft6yj11cv3"]
+[gd_scene load_steps=749 format=4 uid="uid://8jft6yj11cv3"]
 
-[ext_resource type="Texture2D" uid="uid://prlec3li23cu" path="res://textures/paredecomp.jpg" id="2_e23bp"]
-[ext_resource type="Texture2D" uid="uid://bde2vi51lflil" path="res://textures/asphalt_track_diff_comp.png" id="3_8b1ih"]
-[ext_resource type="Texture2D" uid="uid://dq3esb588o4p3" path="res://textures/tetocomp.jpg" id="3_gb2nd"]
-[ext_resource type="Texture2D" uid="uid://dnjv32mxrwny8" path="res://textures/carpete_comp.jpg" id="3_jm84g"]
-[ext_resource type="Texture2D" uid="uid://crbyrce32x0fq" path="res://textures/Texturelabs_Metal_comp.jpg" id="5_2pe64"]
-[ext_resource type="Texture2D" uid="uid://dp0rexk6215nq" path="res://textures/pisocomp.jpg" id="7_3i23n"]
-[ext_resource type="Texture2D" uid="uid://6fjpg0ci7tvj" path="res://textures/p.png" id="7_15lrw"]
-[ext_resource type="Texture2D" uid="uid://d348u6kg0bnet" path="res://textures/vermelho_comp.jpg" id="8_3i23n"]
+[ext_resource type="Texture2D" uid="uid://shnvjclcxego" path="res://textures/paredecomp.jpg" id="2_e23bp"]
+[ext_resource type="Texture2D" uid="uid://bvy288mjk6wde" path="res://textures/asphalt_track_diff_comp.png" id="3_8b1ih"]
+[ext_resource type="Texture2D" uid="uid://cwwybg15m44ai" path="res://textures/tetocomp.jpg" id="3_gb2nd"]
+[ext_resource type="Texture2D" uid="uid://tanv4r5fe1y5" path="res://textures/carpete_comp.jpg" id="3_jm84g"]
+[ext_resource type="Texture2D" uid="uid://cnnm2pe0w4t6r" path="res://textures/Texturelabs_Metal_comp.jpg" id="5_2pe64"]
+[ext_resource type="Texture2D" uid="uid://6cqoma58n5wr" path="res://textures/pisocomp.jpg" id="7_3i23n"]
+[ext_resource type="Texture2D" uid="uid://6vwfhkmgxaig" path="res://textures/p.png" id="7_15lrw"]
+[ext_resource type="Texture2D" uid="uid://vq05vvi7kixk" path="res://textures/vermelho_comp.jpg" id="8_3i23n"]
 [ext_resource type="PackedScene" uid="uid://rxinvobacirt" path="res://entities/player.tscn" id="10_rwu5s"]
 [ext_resource type="Script" uid="uid://b4l20vgp1cixy" path="res://scripts/cameras/lookCamera.gd" id="11_dfjm3"]
-[ext_resource type="Texture2D" uid="uid://2gw5e8ialovk" path="res://textures/door_industrial_01_dark.png" id="11_jm84g"]
+[ext_resource type="Texture2D" uid="uid://ym7dqhm4url7" path="res://textures/door_industrial_01_dark.png" id="11_jm84g"]
 [ext_resource type="Script" uid="uid://brxlx3bv071et" path="res://scripts/cameras/cameraTrigger.gd" id="12_vc80t"]
 [ext_resource type="PackedScene" uid="uid://catogyqckj5p1" path="res://entities/door.tscn" id="13_m6yth"]
+[ext_resource type="Script" uid="uid://bcipbw7e3i68m" path="res://scripts/auditorium_puzzle.gd" id="14_e23bp"]
+[ext_resource type="PackedScene" uid="uid://b42f1s878cbr4" path="res://scenes/puzzles/red_bear.tscn" id="14_pckik"]
+[ext_resource type="PackedScene" uid="uid://dyk0upt4i5lig" path="res://scenes/puzzles/black_bear.tscn" id="15_15lrw"]
+[ext_resource type="Script" uid="uid://cojqr0k8gahxa" path="res://scripts/BearPlaceholder.gd" id="15_gb2nd"]
+[ext_resource type="Texture2D" uid="uid://bg7vkjq4bln47" path="res://textures/ursos/teddy_bear_preto.png" id="17_eedx2"]
+[ext_resource type="PackedScene" uid="uid://b1xr3kp1rvopn" path="res://scenes/puzzles/yellow_bear.tscn" id="18_s04jf"]
+[ext_resource type="PackedScene" uid="uid://g1ahr62fkl2h" path="res://scenes/puzzles/chave_bandejao.tscn" id="19_15lrw"]
+[ext_resource type="Texture2D" uid="uid://cvvddrmsobrnp" path="res://textures/olimpiadalogo.jpg" id="20_s04jf"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3i23n"]
 albedo_texture = ExtResource("2_e23bp")
@@ -5563,6 +5571,17 @@ size = Vector3(34.2326, 2.5, 13.0459)
 [sub_resource type="BoxShape3D" id="BoxShape3D_e23bp"]
 size = Vector3(13.348, 1, 8.04517)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dfjm3"]
+albedo_texture = ExtResource("20_s04jf")
+
+[sub_resource type="QuadMesh" id="QuadMesh_vc80t"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3v7vy"]
+albedo_texture = ExtResource("17_eedx2")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g3w3p"]
+size = Vector3(2.31885, 1, 0.726013)
+
 [node name="Node3D" type="Node3D"]
 
 [node name="TBLoader" type="TBLoader" parent="."]
@@ -7885,7 +7904,96 @@ script = ExtResource("12_vc80t")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0434723, -1.66687, -3.52258)
 shape = SubResource("BoxShape3D_e23bp")
 
+[node name="Painel" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.67712e-07, 0, 2, 0, 3.01, 0, -10.7, 0, -8.74228e-08, -17, 6, -8.4)
+material_override = SubResource("StandardMaterial3D_dfjm3")
+mesh = SubResource("QuadMesh_vc80t")
+
+[node name="red_bear" parent="." instance=ExtResource("14_pckik")]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, -3.92686, 0.618665, -6.38249)
+
+[node name="black_bear" parent="." instance=ExtResource("15_15lrw")]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, -3.85607, 0.58855, -5.415)
+material_override = SubResource("StandardMaterial3D_3v7vy")
+
+[node name="yellow_bear" parent="." instance=ExtResource("18_s04jf")]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, -3.84096, 0.561575, -7.43833)
+
+[node name="chave_bandejao" parent="." instance=ExtResource("19_15lrw")]
+transform = Transform3D(-2.18557e-09, -0.0120961, 0.0485148, 0, 0.0485148, 0.0120961, -0.05, 5.28737e-10, -2.12065e-09, -10.5588, 2.13068, -4.50811)
+visible = false
+
+[node name="Placeholder1" type="Area3D" parent="." node_paths=PackedStringArray("puzzle_manager_node")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.3, 1.8, -6)
+script = ExtResource("15_gb2nd")
+puzzle_manager_node = NodePath("../AuditoriumPuzzle")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Placeholder1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.659424, 0, 0.116638)
+shape = SubResource("BoxShape3D_g3w3p")
+
+[node name="BearSpawnPoint" type="Node3D" parent="Placeholder1"]
+
+[node name="Placeholder2" type="Area3D" parent="." node_paths=PackedStringArray("puzzle_manager_node")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.3, 1.8, -7)
+script = ExtResource("15_gb2nd")
+puzzle_manager_node = NodePath("../AuditoriumPuzzle")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Placeholder2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.659424, 0, 0)
+shape = SubResource("BoxShape3D_g3w3p")
+
+[node name="BearSpawnPoint" type="Node3D" parent="Placeholder2"]
+
+[node name="Placeholder3" type="Area3D" parent="." node_paths=PackedStringArray("puzzle_manager_node")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.3, 1.8, -8)
+script = ExtResource("15_gb2nd")
+puzzle_manager_node = NodePath("../AuditoriumPuzzle")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Placeholder3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.659424, 0, 0)
+shape = SubResource("BoxShape3D_g3w3p")
+
+[node name="BearSpawnPoint" type="Node3D" parent="Placeholder3"]
+
+[node name="Placeholder4" type="Area3D" parent="." node_paths=PackedStringArray("puzzle_manager_node")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.3, 1.8, -9)
+script = ExtResource("15_gb2nd")
+puzzle_manager_node = NodePath("../AuditoriumPuzzle")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Placeholder4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.659424, 0, 0)
+shape = SubResource("BoxShape3D_g3w3p")
+
+[node name="BearSpawnPoint" type="Node3D" parent="Placeholder4"]
+
+[node name="Placeholder5" type="Area3D" parent="." node_paths=PackedStringArray("puzzle_manager_node")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.3, 1.8, -10)
+script = ExtResource("15_gb2nd")
+puzzle_manager_node = NodePath("../AuditoriumPuzzle")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Placeholder5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.659424, 0, -0.113556)
+shape = SubResource("BoxShape3D_g3w3p")
+
+[node name="BearSpawnPoint" type="Node3D" parent="Placeholder5"]
+
+[node name="AuditoriumPuzzle" type="Node3D" parent="."]
+script = ExtResource("14_e23bp")
+placeholders = Array[NodePath]([NodePath("../Placeholder1"), NodePath("../Placeholder2"), NodePath("../Placeholder3"), NodePath("../Placeholder4"), NodePath("../Placeholder5")])
+key_item_path = NodePath("../chave_bandejao")
+
 [connection signal="body_entered" from="Node3D/Node3D/cameraEntrada/cameraTrigger" to="Node3D/Node3D/cameraEntrada/cameraTrigger" method="enter"]
 [connection signal="body_exited" from="Node3D/Node3D/cameraEntrada/cameraTrigger" to="Node3D/Node3D/cameraEntrada/cameraTrigger" method="leave"]
 [connection signal="body_entered" from="Node3D/Node3D/cameraApresentacao/cameraTrigger" to="Node3D/Node3D/cameraApresentacao/cameraTrigger" method="enter"]
 [connection signal="body_exited" from="Node3D/Node3D/cameraApresentacao/cameraTrigger" to="Node3D/Node3D/cameraApresentacao/cameraTrigger" method="leave"]
+[connection signal="body_entered" from="Placeholder1" to="Placeholder1" method="_on_body_entered"]
+[connection signal="body_exited" from="Placeholder1" to="Placeholder1" method="_on_body_exited"]
+[connection signal="body_entered" from="Placeholder2" to="Placeholder2" method="_on_body_entered"]
+[connection signal="body_exited" from="Placeholder2" to="Placeholder2" method="_on_body_exited"]
+[connection signal="body_entered" from="Placeholder3" to="Placeholder3" method="_on_body_entered"]
+[connection signal="body_exited" from="Placeholder3" to="Placeholder3" method="_on_body_exited"]
+[connection signal="body_entered" from="Placeholder4" to="Placeholder4" method="_on_body_entered"]
+[connection signal="body_exited" from="Placeholder4" to="Placeholder4" method="_on_body_exited"]
+[connection signal="body_entered" from="Placeholder5" to="Placeholder5" method="_on_body_entered"]
+[connection signal="body_exited" from="Placeholder5" to="Placeholder5" method="_on_body_exited"]
