@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://be3btta2v07l"]
+[gd_scene load_steps=10 format=3 uid="uid://be3btta2v07l"]
 
 [ext_resource type="Script" uid="uid://d13g7iusquii2" path="res://scripts/save.gd" id="1_3sv4i"]
-[ext_resource type="Texture2D" uid="uid://dk378epm42ybi" path="res://pics/savepic.png" id="2_r5a0y"]
+[ext_resource type="Texture2D" uid="uid://cscbwrtfdi8sc" path="res://pics/savepic.png" id="2_r5a0y"]
 [ext_resource type="Theme" uid="uid://djyknvanlkv26" path="res://theme/menu_theme.tres" id="3_7obqq"]
+[ext_resource type="AudioStream" uid="uid://c1bi0u7pqeah7" path="res://audio/accept_effect.mp3" id="4_wsf25"]
+[ext_resource type="AudioStream" uid="uid://odpio3tel4c2" path="res://audio/menu_ambient_looped.mp3" id="5_th0i3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7obqq"]
 
@@ -112,6 +114,15 @@ text = "Carregar"
 [node name="exit" type="Button" parent="menu/HBoxContainer"]
 layout_mode = 2
 text = "Sair"
+
+[node name="AcceptEffect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_wsf25")
+
+[node name="MenuAmbientLooped" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_th0i3")
+volume_db = 7.495
+autoplay = true
+parameters/looping = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_confirmation_timer_timeout"]
 [connection signal="pressed" from="menu/HBoxContainer/save" to="." method="_on_save_button_pressed"]

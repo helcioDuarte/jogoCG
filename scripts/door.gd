@@ -7,6 +7,9 @@ var player = null
 var canEnter = false
 var openBuffer = 0
 
+
+
+
 func enter(body):
 	if body.name == "player":
 		player = player if player != null else body
@@ -22,10 +25,12 @@ func _process(_delta: float) -> void:
 	
 	if Input.is_action_just_pressed("interact"):
 		if open:
+			$"../PortaAbrindo".play()
 			TransitionManager.start(destination)
 		elif openBuffer > 0: # só tenta abrir a porta de novo após fechar o diálogo
 			openBuffer -= 1
 		else:
+			$"../BloqueadoEffect".play()
 			openBuffer = message.size()
 			$textBox.start_dialogue(message)
 			

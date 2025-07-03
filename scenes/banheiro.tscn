@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=4 uid="uid://c2nu668m2p4ud"]
+[gd_scene load_steps=62 format=4 uid="uid://c2nu668m2p4ud"]
 
 [ext_resource type="Texture2D" uid="uid://dp0rexk6215nq" path="res://textures/pisocomp.jpg" id="1_ohvp2"]
 [ext_resource type="Texture2D" uid="uid://prlec3li23cu" path="res://textures/paredecomp.jpg" id="2_v8g2v"]
@@ -10,7 +10,17 @@
 [ext_resource type="Texture2D" uid="uid://pt316urjvgih" path="res://textures/door_brown.png" id="10_uu4lb"]
 [ext_resource type="Texture2D" uid="uid://b4etskt8t3to3" path="res://textures/door_bathroom.png" id="11_jhdnp"]
 [ext_resource type="Script" uid="uid://brxlx3bv071et" path="res://scripts/cameras/cameraTrigger.gd" id="12_3746r"]
+[ext_resource type="AudioStream" uid="uid://03mlgeqjq6b" path="res://audio/porta_dechando.mp3" id="12_jhdnp"]
 [ext_resource type="PackedScene" uid="uid://catogyqckj5p1" path="res://entities/door.tscn" id="13_5ukx8"]
+[ext_resource type="AudioStream" uid="uid://di2fyr0uaa43i" path="res://audio/porta_abrindo.mp3" id="13_ohvp2"]
+[ext_resource type="AudioStream" uid="uid://dwsak37fq60ht" path="res://audio/bloqueado_effect.mp3" id="14_v8g2v"]
+
+[sub_resource type="GDScript" id="GDScript_ohvp2"]
+script/source = "extends Node3D
+
+func _ready() -> void:
+	$PortaDechando.play()
+"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oowmx"]
 albedo_texture = ExtResource("1_ohvp2")
@@ -341,6 +351,7 @@ albedo_texture = ExtResource("11_jhdnp")
 uv1_scale = Vector3(3, 2, 1)
 
 [node name="Node3D" type="Node3D"]
+script = SubResource("GDScript_ohvp2")
 
 [node name="TBLoader" type="TBLoader" parent="."]
 map_resource = "res://levels/banheiro.map"
@@ -545,6 +556,15 @@ destination = "res://scenes/save.tscn"
 transform = Transform3D(-4.37114e-08, -4.77671e-15, -1.8, -8.74228e-08, 1.25, 0, -1, -1.09278e-07, 7.86805e-08, -3.31057, 1.99779, 2.67848)
 material_override = SubResource("StandardMaterial3D_v8g2v")
 destination = "res://scenes/save.tscn"
+
+[node name="PortaDechando" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_jhdnp")
+
+[node name="PortaAbrindo" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_ohvp2")
+
+[node name="BloqueadoEffect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_v8g2v")
 
 [connection signal="body_entered" from="Node3D/Node3D/cameraEntrada/cameraTrigger" to="Node3D/Node3D/cameraEntrada/cameraTrigger" method="enter"]
 [connection signal="body_exited" from="Node3D/Node3D/cameraEntrada/cameraTrigger" to="Node3D/Node3D/cameraEntrada/cameraTrigger" method="leave"]
