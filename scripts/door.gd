@@ -1,7 +1,7 @@
 extends MeshInstance3D
 
 @export var destination = "res://scenes/sala.tscn"
-@export var room = "overworld"
+# @export var room = "overworld"
 @export var open = true
 @export var message: Array[String] = ["Trancado..."]
 @export var spawna_inimigo_nesta_sala: bool = false # add
@@ -28,7 +28,7 @@ func _process(_delta: float) -> void:
 			# 1. Antes de transicionar, definimos o estado no nosso gerenciador global.
 			TransitionManager.deve_spawnar_inimigo_na_proxima_sala = spawna_inimigo_nesta_sala
 			
-			TransitionManager.setRoom(room)
+			TransitionManager.setRoom(name)
 			TransitionManager.start(destination)
 		elif openBuffer > 0: # só tenta abrir a porta de novo após fechar o diálogo
 			openBuffer -= 1
