@@ -1,28 +1,29 @@
-[gd_scene load_steps=752 format=4 uid="uid://8jft6yj11cv3"]
+[gd_scene load_steps=757 format=4 uid="uid://8jft6yj11cv3"]
 
-[ext_resource type="Texture2D" uid="uid://c6i1kgv7qwd01" path="res://textures/paredecomp.jpg" id="2_e23bp"]
-[ext_resource type="Texture2D" uid="uid://br5p7klrnchun" path="res://textures/asphalt_track_diff_comp.png" id="3_8b1ih"]
-[ext_resource type="Texture2D" uid="uid://d2nmg3v6qu5v1" path="res://textures/tetocomp.jpg" id="3_gb2nd"]
-[ext_resource type="Texture2D" uid="uid://dvf23lvnnnpsr" path="res://textures/carpete_comp.jpg" id="3_jm84g"]
-[ext_resource type="Texture2D" uid="uid://bw3uj2uxv4jq8" path="res://textures/Texturelabs_Metal_comp.jpg" id="5_2pe64"]
-[ext_resource type="Texture2D" uid="uid://dalypkt6hkrrk" path="res://textures/pisocomp.jpg" id="7_3i23n"]
-[ext_resource type="Texture2D" uid="uid://d02th76rh3hfq" path="res://textures/p.png" id="7_15lrw"]
-[ext_resource type="Texture2D" uid="uid://c7gbypip5bspu" path="res://textures/vermelho_comp.jpg" id="8_3i23n"]
+[ext_resource type="Texture2D" uid="uid://bdlmr8erwepiq" path="res://textures/paredecomp.jpg" id="2_e23bp"]
+[ext_resource type="Texture2D" uid="uid://be1qkgpms8rbc" path="res://textures/asphalt_track_diff_comp.png" id="3_8b1ih"]
+[ext_resource type="Texture2D" uid="uid://b3rkb7jkl2ttl" path="res://textures/tetocomp.jpg" id="3_gb2nd"]
+[ext_resource type="Texture2D" uid="uid://cmsn18pblklf2" path="res://textures/carpete_comp.jpg" id="3_jm84g"]
+[ext_resource type="Texture2D" uid="uid://btib8e7vefhf8" path="res://textures/Texturelabs_Metal_comp.jpg" id="5_2pe64"]
+[ext_resource type="Texture2D" uid="uid://mg5ov7c5veog" path="res://textures/pisocomp.jpg" id="7_3i23n"]
+[ext_resource type="Texture2D" uid="uid://bun3hfmythdyu" path="res://textures/p.png" id="7_15lrw"]
+[ext_resource type="Texture2D" uid="uid://cblfilfokjmj8" path="res://textures/vermelho_comp.jpg" id="8_3i23n"]
 [ext_resource type="PackedScene" uid="uid://rxinvobacirt" path="res://entities/player.tscn" id="10_rwu5s"]
 [ext_resource type="Script" uid="uid://b4l20vgp1cixy" path="res://scripts/cameras/lookCamera.gd" id="11_dfjm3"]
-[ext_resource type="Texture2D" uid="uid://c0nn1d12u83ef" path="res://textures/door_industrial_01_dark.png" id="11_jm84g"]
+[ext_resource type="Texture2D" uid="uid://4siec5pjpmx6" path="res://textures/door_industrial_01_dark.png" id="11_jm84g"]
 [ext_resource type="Script" uid="uid://brxlx3bv071et" path="res://scripts/cameras/cameraTrigger.gd" id="12_vc80t"]
 [ext_resource type="PackedScene" uid="uid://catogyqckj5p1" path="res://entities/door.tscn" id="13_m6yth"]
-[ext_resource type="Script" uid="uid://bcipbw7e3i68m" path="res://scripts/auditorium_puzzle.gd" id="14_e23bp"]
+[ext_resource type="Script" path="res://scripts/auditorium_puzzle.gd" id="14_e23bp"]
 [ext_resource type="PackedScene" uid="uid://b42f1s878cbr4" path="res://scenes/puzzles/red_bear.tscn" id="14_pckik"]
 [ext_resource type="PackedScene" uid="uid://dyk0upt4i5lig" path="res://scenes/puzzles/black_bear.tscn" id="15_15lrw"]
-[ext_resource type="Script" uid="uid://cojqr0k8gahxa" path="res://scripts/BearPlaceholder.gd" id="15_gb2nd"]
-[ext_resource type="Texture2D" uid="uid://7golc2yv5xyc" path="res://textures/ursos/teddy_bear_preto.png" id="17_eedx2"]
+[ext_resource type="Script" path="res://scripts/BearPlaceholder.gd" id="15_gb2nd"]
+[ext_resource type="Texture2D" uid="uid://dupyfdqypns40" path="res://textures/ursos/teddy_bear_preto.png" id="17_eedx2"]
 [ext_resource type="PackedScene" uid="uid://b1xr3kp1rvopn" path="res://scenes/puzzles/yellow_bear.tscn" id="18_s04jf"]
 [ext_resource type="PackedScene" uid="uid://g1ahr62fkl2h" path="res://scenes/puzzles/chave_bandejao.tscn" id="19_15lrw"]
-[ext_resource type="Texture2D" uid="uid://bw02ripyqpngp" path="res://textures/olimpiadalogo.jpg" id="20_s04jf"]
+[ext_resource type="Texture2D" uid="uid://egi7s06q3sre" path="res://textures/olimpiadalogo.jpg" id="20_s04jf"]
 [ext_resource type="PackedScene" uid="uid://dwffagowe1pga" path="res://entities/textbox.tscn" id="22_dfjm3"]
 [ext_resource type="Script" uid="uid://dkhxy0b1vl5m" path="res://scripts/textTrigger.gd" id="23_vc80t"]
+[ext_resource type="AudioStream" uid="uid://dewktrjedicim" path="res://audio/porta_abrindo.mp3" id="24_vc80t"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3i23n"]
 albedo_texture = ExtResource("2_e23bp")
@@ -5581,8 +5582,20 @@ albedo_texture = ExtResource("20_s04jf")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3v7vy"]
 albedo_texture = ExtResource("17_eedx2")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_g3w3p"]
-size = Vector3(2.31885, 1, 0.994247)
+[sub_resource type="BoxShape3D" id="BoxShape3D_vc80t"]
+size = Vector3(2.31787, 1, 0.681152)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gdg1l"]
+size = Vector3(2.3208, 1, 0.550171)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_v58al"]
+size = Vector3(2.31006, 1, 0.616089)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ga0ec"]
+size = Vector3(2.32324, 1, 0.692261)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kawmg"]
+size = Vector3(2.32617, 1, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_m6yth"]
 size = Vector3(4.92688, 1, 13.3467)
@@ -7933,55 +7946,55 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.3, 1.8, -6)
 script = ExtResource("15_gb2nd")
 puzzle_manager_node = NodePath("../AuditoriumPuzzle")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Placeholder1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.659424, 0, -0.0174789)
-shape = SubResource("BoxShape3D_g3w3p")
-
 [node name="BearSpawnPoint" type="Node3D" parent="Placeholder1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Placeholder1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.658936, 0, 0.220449)
+shape = SubResource("BoxShape3D_vc80t")
 
 [node name="Placeholder2" type="Area3D" parent="." node_paths=PackedStringArray("puzzle_manager_node")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.3, 1.8, -7)
 script = ExtResource("15_gb2nd")
 puzzle_manager_node = NodePath("../AuditoriumPuzzle")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Placeholder2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.659424, 0, 0)
-shape = SubResource("BoxShape3D_g3w3p")
-
 [node name="BearSpawnPoint" type="Node3D" parent="Placeholder2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Placeholder2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6604, 0, 0.199653)
+shape = SubResource("BoxShape3D_gdg1l")
 
 [node name="Placeholder3" type="Area3D" parent="." node_paths=PackedStringArray("puzzle_manager_node")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.3, 1.8, -8)
 script = ExtResource("15_gb2nd")
 puzzle_manager_node = NodePath("../AuditoriumPuzzle")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Placeholder3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.659424, 0, 0)
-shape = SubResource("BoxShape3D_g3w3p")
-
 [node name="BearSpawnPoint" type="Node3D" parent="Placeholder3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Placeholder3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.655029, 0, 0.167922)
+shape = SubResource("BoxShape3D_v58al")
 
 [node name="Placeholder4" type="Area3D" parent="." node_paths=PackedStringArray("puzzle_manager_node")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.3, 1.8, -9)
 script = ExtResource("15_gb2nd")
 puzzle_manager_node = NodePath("../AuditoriumPuzzle")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Placeholder4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.659424, 0, 0)
-shape = SubResource("BoxShape3D_g3w3p")
-
 [node name="BearSpawnPoint" type="Node3D" parent="Placeholder4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Placeholder4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.661621, 0, 0.029108)
+shape = SubResource("BoxShape3D_ga0ec")
 
 [node name="Placeholder5" type="Area3D" parent="." node_paths=PackedStringArray("puzzle_manager_node")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.3, 1.8, -10)
 script = ExtResource("15_gb2nd")
 puzzle_manager_node = NodePath("../AuditoriumPuzzle")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Placeholder5"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.659424, 0, -0.113556)
-shape = SubResource("BoxShape3D_g3w3p")
-
 [node name="BearSpawnPoint" type="Node3D" parent="Placeholder5"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Placeholder5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.663086, 0, -0.359723)
+shape = SubResource("BoxShape3D_kawmg")
 
 [node name="AuditoriumPuzzle" type="Node3D" parent="."]
 script = ExtResource("14_e23bp")
@@ -8009,6 +8022,9 @@ messages = Array[String](["Por que tem ursos de pelúcia aqui?", "Deve ser um en
 [node name="area" type="CollisionShape3D" parent="caixas de texto/textBox2/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.54858, 0.533157, -8.312)
 shape = SubResource("BoxShape3D_m6yth")
+
+[node name="PortaAbrindo" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("24_vc80t")
 
 [connection signal="body_entered" from="Node3D/Node3D/cameraEntrada/cameraTrigger" to="Node3D/Node3D/cameraEntrada/cameraTrigger" method="enter"]
 [connection signal="body_exited" from="Node3D/Node3D/cameraEntrada/cameraTrigger" to="Node3D/Node3D/cameraEntrada/cameraTrigger" method="leave"]

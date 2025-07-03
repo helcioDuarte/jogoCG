@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=4 uid="uid://q2hk4wlds8p5"]
 
-[ext_resource type="Texture2D" uid="uid://bked6u8vl8be3" path="res://textures/ursos/teddy_bear_verde.png" id="1_jtlqd"]
+[ext_resource type="Texture2D" uid="uid://b8ogq5r7wbjtl" path="res://textures/ursos/teddy_bear_verde.png" id="1_jtlqd"]
 [ext_resource type="ArrayMesh" uid="uid://c5n37otabs1jw" path="res://models/urso.res" id="2_0vqh7"]
 [ext_resource type="Material" uid="uid://bpyo07plkdadg" path="res://textures/outline.tres" id="3_7aq5q"]
 [ext_resource type="PackedScene" uid="uid://b6l6p2b3hv2e1" path="res://entities/item_pickup_area.tscn" id="3_kfxcu"]

@@ -37,7 +37,7 @@ func _process(_delta: float) -> void:
 			$"../PortaAbrindo".play()
 			TransitionManager.start(destination)
 
-		elif key == "chave_bandejao" and player.inventory.inventory.get_inventory_item_by_id("chave_bandejao") != {}:
+		elif key == "chave_bandejao" and player.inventory.get_inventory_item_by_id("chave_bandejao") != {}:
 			TransitionManager.start("res://scenes/overworldBoss.tscn")
 
 		elif openBuffer > 0: # só tenta abrir a porta de novo após fechar o diálogo
