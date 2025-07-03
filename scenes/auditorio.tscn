@@ -1,27 +1,28 @@
-[gd_scene load_steps=755 format=4 uid="uid://8jft6yj11cv3"]
+[gd_scene load_steps=757 format=4 uid="uid://8jft6yj11cv3"]
 
-[ext_resource type="Texture2D" uid="uid://i16hjnutpd3b" path="res://textures/paredecomp.jpg" id="2_e23bp"]
-[ext_resource type="Texture2D" uid="uid://bjy8k4e0gp8hg" path="res://textures/asphalt_track_diff_comp.png" id="3_8b1ih"]
-[ext_resource type="Texture2D" uid="uid://x3t6b5w71dte" path="res://textures/tetocomp.jpg" id="3_gb2nd"]
-[ext_resource type="Texture2D" uid="uid://csufa3x35ynbd" path="res://textures/carpete_comp.jpg" id="3_jm84g"]
-[ext_resource type="Texture2D" uid="uid://dbxb7lfoykrqu" path="res://textures/Texturelabs_Metal_comp.jpg" id="5_2pe64"]
-[ext_resource type="Texture2D" uid="uid://drtysqlvo8ae2" path="res://textures/pisocomp.jpg" id="7_3i23n"]
-[ext_resource type="Texture2D" uid="uid://v7367v3hiuu3" path="res://textures/p.png" id="7_15lrw"]
-[ext_resource type="Texture2D" uid="uid://dt55wtufebbxn" path="res://textures/vermelho_comp.jpg" id="8_3i23n"]
+[ext_resource type="Texture2D" uid="uid://lym88tt4ghbp" path="res://textures/paredecomp.jpg" id="2_e23bp"]
+[ext_resource type="Texture2D" uid="uid://ck2bjq53e0m45" path="res://textures/asphalt_track_diff_comp.png" id="3_8b1ih"]
+[ext_resource type="Texture2D" uid="uid://cd31ue7tjexmn" path="res://textures/tetocomp.jpg" id="3_gb2nd"]
+[ext_resource type="Texture2D" uid="uid://tjxxl3d2utay" path="res://textures/carpete_comp.jpg" id="3_jm84g"]
+[ext_resource type="Texture2D" uid="uid://dgh850uq4iie8" path="res://textures/Texturelabs_Metal_comp.jpg" id="5_2pe64"]
+[ext_resource type="Texture2D" uid="uid://ccpvpy3wueb3t" path="res://textures/pisocomp.jpg" id="7_3i23n"]
+[ext_resource type="Texture2D" uid="uid://d3xc42eee620s" path="res://textures/p.png" id="7_15lrw"]
+[ext_resource type="Texture2D" uid="uid://coxq6m2jvojql" path="res://textures/vermelho_comp.jpg" id="8_3i23n"]
 [ext_resource type="PackedScene" uid="uid://rxinvobacirt" path="res://entities/player.tscn" id="10_rwu5s"]
 [ext_resource type="Script" uid="uid://b4l20vgp1cixy" path="res://scripts/cameras/lookCamera.gd" id="11_dfjm3"]
-[ext_resource type="Texture2D" uid="uid://bbn8otiuoktg5" path="res://textures/door_industrial_01_dark.png" id="11_jm84g"]
+[ext_resource type="Texture2D" uid="uid://bwwejjceuf37l" path="res://textures/door_industrial_01_dark.png" id="11_jm84g"]
 [ext_resource type="Script" uid="uid://brxlx3bv071et" path="res://scripts/cameras/cameraTrigger.gd" id="12_vc80t"]
 [ext_resource type="PackedScene" uid="uid://catogyqckj5p1" path="res://entities/door.tscn" id="13_m6yth"]
 [ext_resource type="Script" uid="uid://bcipbw7e3i68m" path="res://scripts/auditorium_puzzle.gd" id="14_e23bp"]
 [ext_resource type="PackedScene" uid="uid://dyk0upt4i5lig" path="res://scenes/puzzles/black_bear.tscn" id="15_15lrw"]
 [ext_resource type="Script" uid="uid://cojqr0k8gahxa" path="res://scripts/BearPlaceholder.gd" id="15_gb2nd"]
-[ext_resource type="Texture2D" uid="uid://cfup7ebirwdbs" path="res://textures/ursos/teddy_bear_preto.png" id="17_eedx2"]
+[ext_resource type="Texture2D" uid="uid://dwdrk8sj74eaj" path="res://textures/ursos/teddy_bear_preto.png" id="17_eedx2"]
 [ext_resource type="PackedScene" uid="uid://g1ahr62fkl2h" path="res://scenes/puzzles/chave_bandejao.tscn" id="19_15lrw"]
-[ext_resource type="Texture2D" uid="uid://djhs4ga3etlsj" path="res://textures/olimpiadalogo.jpg" id="20_s04jf"]
+[ext_resource type="Texture2D" uid="uid://detippdhdhxk" path="res://textures/olimpiadalogo.jpg" id="20_s04jf"]
 [ext_resource type="PackedScene" uid="uid://dwffagowe1pga" path="res://entities/textbox.tscn" id="22_dfjm3"]
+[ext_resource type="Shader" uid="uid://cu2wpiadetu0v" path="res://scenes/vsh.gdshader" id="23_dfjm3"]
 [ext_resource type="Script" uid="uid://dkhxy0b1vl5m" path="res://scripts/textTrigger.gd" id="23_vc80t"]
-[ext_resource type="AudioStream" uid="uid://lfyrut0mtgnp" path="res://audio/porta_abrindo.mp3" id="24_vc80t"]
+[ext_resource type="AudioStream" uid="uid://bd6ya8l000wsi" path="res://audio/porta_abrindo.mp3" id="24_vc80t"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3i23n"]
 albedo_texture = ExtResource("2_e23bp")
@@ -5598,6 +5599,30 @@ size = Vector3(2.32617, 1, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_m6yth"]
 size = Vector3(4.92688, 1, 13.3467)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vc80t"]
+shader = ExtResource("23_dfjm3")
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.153
+shader_parameter/scanlines_width = 0.08
+shader_parameter/grille_opacity = 0.0
+shader_parameter/resolution = Vector2(640, 320)
+shader_parameter/pixelate = false
+shader_parameter/roll = false
+shader_parameter/roll_speed = 8.0
+shader_parameter/roll_size = 15.0
+shader_parameter/roll_variation = 0.424
+shader_parameter/distort_intensity = 0.0
+shader_parameter/noise_opacity = 0.103
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.03
+shader_parameter/aberration = 4.75e-08
+shader_parameter/brightness = 1.0
+shader_parameter/discolor = false
+shader_parameter/warp_amount = 0.0
+shader_parameter/clip_warp = true
+shader_parameter/vignette_intensity = 0.1
+shader_parameter/vignette_opacity = 0.0
+
 [node name="Node3D" type="Node3D"]
 
 [node name="TBLoader" type="TBLoader" parent="."]
@@ -8017,6 +8042,21 @@ shape = SubResource("BoxShape3D_m6yth")
 
 [node name="PortaAbrindo" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("24_vc80t")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_vc80t")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -3.0
+offset_top = 1.0
+offset_right = 2.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
 [connection signal="body_entered" from="Node3D/Node3D/cameraEntrada/cameraTrigger" to="Node3D/Node3D/cameraEntrada/cameraTrigger" method="enter"]
 [connection signal="body_exited" from="Node3D/Node3D/cameraEntrada/cameraTrigger" to="Node3D/Node3D/cameraEntrada/cameraTrigger" method="leave"]

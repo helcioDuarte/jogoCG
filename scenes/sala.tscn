@@ -1,19 +1,20 @@
-[gd_scene load_steps=206 format=4 uid="uid://b076obi5wlogo"]
+[gd_scene load_steps=208 format=4 uid="uid://b076obi5wlogo"]
 
-[ext_resource type="Texture2D" uid="uid://mg5ov7c5veog" path="res://textures/pisocomp.jpg" id="1_pg3vg"]
-[ext_resource type="Texture2D" uid="uid://bdlmr8erwepiq" path="res://textures/paredecomp.jpg" id="2_aq07l"]
-[ext_resource type="Texture2D" uid="uid://b3rkb7jkl2ttl" path="res://textures/tetocomp.jpg" id="3_aqf5g"]
-[ext_resource type="Texture2D" uid="uid://cs2gcrect0d3t" path="res://textures/corrimao_comp.jpg" id="4_12o68"]
-[ext_resource type="Texture2D" uid="uid://btib8e7vefhf8" path="res://textures/Texturelabs_Metal_comp.jpg" id="5_rssmv"]
-[ext_resource type="Texture2D" uid="uid://d13pkaarqqkal" path="res://textures/plasticoazul_comp.png" id="6_ess2x"]
-[ext_resource type="Texture2D" uid="uid://bun3hfmythdyu" path="res://textures/p.png" id="7_a2mcl"]
-[ext_resource type="Texture2D" uid="uid://sym662ac3j3a" path="res://textures/quadroverde_comp.jpg" id="8_u8mrn"]
-[ext_resource type="Texture2D" uid="uid://4siec5pjpmx6" path="res://textures/door_industrial_01_dark.png" id="9_1jbqn"]
+[ext_resource type="Texture2D" uid="uid://ccpvpy3wueb3t" path="res://textures/pisocomp.jpg" id="1_pg3vg"]
+[ext_resource type="Texture2D" uid="uid://lym88tt4ghbp" path="res://textures/paredecomp.jpg" id="2_aq07l"]
+[ext_resource type="Texture2D" uid="uid://cd31ue7tjexmn" path="res://textures/tetocomp.jpg" id="3_aqf5g"]
+[ext_resource type="Texture2D" uid="uid://bnu0cerc55l1i" path="res://textures/corrimao_comp.jpg" id="4_12o68"]
+[ext_resource type="Texture2D" uid="uid://dgh850uq4iie8" path="res://textures/Texturelabs_Metal_comp.jpg" id="5_rssmv"]
+[ext_resource type="Texture2D" uid="uid://cl2lmph2rlw7d" path="res://textures/plasticoazul_comp.png" id="6_ess2x"]
+[ext_resource type="Texture2D" uid="uid://d3xc42eee620s" path="res://textures/p.png" id="7_a2mcl"]
+[ext_resource type="Texture2D" uid="uid://3b10qoxy80fq" path="res://textures/quadroverde_comp.jpg" id="8_u8mrn"]
+[ext_resource type="Texture2D" uid="uid://bwwejjceuf37l" path="res://textures/door_industrial_01_dark.png" id="9_1jbqn"]
 [ext_resource type="PackedScene" uid="uid://rxinvobacirt" path="res://entities/player.tscn" id="10_pxogb"]
 [ext_resource type="Script" uid="uid://b4l20vgp1cixy" path="res://scripts/cameras/lookCamera.gd" id="11_aqf5g"]
 [ext_resource type="Script" uid="uid://brxlx3bv071et" path="res://scripts/cameras/cameraTrigger.gd" id="12_12o68"]
 [ext_resource type="PackedScene" uid="uid://catogyqckj5p1" path="res://entities/door.tscn" id="13_12o68"]
-[ext_resource type="AudioStream" uid="uid://dewktrjedicim" path="res://audio/porta_abrindo.mp3" id="14_rssmv"]
+[ext_resource type="AudioStream" uid="uid://bd6ya8l000wsi" path="res://audio/porta_abrindo.mp3" id="14_rssmv"]
+[ext_resource type="Shader" uid="uid://cu2wpiadetu0v" path="res://scenes/vsh.gdshader" id="15_ess2x"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aqf5g"]
 albedo_texture = ExtResource("1_pg3vg")
@@ -1604,6 +1605,30 @@ size = Vector3(26.1086, 1, 22.6176)
 [sub_resource type="Environment" id="Environment_aqf5g"]
 fog_density = 0.1075
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a2mcl"]
+shader = ExtResource("15_ess2x")
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.153
+shader_parameter/scanlines_width = 0.08
+shader_parameter/grille_opacity = 0.0
+shader_parameter/resolution = Vector2(640, 320)
+shader_parameter/pixelate = false
+shader_parameter/roll = false
+shader_parameter/roll_speed = 8.0
+shader_parameter/roll_size = 15.0
+shader_parameter/roll_variation = 0.424
+shader_parameter/distort_intensity = 0.0
+shader_parameter/noise_opacity = 0.103
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.03
+shader_parameter/aberration = 4.75e-08
+shader_parameter/brightness = 1.0
+shader_parameter/discolor = false
+shader_parameter/warp_amount = 0.0
+shader_parameter/clip_warp = true
+shader_parameter/vignette_intensity = 0.1
+shader_parameter/vignette_opacity = 0.0
+
 [node name="Node3D" type="Node3D"]
 
 [node name="TBLoader" type="TBLoader" parent="."]
@@ -2177,6 +2202,21 @@ destination = "res://scenes/overworld.tscn"
 
 [node name="PortaAbrindo" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("14_rssmv")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_a2mcl")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -3.0
+offset_top = 1.0
+offset_right = 2.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
 [connection signal="body_entered" from="Node3D/Node3D/cameraEntrada/cameraTrigger" to="Node3D/Node3D/cameraEntrada/cameraTrigger" method="enter"]
 [connection signal="body_exited" from="Node3D/Node3D/cameraEntrada/cameraTrigger" to="Node3D/Node3D/cameraEntrada/cameraTrigger" method="leave"]
