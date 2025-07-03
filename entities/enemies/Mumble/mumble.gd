@@ -8,7 +8,6 @@ extends CharacterBody3D
 @export var esfera_raio: float = 10.0
 @export var esfera_altura: float = 7.0 / 2
 @export var esfera_cor: Color = Color(1, 0.8, 0.2, 0.3)
-
 # Comportamento
 @export var velocidade: float = 2.5
 @export var velocidade_patrulha: float = 2.5
@@ -50,9 +49,11 @@ var _pode_causar_dano_neste_ciclo_anim: bool = false
 # ========== INICIALIZAÇÃO ==========
 func _ready():
 	_set_anim_state(false, true, false, false)
+	
 
 	_criar_area_visao_cone()
 	_criar_area_visao_esferica()
+	
 
 	todas_as_areas_de_visao.clear()
 

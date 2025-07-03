@@ -60,7 +60,6 @@ stream = ExtResource("3_is6do")
 [node name="MenuAmbientLooped" type="AudioStreamPlayer" parent="Control"]
 stream = ExtResource("4_77s4b")
 volume_db = 7.495
-autoplay = true
 parameters/looping = true
 
 [node name="Panel" type="Panel" parent="Control"]

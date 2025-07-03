@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://catogyqckj5p1"]
 
-[ext_resource type="Texture2D" uid="uid://cbkhig6cp0vim" path="res://textures/door_white.png" id="1_3fqlw"]
+[ext_resource type="Texture2D" uid="uid://bou0j3518ya7q" path="res://textures/door_white.png" id="1_3fqlw"]
 [ext_resource type="Script" uid="uid://crghr5f30jq8j" path="res://scripts/door.gd" id="2_k4wox"]
 [ext_resource type="PackedScene" uid="uid://dwffagowe1pga" path="res://entities/textbox.tscn" id="3_ts0s0"]
 

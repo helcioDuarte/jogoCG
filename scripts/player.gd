@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-@export var speed = 3.0
+@export var speed = 13.0
 @export var sprint_multiplier = 2.0
 @export var pipe_damage = 10
 
@@ -96,6 +96,7 @@ func _ready():
 	print("Eu estou na Camada de Colisão: ", self.collision_layer)
 	print("-----------------------------")
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	
 
 func handle_inventory_input():
 	if Input.is_action_just_pressed("open_inventory"):

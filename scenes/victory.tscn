@@ -1,0 +1,111 @@
+[gd_scene load_steps=7 format=3 uid="uid://bcrhknvb64y2g"]
+
+[ext_resource type="Texture2D" uid="uid://cs3tn0ne124ss" path="res://pics/savepic.png" id="1_73dpb"]
+[ext_resource type="FontFile" uid="uid://bndb7kvucav34" path="res://OldLondon.ttf" id="1_g6lwx"]
+[ext_resource type="Theme" uid="uid://djyknvanlkv26" path="res://theme/menu_theme.tres" id="2_g6lwx"]
+[ext_resource type="AudioStream" uid="uid://cmk82sughtkan" path="res://audio/accept_effect.mp3" id="3_5hn41"]
+[ext_resource type="AudioStream" uid="uid://4pyr5ka837l5" path="res://audio/menu_ambient_looped.mp3" id="4_n2k88"]
+
+[sub_resource type="Theme" id="Theme_5hn41"]
+TextEdit/colors/background_color = Color(0, 0, 0, 0)
+TextEdit/colors/caret_background_color = Color(0, 0, 0, 1)
+TextEdit/constants/outline_size = 4
+TextEdit/font_sizes/font_size = 31
+TextEdit/fonts/font = ExtResource("1_g6lwx")
+
+[node name="Victory" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_5hn41")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_73dpb")
+
+[node name="menu" type="NinePatchRect" parent="."]
+light_mask = 2
+visibility_layer = 2
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -575.5
+offset_top = -327.0
+offset_right = 575.5
+offset_bottom = 327.0
+grow_horizontal = 2
+grow_vertical = 2
+region_rect = Rect2(0, 0, 846, 596)
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="menu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.842
+anchor_right = 0.5
+anchor_bottom = 0.842
+offset_left = -577.0
+offset_top = -18.668
+offset_right = 575.0
+offset_bottom = 18.332
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("2_g6lwx")
+alignment = 1
+
+[node name="exit" type="Button" parent="menu/HBoxContainer"]
+layout_mode = 2
+text = "Sair"
+
+[node name="AcceptEffect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_5hn41")
+
+[node name="MenuAmbientLooped" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_n2k88")
+volume_db = 7.495
+autoplay = true
+parameters/looping = true
+
+[node name="TextEdit" type="TextEdit" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -429.5
+offset_top = -177.5
+offset_right = 429.5
+offset_bottom = 177.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Seus \"amigos\" tentaram pregar uma peça em você, que consistia  em fazer 
+você se perder no mundo das drogas, porém conseguiu escapar dessa 
+prisão.  Parabéns, seu triunfo nesse universo satânico representa uma
+vitória para diversas pessoas no mundo!"
+editable = false
+context_menu_enabled = false
+emoji_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+empty_selection_clipboard_enabled = false
