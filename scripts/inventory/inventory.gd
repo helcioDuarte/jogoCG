@@ -287,6 +287,9 @@ func equip_item(item: Dictionary):
 	#print("Equipado: ", item.name)
 	update_ui_elements()
 
+func get_equipped_item():
+	return equipped_item_id
+
 func unequip_current_item():
 	if equipped_item_id:
 		var item = get_inventory_item_by_id(equipped_item_id) 
