@@ -13,6 +13,7 @@ extends CharacterBody3D
 @onready var step_up_ray = $StepUpRay
 @onready var other_ray = $OtherRay
 
+var nearby_placeholder = null
 var current_input_dir = Vector2.ZERO
 var last_frame_input_dir = Vector2.ZERO
 var active_world_movement_direction = Vector3.ZERO
@@ -95,6 +96,16 @@ func switch_camera():
 
 func _physics_process(delta: float):
 	handle_inventory_input()
+	
+	if Input.is_action_just_pressed("interact"):
+		if nearby_placeholder and nearby_placeholder.current_bear_id != "":
+			print("Pegando um urso do lugar.")
+			var picked_up_bear_id = nearby_placeholder.pickup_bear()
+			if picked_up_bear_id:
+				inventory.add_item_to_inventory(picked_up_bear_id, 1)
+			get_viewport().set_input_as_handled()
+			return
+	
 	if inventory.current_health <= 0:
 		animations.die()
 		return
@@ -200,3 +211,20 @@ func load_state(data: Dictionary):
 				rotation.z = float(data["rotation"][2])
 			else:
 				rotation = data["rotation"]
+
+func register_placeholder(placeholder):
+	nearby_placeholder = placeholder
+	print("Perto de um lugar de urso.")
+
+func unregister_placeholder(placeholder):
+	if nearby_placeholder == placeholder:
+		nearby_placeholder = null
+		print("Longe de um lugar de urso.")
+
+func use_puzzle_item(item_id: String):
+	if nearby_placeholder and nearby_placeholder.current_bear_id == "":
+		print("Colocando ", item_id)
+		nearby_placeholder.place_bear(item_id)
+		inventory.remove_item_from_inventory(item_id, 1)
+	else:
+		print("Nenhum lugar vago para colocar o urso.")

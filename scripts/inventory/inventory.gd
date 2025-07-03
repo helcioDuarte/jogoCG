@@ -39,7 +39,13 @@ const ITEM_DATA = {
 	"green_herb_plus_plus": {"name": "Erva Verde++", "id": "green_herb_plus_plus", "description": "Uma potente mistura de ervas verdes. Cura alta.", "type": "consumable", "icon_path": "res://icon.svg", "quantity": 1, "heal_amount": 100, "combinable": false},
 	"herb_mix": {"name": "Mistura de Ervas", "id": "herb_mix", "description": "Ervas verde e vermelha combinadas. Cura significativa.", "type": "consumable", "icon_path": "res://icon.svg", "quantity": 1, "heal_amount": 80, "combinable": false},
 	"revolver": {"name": "Revólver", "id": "revolver", "description": "Um revólver calibre .38.", "type": "weapon", "damage": 35, "icon_path": "res://icon.svg", "combinable": true, "current_ammo": 0, "max_ammo": 6},
-	"revolver_ammo": {"name": "Bala .38", "id": "revolver_ammo", "description": "Uma bala calibre .38.", "type": "ingredient", "icon_path": "res://icon.svg", "quantity": 1, "combinable": true} # quantity is now individual bullets
+	"revolver_ammo": {"name": "Bala .38", "id": "revolver_ammo", "description": "Uma bala calibre .38.", "type": "ingredient", "icon_path": "res://icon.svg", "quantity": 1, "combinable": true},
+	"red_bear": {"name": "Urso Vermelho", "id": "red_bear", "description": "Um velho urso de pelúcia vermelho. Onde será que eu uso isso?", "type": "puzzle", "icon_path": "res://icon.svg", "quantity": 1},
+	"blue_bear": {"name": "Urso Azul", "id": "blue_bear", "description": "Um velho urso de pelúcia azul. Onde será que eu uso isso?", "type": "puzzle", "icon_path": "res://icon.svg", "quantity": 1},
+	"green_bear": {"name": "Urso Verde", "id": "green_bear", "description": "Um velho urso de pelúcia verde. Onde será que eu uso isso?", "type": "puzzle", "icon_path": "res://icon.svg", "quantity": 1},
+	"yellow_bear": {"name": "Urso Amarelo", "id": "yellow_bear", "description": "Um velho urso de pelúcia amarelo. Onde será que eu uso isso?", "type": "puzzle", "icon_path": "res://icon.svg", "quantity": 1},
+	"black_bear": {"name": "Urso Preto", "id": "black_bear", "description": "Um velho urso de pelúcia preto. Onde será que eu uso isso?", "type": "puzzle", "icon_path": "res://icon.svg", "quantity": 1},
+	"chave_bandejao": {"name": "Chave do Bandejão", "id": "chave_bandejao", "description": "Uma chave ornamentada, parece importante.", "type": "key", "icon_path": "res://icon.svg"}
 }
 
 func _ready():
@@ -255,7 +261,7 @@ func _on_use_equip_button_pressed():
 	if inventory.is_empty() or current_item_index < 0:
 		return
 	
-	var item_instance = inventory[current_item_index] 
+	var item_instance = inventory[current_item_index]
 	var item_id = item_instance.id
 	var item_type = item_instance.type
 
@@ -267,7 +273,11 @@ func _on_use_equip_button_pressed():
 	elif item_type == "consumable":
 		if item_instance.has("heal_amount"):
 			heal(item_instance.heal_amount)
-		remove_item_from_inventory(item_id, 1) 
+		remove_item_from_inventory(item_id, 1)
+	elif item_type == "puzzle":
+		var player = get_parent()
+		if player and player.has_method("use_puzzle_item"):
+			player.use_puzzle_item(item_id)
 	
 	update_ui_elements()
 
@@ -302,6 +312,9 @@ func update_use_equip_button_text_and_state():
 		use_equip_button.text = "Equipar"
 		use_equip_button.disabled = false
 	elif item.type == "consumable":
+		use_equip_button.text = "Usar"
+		use_equip_button.disabled = false
+	elif item.type == "puzzle":
 		use_equip_button.text = "Usar"
 		use_equip_button.disabled = false
 	else:
