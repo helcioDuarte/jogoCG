@@ -303,3 +303,7 @@ func weapon_handler():
 			speed = 3
 	else: 
 		$model/Armature/Skeleton3D/BoneAttachment3D/revolver.visible = false
+
+
+func pewpewpew():
+	pistola_tiro.play()

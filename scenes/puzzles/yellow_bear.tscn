@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=4 uid="uid://b1xr3kp1rvopn"]
 
-[ext_resource type="Texture2D" uid="uid://bfibvkulkg7e6" path="res://textures/ursos/teddy_bear_amarelo.png" id="1_nmih3"]
+[ext_resource type="Texture2D" uid="uid://blcf31bd27s8p" path="res://textures/ursos/teddy_bear_amarelo.png" id="1_nmih3"]
 [ext_resource type="ArrayMesh" uid="uid://c5n37otabs1jw" path="res://models/urso.res" id="2_py2n6"]
 [ext_resource type="Material" uid="uid://bpyo07plkdadg" path="res://textures/outline.tres" id="3_4gyiy"]
 [ext_resource type="PackedScene" uid="uid://b6l6p2b3hv2e1" path="res://entities/item_pickup_area.tscn" id="3_6typv"]
@@ -22,7 +22,7 @@ _surfaces = [{
 }]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4v5wd"]
-size = Vector3(2.55232, 1.37357, 1.37044)
+size = Vector3(4.40885, 1.37357, 3.16407)
 
 [node name="yellow_bear" type="MeshInstance3D"]
 transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0, 0)
@@ -37,7 +37,7 @@ surface_material_override/0 = ExtResource("3_4gyiy")
 [node name="itemPickupArea" parent="." instance=ExtResource("3_6typv")]
 
 [node name="area" parent="itemPickupArea" index="0"]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -2.70533, 2.21873, 0.108375)
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0.0794661, 2.21873, -0.515326)
 shape = SubResource("BoxShape3D_4v5wd")
 
 [editable path="itemPickupArea"]

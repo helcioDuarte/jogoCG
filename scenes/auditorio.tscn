@@ -1,29 +1,27 @@
-[gd_scene load_steps=757 format=4 uid="uid://8jft6yj11cv3"]
+[gd_scene load_steps=755 format=4 uid="uid://8jft6yj11cv3"]
 
-[ext_resource type="Texture2D" uid="uid://bdlmr8erwepiq" path="res://textures/paredecomp.jpg" id="2_e23bp"]
-[ext_resource type="Texture2D" uid="uid://be1qkgpms8rbc" path="res://textures/asphalt_track_diff_comp.png" id="3_8b1ih"]
-[ext_resource type="Texture2D" uid="uid://b3rkb7jkl2ttl" path="res://textures/tetocomp.jpg" id="3_gb2nd"]
-[ext_resource type="Texture2D" uid="uid://cmsn18pblklf2" path="res://textures/carpete_comp.jpg" id="3_jm84g"]
-[ext_resource type="Texture2D" uid="uid://btib8e7vefhf8" path="res://textures/Texturelabs_Metal_comp.jpg" id="5_2pe64"]
-[ext_resource type="Texture2D" uid="uid://mg5ov7c5veog" path="res://textures/pisocomp.jpg" id="7_3i23n"]
-[ext_resource type="Texture2D" uid="uid://bun3hfmythdyu" path="res://textures/p.png" id="7_15lrw"]
-[ext_resource type="Texture2D" uid="uid://cblfilfokjmj8" path="res://textures/vermelho_comp.jpg" id="8_3i23n"]
+[ext_resource type="Texture2D" uid="uid://i16hjnutpd3b" path="res://textures/paredecomp.jpg" id="2_e23bp"]
+[ext_resource type="Texture2D" uid="uid://bjy8k4e0gp8hg" path="res://textures/asphalt_track_diff_comp.png" id="3_8b1ih"]
+[ext_resource type="Texture2D" uid="uid://x3t6b5w71dte" path="res://textures/tetocomp.jpg" id="3_gb2nd"]
+[ext_resource type="Texture2D" uid="uid://csufa3x35ynbd" path="res://textures/carpete_comp.jpg" id="3_jm84g"]
+[ext_resource type="Texture2D" uid="uid://dbxb7lfoykrqu" path="res://textures/Texturelabs_Metal_comp.jpg" id="5_2pe64"]
+[ext_resource type="Texture2D" uid="uid://drtysqlvo8ae2" path="res://textures/pisocomp.jpg" id="7_3i23n"]
+[ext_resource type="Texture2D" uid="uid://v7367v3hiuu3" path="res://textures/p.png" id="7_15lrw"]
+[ext_resource type="Texture2D" uid="uid://dt55wtufebbxn" path="res://textures/vermelho_comp.jpg" id="8_3i23n"]
 [ext_resource type="PackedScene" uid="uid://rxinvobacirt" path="res://entities/player.tscn" id="10_rwu5s"]
 [ext_resource type="Script" uid="uid://b4l20vgp1cixy" path="res://scripts/cameras/lookCamera.gd" id="11_dfjm3"]
-[ext_resource type="Texture2D" uid="uid://4siec5pjpmx6" path="res://textures/door_industrial_01_dark.png" id="11_jm84g"]
+[ext_resource type="Texture2D" uid="uid://bbn8otiuoktg5" path="res://textures/door_industrial_01_dark.png" id="11_jm84g"]
 [ext_resource type="Script" uid="uid://brxlx3bv071et" path="res://scripts/cameras/cameraTrigger.gd" id="12_vc80t"]
 [ext_resource type="PackedScene" uid="uid://catogyqckj5p1" path="res://entities/door.tscn" id="13_m6yth"]
-[ext_resource type="Script" path="res://scripts/auditorium_puzzle.gd" id="14_e23bp"]
-[ext_resource type="PackedScene" uid="uid://b42f1s878cbr4" path="res://scenes/puzzles/red_bear.tscn" id="14_pckik"]
+[ext_resource type="Script" uid="uid://bcipbw7e3i68m" path="res://scripts/auditorium_puzzle.gd" id="14_e23bp"]
 [ext_resource type="PackedScene" uid="uid://dyk0upt4i5lig" path="res://scenes/puzzles/black_bear.tscn" id="15_15lrw"]
-[ext_resource type="Script" path="res://scripts/BearPlaceholder.gd" id="15_gb2nd"]
-[ext_resource type="Texture2D" uid="uid://dupyfdqypns40" path="res://textures/ursos/teddy_bear_preto.png" id="17_eedx2"]
-[ext_resource type="PackedScene" uid="uid://b1xr3kp1rvopn" path="res://scenes/puzzles/yellow_bear.tscn" id="18_s04jf"]
+[ext_resource type="Script" uid="uid://cojqr0k8gahxa" path="res://scripts/BearPlaceholder.gd" id="15_gb2nd"]
+[ext_resource type="Texture2D" uid="uid://cfup7ebirwdbs" path="res://textures/ursos/teddy_bear_preto.png" id="17_eedx2"]
 [ext_resource type="PackedScene" uid="uid://g1ahr62fkl2h" path="res://scenes/puzzles/chave_bandejao.tscn" id="19_15lrw"]
-[ext_resource type="Texture2D" uid="uid://egi7s06q3sre" path="res://textures/olimpiadalogo.jpg" id="20_s04jf"]
+[ext_resource type="Texture2D" uid="uid://djhs4ga3etlsj" path="res://textures/olimpiadalogo.jpg" id="20_s04jf"]
 [ext_resource type="PackedScene" uid="uid://dwffagowe1pga" path="res://entities/textbox.tscn" id="22_dfjm3"]
 [ext_resource type="Script" uid="uid://dkhxy0b1vl5m" path="res://scripts/textTrigger.gd" id="23_vc80t"]
-[ext_resource type="AudioStream" uid="uid://dewktrjedicim" path="res://audio/porta_abrindo.mp3" id="24_vc80t"]
+[ext_resource type="AudioStream" uid="uid://lfyrut0mtgnp" path="res://audio/porta_abrindo.mp3" id="24_vc80t"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3i23n"]
 albedo_texture = ExtResource("2_e23bp")
@@ -7927,15 +7925,9 @@ transform = Transform3D(-4.67712e-07, 0, 2, 0, 3.01, 0, -10.7, 0, -8.74228e-08, 
 material_override = SubResource("StandardMaterial3D_dfjm3")
 mesh = SubResource("QuadMesh_vc80t")
 
-[node name="red_bear" parent="." instance=ExtResource("14_pckik")]
-transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, -3.92686, 0.618665, -6.38249)
-
 [node name="black_bear" parent="." instance=ExtResource("15_15lrw")]
 transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, -3.85607, 0.58855, -5.415)
 material_override = SubResource("StandardMaterial3D_3v7vy")
-
-[node name="yellow_bear" parent="." instance=ExtResource("18_s04jf")]
-transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, -3.84096, 0.561575, -7.43833)
 
 [node name="chave_bandejao" parent="." instance=ExtResource("19_15lrw")]
 transform = Transform3D(-2.18557e-09, -0.0120961, 0.0485148, 0, 0.0485148, 0.0120961, -0.05, 5.28737e-10, -2.12065e-09, -10.5588, 2.13068, -4.50811)
