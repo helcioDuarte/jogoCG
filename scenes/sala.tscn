@@ -1,18 +1,19 @@
-[gd_scene load_steps=205 format=4 uid="uid://b076obi5wlogo"]
+[gd_scene load_steps=206 format=4 uid="uid://b076obi5wlogo"]
 
-[ext_resource type="Texture2D" uid="uid://634nprj4ydrq" path="res://textures/pisocomp.jpg" id="1_pg3vg"]
-[ext_resource type="Texture2D" uid="uid://03qx55l2vs61" path="res://textures/paredecomp.jpg" id="2_aq07l"]
-[ext_resource type="Texture2D" uid="uid://cjtiwxdqfr142" path="res://textures/tetocomp.jpg" id="3_aqf5g"]
-[ext_resource type="Texture2D" uid="uid://dsqjks6sk5cc5" path="res://textures/corrimao_comp.jpg" id="4_12o68"]
-[ext_resource type="Texture2D" uid="uid://cm0vgvitxcxo5" path="res://textures/Texturelabs_Metal_comp.jpg" id="5_rssmv"]
-[ext_resource type="Texture2D" uid="uid://lpru7yy0aa60" path="res://textures/plasticoazul_comp.png" id="6_ess2x"]
-[ext_resource type="Texture2D" uid="uid://cenw5vr5avvme" path="res://textures/p.png" id="7_a2mcl"]
-[ext_resource type="Texture2D" uid="uid://ce0gwyrfuhvr2" path="res://textures/quadroverde_comp.jpg" id="8_u8mrn"]
-[ext_resource type="Texture2D" uid="uid://bq1v5katjlthc" path="res://textures/door_industrial_01_dark.png" id="9_1jbqn"]
+[ext_resource type="Texture2D" uid="uid://dp0rexk6215nq" path="res://textures/pisocomp.jpg" id="1_pg3vg"]
+[ext_resource type="Texture2D" uid="uid://prlec3li23cu" path="res://textures/paredecomp.jpg" id="2_aq07l"]
+[ext_resource type="Texture2D" uid="uid://dq3esb588o4p3" path="res://textures/tetocomp.jpg" id="3_aqf5g"]
+[ext_resource type="Texture2D" uid="uid://bsitmwt61elam" path="res://textures/corrimao_comp.jpg" id="4_12o68"]
+[ext_resource type="Texture2D" uid="uid://crbyrce32x0fq" path="res://textures/Texturelabs_Metal_comp.jpg" id="5_rssmv"]
+[ext_resource type="Texture2D" uid="uid://cs3k8pqcqg5l1" path="res://textures/plasticoazul_comp.png" id="6_ess2x"]
+[ext_resource type="Texture2D" uid="uid://6fjpg0ci7tvj" path="res://textures/p.png" id="7_a2mcl"]
+[ext_resource type="Texture2D" uid="uid://df07bridn06nf" path="res://textures/quadroverde_comp.jpg" id="8_u8mrn"]
+[ext_resource type="Texture2D" uid="uid://2gw5e8ialovk" path="res://textures/door_industrial_01_dark.png" id="9_1jbqn"]
 [ext_resource type="PackedScene" uid="uid://rxinvobacirt" path="res://entities/player.tscn" id="10_pxogb"]
 [ext_resource type="Script" uid="uid://b4l20vgp1cixy" path="res://scripts/cameras/lookCamera.gd" id="11_aqf5g"]
 [ext_resource type="Script" uid="uid://brxlx3bv071et" path="res://scripts/cameras/cameraTrigger.gd" id="12_12o68"]
 [ext_resource type="PackedScene" uid="uid://catogyqckj5p1" path="res://entities/door.tscn" id="13_12o68"]
+[ext_resource type="AudioStream" uid="uid://di2fyr0uaa43i" path="res://audio/porta_abrindo.mp3" id="14_rssmv"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aqf5g"]
 albedo_texture = ExtResource("1_pg3vg")
@@ -2173,6 +2174,9 @@ environment = SubResource("Environment_aqf5g")
 [node name="Door" parent="." instance=ExtResource("13_12o68")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1.1, 0, -1, 0, -4.37114e-08, 3.15459, 1.83708, 4.09031)
 destination = "res://scenes/overworld.tscn"
+
+[node name="PortaAbrindo" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_rssmv")
 
 [connection signal="body_entered" from="Node3D/Node3D/cameraEntrada/cameraTrigger" to="Node3D/Node3D/cameraEntrada/cameraTrigger" method="enter"]
 [connection signal="body_exited" from="Node3D/Node3D/cameraEntrada/cameraTrigger" to="Node3D/Node3D/cameraEntrada/cameraTrigger" method="leave"]

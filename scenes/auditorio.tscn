@@ -1,4 +1,4 @@
-[gd_scene load_steps=737 format=4 uid="uid://8jft6yj11cv3"]
+[gd_scene load_steps=738 format=4 uid="uid://8jft6yj11cv3"]
 
 [ext_resource type="Texture2D" uid="uid://prlec3li23cu" path="res://textures/paredecomp.jpg" id="2_e23bp"]
 [ext_resource type="Texture2D" uid="uid://bde2vi51lflil" path="res://textures/asphalt_track_diff_comp.png" id="3_8b1ih"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://2gw5e8ialovk" path="res://textures/door_industrial_01_dark.png" id="11_jm84g"]
 [ext_resource type="Script" uid="uid://brxlx3bv071et" path="res://scripts/cameras/cameraTrigger.gd" id="12_vc80t"]
 [ext_resource type="PackedScene" uid="uid://catogyqckj5p1" path="res://entities/door.tscn" id="13_m6yth"]
+[ext_resource type="AudioStream" uid="uid://di2fyr0uaa43i" path="res://audio/porta_abrindo.mp3" id="14_e23bp"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3i23n"]
 albedo_texture = ExtResource("2_e23bp")
@@ -7884,6 +7885,9 @@ script = ExtResource("12_vc80t")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/Node3D/cameraApresentacao/cameraTrigger"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0434723, -1.66687, -3.52258)
 shape = SubResource("BoxShape3D_e23bp")
+
+[node name="PortaAbrindo" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_e23bp")
 
 [connection signal="body_entered" from="Node3D/Node3D/cameraEntrada/cameraTrigger" to="Node3D/Node3D/cameraEntrada/cameraTrigger" method="enter"]
 [connection signal="body_exited" from="Node3D/Node3D/cameraEntrada/cameraTrigger" to="Node3D/Node3D/cameraEntrada/cameraTrigger" method="leave"]
