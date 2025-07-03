@@ -2,6 +2,10 @@ extends Node3D # Ou o tipo de nó raiz da sua sala
 
 @export var pontos_spawn_inimigos: Array[Marker3D] = [] # ALTERADO para um Array
 @export var pontos_spawn_itens: Array[Marker3D] = []
+@export var cena_inimigo: PackedScene
+@export var ponto_de_spawn: Marker3D
+
+var inimigo_instanciado: Node3D = null
 
 # É necessário ter a referência do jogador exportada no script
 @export var no_jogador: CharacterBody3D
