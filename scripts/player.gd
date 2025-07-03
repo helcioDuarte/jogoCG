@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-@export var speed = 13.0
+@export var speed = 3.0
 @export var sprint_multiplier = 2.0
 @export var pipe_damage = 10
 
@@ -12,12 +12,12 @@ extends CharacterBody3D
 @onready var other_ray = $OtherRay
 @onready var boneco_andando = $BonecoAndando
 
+
 var nearby_placeholder = null
 var current_input_dir = Vector2.ZERO
 var last_frame_input_dir = Vector2.ZERO
 var active_world_movement_direction = Vector3.ZERO
 var is_sprinting: bool = false # <- to usando pra saber se o helsio ta correndo
-
 var _camera_was_just_switched = false
 var is_playing_walk_sound = false
 
@@ -27,25 +27,34 @@ func move():
 	move_and_slide()
 
 func hit_pipe():
-	var attack_reach = 2.0
-	var ray_origin = pipe.global_transform.origin
-	var forward_direction = - camera_node.global_transform.basis.z.normalized() if is_instance_valid(camera_node) else -global_transform.basis.z.normalized()
-	var ray_end = ray_origin + forward_direction * attack_reach
-
-	var space_state = get_world_3d().direct_space_state
-	var query = PhysicsRayQueryParameters3D.create(ray_origin, ray_end)
+	var enemy_to_target = $Area3D.get_enemy() # Pega o inimigo mais próximo
+	var attack_range = 2 # Distância máxima para o ataque corpo a corpo
 	
-	query.collision_mask = 1 | 2
+	# Vira para o inimigo se houver um
+	if enemy_to_target:
+		var target_position_flat = enemy_to_target.global_transform.origin
+		target_position_flat.y = global_position.y
+		look_at(target_position_flat, Vector3.UP)
 
-	var result = space_state.intersect_ray(query)
+		# Verifica se o inimigo está dentro do alcance de ataque
+		if global_position.distance_to(enemy_to_target.global_transform.origin) <= attack_range:
+			if enemy_to_target.has_method("take_damage"):
+				enemy_to_target.call("take_damage", pipe_damage)
+				
+func hit_knife():
+	var enemy_to_target = $Area3D.get_enemy() # Pega o inimigo mais próximo
+	var attack_range = 1.5 # Distância máxima para o ataque corpo a corpo
+	
+	# Vira para o inimigo se houver um
+	if enemy_to_target:
+		var target_position_flat = enemy_to_target.global_transform.origin
+		target_position_flat.y = global_position.y
+		look_at(target_position_flat, Vector3.UP)
 
-	if result:
-		var hit_collider = result.collider
-		var impact_position = result.position
-		var impact_normal = result.normal
-		
-		if hit_collider and hit_collider.has_method("take_damage"):
-			hit_collider.call("take_damage", pipe_damage)
+		# Verifica se o inimigo está dentro do alcance de ataque
+		if global_position.distance_to(enemy_to_target.global_transform.origin) <= attack_range:
+			if enemy_to_target.has_method("take_damage"):
+				enemy_to_target.call("take_damage", 15)
 
 func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -78,7 +87,7 @@ func switch_camera():
 
 func _physics_process(delta: float):
 	handle_inventory_input()
-	
+	weapon_handler()
 	if Input.is_action_just_pressed("interact"):
 		if nearby_placeholder and nearby_placeholder.current_bear_id != "":
 			print("Pegando um urso do lugar.")
@@ -148,14 +157,7 @@ func _physics_process(delta: float):
 	else:
 		stop_sound()
 		animations.changeWalkRun("idle")
-		
-	if Input.is_action_just_pressed("hit"):
-		if animations.animationFinished("Slash"):
-			animations.changeWalkSlash()
-			speed = 0
-			hit_pipe()
-			await get_tree().create_timer(1.3).timeout
-			speed = 3
+	
 	animations.animateMovement(velocity, speed)
 	if $go_up_trigger.should_step_up():
 		global_position.y += 0.1
@@ -225,3 +227,27 @@ func use_puzzle_item(item_id: String):
 		inventory.remove_item_from_inventory(item_id, 1)
 	else:
 		print("Nenhum lugar vago para colocar o urso.")
+		
+		
+func weapon_handler():
+	if inventory.get_equipped_item() == "cano":
+		$model/Armature/Skeleton3D/BoneAttachment3D/pipe.visible = true
+		if Input.is_action_just_pressed("hit") and animations.animationFinished("Slash"):
+			animations.changeWalkSlash()
+			speed = 0
+			hit_pipe()
+			await get_tree().create_timer(1.4).timeout
+			speed = 3
+	else: 
+		$model/Armature/Skeleton3D/BoneAttachment3D/pipe.visible = false
+		
+	if inventory.get_equipped_item() == "faca":
+		$model/Armature/Skeleton3D/BoneAttachment3D/knife.visible = true
+		if Input.is_action_just_pressed("hit") and animations.animationFinished("Stab"):
+			animations.changeWalkStab()
+			speed = 0
+			hit_knife()
+			await get_tree().create_timer(2.06).timeout
+			speed = 3
+	else: 
+		$model/Armature/Skeleton3D/BoneAttachment3D/knife.visible = false

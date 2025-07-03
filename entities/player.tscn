@@ -1,13 +1,15 @@
-[gd_scene load_steps=81 format=4 uid="uid://rxinvobacirt"]
+[gd_scene load_steps=87 format=4 uid="uid://rxinvobacirt"]
 
 [ext_resource type="Script" uid="uid://da7dnp2drds5i" path="res://scripts/player.gd" id="1_merdl"]
 [ext_resource type="PackedScene" uid="uid://bdqsbhb6idhy5" path="res://scenes/inventory/inventory_panel.tscn" id="3_e4p34"]
 [ext_resource type="Script" uid="uid://l44umrp6w7af" path="res://scripts/player_animations.gd" id="3_qly61"]
-[ext_resource type="Texture2D" uid="uid://terdbggc8wnl" path="res://models/helcio_skin.png" id="3_rfe5m"]
-[ext_resource type="PackedScene" uid="uid://conuwrmdiysij" path="res://models/pipe.glb" id="5_qly61"]
+[ext_resource type="Texture2D" uid="uid://16ejxhsy6cmx" path="res://models/helcio_skin.png" id="3_rfe5m"]
+[ext_resource type="PackedScene" uid="uid://ban56h21clewx" path="res://models/pipe.glb" id="5_qly61"]
 [ext_resource type="PackedScene" uid="uid://b8cwv5oonut17" path="res://scripts/particle_system/particles/spark_particle.tscn" id="6_qsoyl"]
+[ext_resource type="Texture2D" uid="uid://cl4hgxvsxxpup" path="res://models/low_poly_melee_horror_weapons_pack_1_2.png" id="6_tjdhl"]
 [ext_resource type="Script" uid="uid://dfiiv1cl4qisk" path="res://scripts/go_up_trigger.gd" id="8_i623q"]
-[ext_resource type="AudioStream" uid="uid://owg48oaf7vep" path="res://audio/boneco_andando.mp3" id="9_ef06p"]
+[ext_resource type="AudioStream" uid="uid://b28bv4cujbrj6" path="res://audio/boneco_andando.mp3" id="9_ef06p"]
+[ext_resource type="Script" uid="uid://b85y0s2ebwet4" path="res://scripts/olahr.gd" id="9_tjdhl"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_b0kkn"]
 radius = 0.260048
@@ -227,6 +229,46 @@ bind/58/pose = Transform3D(-68.5647, 71.5482, -13.4065, -66.8479, -54.5975, 50.5
 bind/59/name = &"ik_hand_r_end"
 bind/59/bone = -1
 bind/59/pose = Transform3D(-68.5647, 71.5482, -13.4065, -66.8479, -54.5975, 50.5021, 28.8137, 43.5886, 85.2631, -115.381, -26.8295, -33.1501)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_adc0w"]
+resource_name = "knife_mat"
+cull_mode = 2
+albedo_texture = ExtResource("6_tjdhl")
+texture_filter = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_tjdhl"]
+_surfaces = [{
+"aabb": AABB(0.0164528, -1.19792, -2.10931, 0.247268, 2.32165, 4.64229),
+"format": 34896613377,
+"index_count": 252,
+"index_data": PackedByteArray("AAABAAIAAQADAAAAAgAdAAEAAQAdAAMAHgADAAAAAgANAAAAHgAAAA0AAgAMAA0ADQAOAB4AEAAOAA0ACwAeAA4ADQASABAAHwALAAwADAACAB8ACwAfAB4ADwAMAAsAEgAgABAADwALABEAHwAhAB4AAwAeACEAEQAiAA8AAwAhAAYAHQAGAAMAHwAjACEAIQAFAAYAIwAFACEABQAGAAQAHQAEAAYAIwAJAAUABQAEAAcACQAHAAUACAAJAAcACAAHAAQACAAJACMACgAEAB0ACgAIAAQACgAIACMACgAjAB8AAgAKAB0AAgAKAB8AEQAXACIAIgAXABMAIgATAA8AEQAWABcAFgARABAAEwAXABYADwATABQAFAASAA8AFgAUABMAEgAUABwAEgAcACAAIAAVABAAEAAVABYAIAAcABUAFgAVABQAFQAcABQAFgAkABcAJQAWABUAFgAlACQAJQAVACYAHAAmABUAJQAnACQAFAAoABwAHAAoACYAGQAlACYAJQAZACcAKAAbACYAGQAmABsAKAApABsAFAAqACgAKgApACgAEwAqABQAGwApABoAGQAbABoAKgAaACkAGAAnABkAGQAaABgAJAAnABgAGgAqACsAEwArACoAGgArABgAJAAYACsAFwArABMAFwAkACsA"),
+"lods": [0.128276, PackedByteArray("AAABAAIAAQADAAAAAQAEAAMAAgAEAAEABQADAAAABAAGAAMAAwAFAAYABQAGAAQABQAEAAcACAAHAAQACAAJAAcACQAHAAUACgAIAAQACgAIAAkAAgAKAAQACgAJAAsAAgAKAAsACwAJAAUADAACAAsAAgAMAA0AAgANAAAABQAAAA0ACwAFAA4ADQAOAAUADwAMAAsAEAAOAA0ADwALABEADQASABAAEQATAA8AFAASAA8ADwATABQAEgAVABAAFgARABAAEAAVABYAFgAVABQAFgAUABMAEQAXABMAEQAWABcAEwAXABYAFwAYABMAEwAYABQAFgAZABcAFwAZABgAGQAWABUAGQAaABgAGgAUABgAGQAbABoAFAAaABsAGQAVABsAFAAbABwAHAAbABUAFQAcABQAEgAUABwAEgAcABUA")],
+"name": "knife_mat",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 44,
+"vertex_data": PackedByteArray("J6JZg11UAABngXiW6E8AANddWYNdVAAAJ6IJzVyvAABngV39m90AAB+mm/SK+gAAJ6K67H3hAADnhP////8AANdduux94QAAz2Gb9Ir6AADXXQnNXK8AANddgkwnYQAA110wZWZbAAAnojBlZlsAACeigkwnYQAABzMwZWZbAAD4zIJMJ2EAAAczgkwnYQAA+MwwZWZbAABUKw1IOzQAAKrUDUg7NAAAqtR6Jg88AABUK3omDzwAAKoKRDclOAAAoiOIKQQHAACiIwAAAAAAAFzciCkEBwAAXNwAAAAAAABU9UQ3JTgAAGeBBd8rqwAAH6bxpXq4AADPYfGlergAAKnq2VhHXgAAH6ZO2QTmAABVFdlYR14AAM9hTtkE5gAAVRXKFC8WAAAHMwAF3RkAAPjMAAXdGQAAAADEFIIDAACp6soULxYAAP//xBSCAwAA+MyTJIASAAAHM5MkgBIAAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_x08pd"]
+resource_name = "Sketchfab_Scene_knife_obj_knife_mat_0"
+_surfaces = [{
+"aabb": AABB(0.0164528, -1.19792, -2.10931, 0.247268, 2.32165, 4.64229),
+"attribute_data": PackedByteArray("RHOOpKx1GrNIeI6kRHOdjUh4nY0dQTTzqkMU/iFGN/NXQeoBW0btAaMr6gE6KO/QajrtAaokEolPG+TQIhbE/MERfvJKOuwBkyQPiYwr6gEYKO/QNhvo0JURgvLyFcL8kyQPiZURgvI2G+jQjCvqAZoU6gHUAeoBqiQSicERfvLqAeoBTxvk0KMr6gGwFOoBlllMopZZF11ITkyiSE4XXUhO6gGWWUNZllnqAUhOQ1lejnA7LKYDAqOhcTs4mQQCRIwDAqOhVztEjOoBXo5WOziZ6wEspuoBEnUuVvyBvxH8gSZV823hASloNlcSdTdW823qASloP1f8gS9V/IHJESCRrif7ja4n+410OiCRdDq3mgq2t5pufGmPbnxpjwq2dGQfgsJv8Gh0ZPBowm8fgqia5LWomm58W49ufFuP5LUekacn+Y1tOh6RbTr5jacnM29NgmFxiHUzb8Ro5WNNguVjxGi3YYh1iwzs0OsGFYlxDOvQ1gYSiZcyF4lbRiqJV0EoiXcyE4lXQSiJM0Y80VtGKokwQTrRdzITiZMkD4mqJBKJlzIXiTBBOtEhRjfzM0Y80R1BNPMYKO/QNhvo0Eh4jqREc46kSE7EbZZZxG1ITsgkllnIJJZZyCRITsgkllnEbUhOxG0BmHA7AZhXO1Z7CiEsbwMiAWMFIyxvDCIsbwMiVnsKIfd30AksbwwiAWMFI/d32QlWexMh93fZCSxvDCIsbwwiEnU3VlZ7EyE4mesBAZhXOwFj+yL3d9AJLG8DIixvAyISdS5WAWP7IjiZBAIBmHA7Txvk0Doo79BOkxExRmKIdfBxiHVMkwox"),
+"format": 34896613399,
+"index_count": 252,
+"index_data": PackedByteArray("AAABAAIABQAGAAcAIQAfAFoAHgAhAFoAHgBaAFsAIgAeAFsAIwAiAFsAWwAgACMAXAAZABoAGABcABoAGABdAFwAXQAYABsAXQAbABwAHAAdAF0ACgBeAAwACgANAF4ACABfAAkACABgAF8AEQASABMAEQBhABIAYgBjAGQAYgBlAGMAZgAVAGcAZgAUABUAaAALAGkAaAAOAAsAagBrAGwAagBtAGsAFgBuABcAFgBvAG4AcAADAHEAcAAEAAMAJAByACYAJABzAHIAdAApAHUAdAArACkAKAB2ACoAKAB3AHYAJwB4ACUAJwB5AHgAegAtAC4AegAvAC0AewAyADMAewA0ADIANgB8ADgANgB9AHwAOwB+AD0AOwB/AH4AgAA3AIEAgACCADcAgwA8AIQAgwCFADwAhgCHAIgAhgA/AIcAPgCJAIoAPgCLAIkAMQCMAI0AMQA1AIwAjgCPAJAAjgA5AI8AOgCRAJIAOgCTAJEALACUAJUALAAwAJQAlgAPAJcAlgAQAA8AQABBAEIAQgBDAEAAQwCYAEAARABFAEYARgBHAEQASgCZAEgASABJAEoASABLAEkASwCaAEkATABNAE4ATgBPAEwAUgCbAFAAUABRAFIAUABTAFEAVABVAFYAVgBXAFQAVgBYAFcAWABZAFcA"),
+"lods": [0.128276, PackedByteArray("AAABAAIAAgADAAAAAgAEAAMABQAGAAcACAAFAAcACAAHAAkACgALAAwACgANAAsADQAOAAsADgAPAAsADgAQAA8AEQASABMAEQAUABIAFAAVABIAFgAVABQAFgAUABcAGAAZABoAGQAYABsAGQAbABwAHAAdABkAHgAfACAAHgAhAB8AIgAeACAAIwAiACAAJAAlACYAJwAmACUAKAApACoAKAArACkALAAtAC4ALAAvAC0ALAAwAC8AMQAyADMAMQA0ADIAMQA1ADQANgA3ADgANgA5ADcAOgA5ADYAOwA8AD0APgA8ADsAPgA/ADwAQABBAEIAQgBDAEAARABFAEYARgBHAEQASABJAEoASABLAEkATABNAE4ATgBPAEwAUABRAFIAUABTAFEAVABVAFYAVgBXAFQAVgBYAFcAWABZAFcA")],
+"material": SubResource("StandardMaterial3D_adc0w"),
+"name": "knife_mat",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 156,
+"vertex_data": PackedByteArray("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")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_tjdhl")
 
 [sub_resource type="Animation" id="Animation_s1og0"]
 resource_name = "Dance"
@@ -7272,6 +7314,10 @@ radius = 0.275
 height = 1.56729
 radius = 0.275
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_tjdhl"]
+height = 1.18457
+radius = 3.76025
+
 [node name="player" type="CharacterBody3D" groups=["savable"]]
 floor_snap_length = 0.5
 script = ExtResource("1_merdl")
@@ -7706,7 +7752,7 @@ bones/59/name = "ik_hand_r_end"
 bones/59/parent = 58
 bones/59/rest = Transform3D(1, -4.09782e-08, 5.58794e-08, 4.09782e-08, 1, -5.21541e-08, -5.58794e-08, 5.21541e-08, 1, -2.38419e-07, 53.1527, 1.90735e-06)
 bones/59/enabled = true
-bones/59/position = Vector3(-1.07288e-05, 53.1527, 9.66338e-13)
+bones/59/position = Vector3(-1.07288e-05, 53.1527, 9.09495e-13)
 bones/59/rotation = Quaternion(2.6077e-08, 2.79397e-08, 2.04891e-08, 1)
 bones/59/scale = Vector3(1, 1, 1)
 
@@ -7722,6 +7768,15 @@ bone_idx = 31
 
 [node name="pipe" parent="model/Armature/Skeleton3D/BoneAttachment3D" instance=ExtResource("5_qly61")]
 transform = Transform3D(89.6207, 14.7785, 41.8297, 30.3243, -89.2291, -33.4456, 32.3816, 42.6588, -84.4492, -16.4056, 21.2223, 25.2085)
+visible = false
+
+[node name="knife" type="Node3D" parent="model/Armature/Skeleton3D/BoneAttachment3D"]
+transform = Transform3D(6.06039, -1.9945, -4.31087, 2.59229, 7.24462, 0.29249, 3.98016, -1.68151, 6.37345, -11.677, 15.1224, 7.94287)
+visible = false
+
+[node name="knife_obj_knife_mat_0" type="MeshInstance3D" parent="model/Armature/Skeleton3D/BoneAttachment3D/knife"]
+mesh = SubResource("ArrayMesh_x08pd")
+skeleton = NodePath("")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="model"]
 libraries = {
@@ -7754,7 +7809,16 @@ stream = ExtResource("9_ef06p")
 volume_db = -6.559
 parameters/looping = true
 
+[node name="Area3D" type="Area3D" parent="."]
+script = ExtResource("9_tjdhl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.407715, 0)
+shape = SubResource("CylinderShape3D_tjdhl")
+
 [connection signal="body_entered" from="go_up_trigger" to="go_up_trigger" method="enter"]
 [connection signal="body_exited" from="go_up_trigger" to="go_up_trigger" method="leave"]
 [connection signal="body_entered" from="not_go_up_trigger" to="go_up_trigger" method="enter_area_not"]
 [connection signal="body_exited" from="not_go_up_trigger" to="go_up_trigger" method="exit_area_not"]
+[connection signal="body_entered" from="Area3D" to="Area3D" method="_on_body_entered"]
+[connection signal="body_exited" from="Area3D" to="Area3D" method="_on_body_exited"]
