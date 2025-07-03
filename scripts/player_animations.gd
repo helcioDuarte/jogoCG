@@ -28,6 +28,9 @@ func changeWalkRun(goal):
 func changeWalkSlash():
 	animStateMachine.travel("Slash")
 
+func changeWalkRevolver():
+	animStateMachine.travel("Revolver")
+
 func changeAttackIdle():
 	animStateMachine.travel("Idle")
 

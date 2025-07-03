@@ -11,6 +11,9 @@ extends CharacterBody3D
 @onready var step_up_ray = $StepUpRay
 @onready var other_ray = $OtherRay
 @onready var boneco_andando = $BonecoAndando
+@onready var boneco_correndo = $BonecoCorrendo
+@onready var cano_audio = $CanoBatendo
+@onready var errar_audio = $"WeaponSwingInAir,Whoosh3(soundFx)"
 
 
 var nearby_placeholder = null
@@ -35,11 +38,16 @@ func hit_pipe():
 		var target_position_flat = enemy_to_target.global_transform.origin
 		target_position_flat.y = global_position.y
 		look_at(target_position_flat, Vector3.UP)
-
+  
 		# Verifica se o inimigo está dentro do alcance de ataque
 		if global_position.distance_to(enemy_to_target.global_transform.origin) <= attack_range:
 			if enemy_to_target.has_method("take_damage"):
+				await get_tree().create_timer(0.77).timeout
+				cano_audio.play()
 				enemy_to_target.call("take_damage", pipe_damage)
+	else:
+		await get_tree().create_timer(0.73).timeout
+		errar_audio.play()
 				
 func hit_knife():
 	var enemy_to_target = $Area3D.get_enemy() # Pega o inimigo mais próximo
@@ -55,6 +63,21 @@ func hit_knife():
 		if global_position.distance_to(enemy_to_target.global_transform.origin) <= attack_range:
 			if enemy_to_target.has_method("take_damage"):
 				enemy_to_target.call("take_damage", 15)
+				
+func hit_revolver():
+	var enemy_to_target = $Area3D.get_enemy() # Pega o inimigo mais próximo
+	var attack_range = 8 # Distância máxima para o ataque corpo a corpo
+	
+	# Vira para o inimigo se houver um
+	if enemy_to_target:
+		var target_position_flat = enemy_to_target.global_transform.origin
+		target_position_flat.y = global_position.y
+		look_at(target_position_flat, Vector3.UP)
+
+		# Verifica se o inimigo está dentro do alcance de ataque
+		if global_position.distance_to(enemy_to_target.global_transform.origin) <= attack_range:
+			if enemy_to_target.has_method("take_damage"):
+				enemy_to_target.call("take_damage", 30)
 
 func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -73,7 +96,7 @@ func handle_inventory_input():
 		inventory.visible = not inventory.visible
 		get_tree().paused = inventory.visible
 		if inventory.visible:
-			stop_sound()
+			stop_all_sounds()
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		else:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -141,7 +164,7 @@ func _physics_process(delta: float):
 	last_frame_input_dir = current_input_dir
 	
 	is_sprinting = Input.is_action_pressed("sprint") and velocity.length() > 0
-	var current_speed = speed * sprint_multiplier if Input.is_action_pressed("sprint") else speed
+	var current_speed = speed * sprint_multiplier if is_sprinting else speed
 	# Aplica o movimento
 	if active_world_movement_direction != Vector3.ZERO:
 		velocity = active_world_movement_direction * current_speed
@@ -149,13 +172,14 @@ func _physics_process(delta: float):
 		velocity = Vector3.ZERO
 	
 	if velocity.length() != 0:
-		play_sound()
-		if Input.is_action_pressed("sprint"):
+		if is_sprinting:
+			play_run_sound()
 			animations.changeWalkRun("run")
 		else:
+			play_walk_sound()
 			animations.changeWalkRun("walk")
 	else:
-		stop_sound()
+		stop_all_sounds()
 		animations.changeWalkRun("idle")
 	
 	animations.animateMovement(velocity, speed)
@@ -176,15 +200,21 @@ func _physics_process(delta: float):
 		else:
 			look_at(global_position + target_dir, Vector3.UP)
 
-func play_sound():
-	if not is_playing_walk_sound:
+func play_walk_sound():
+	if not boneco_andando.playing:
+		boneco_correndo.stop()
 		boneco_andando.play()
-		is_playing_walk_sound = true
 
-func stop_sound():
-	if is_playing_walk_sound:
+func play_run_sound():
+	if not boneco_correndo.playing:
 		boneco_andando.stop()
-		is_playing_walk_sound = false
+		boneco_correndo.play()
+
+func stop_all_sounds():
+	if boneco_andando.playing:
+		boneco_andando.stop()
+	if boneco_correndo.playing:
+		boneco_correndo.stop()
 
 func save_state() -> Dictionary:
 	return {
@@ -251,3 +281,14 @@ func weapon_handler():
 			speed = 3
 	else: 
 		$model/Armature/Skeleton3D/BoneAttachment3D/knife.visible = false
+		
+	if inventory.get_equipped_item() == "revolver":
+		$model/Armature/Skeleton3D/BoneAttachment3D/revolver.visible = true
+		if Input.is_action_just_pressed("hit") and animations.animationFinished("Revolver"):
+			animations.changeWalkSlash()
+			speed = 0
+			hit_pipe()
+			await get_tree().create_timer(1.4).timeout
+			speed = 3
+	else: 
+		$model/Armature/Skeleton3D/BoneAttachment3D/revolver.visible = false
