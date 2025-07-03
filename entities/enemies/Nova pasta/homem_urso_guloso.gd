@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 # --- Configurações de Comportamento ---
-@export var velocidade: float = 3.0
+@export var velocidade: float = 13.0
 @export var dano_ataque: float = 15.0
 @export var vida: float = 120.0
 @export var velocidade_rot: float = 5.0
@@ -29,7 +29,7 @@ func _ready():
 	print("Inimigo '%s' encontrou o jogador: %s" % [self.name, jogador.name])
 	ataque_area.body_entered.connect(_on_body_entered_atack)
 	ataque_area.body_exited.connect(_on_body_exited_atack)
-
+	$VideoStreamPlayer.finished.connect(_on_video_finished)
 
 # ================================= CICLO DE JOGO =================================
 func _physics_process(delta: float):
@@ -95,6 +95,7 @@ func die():
 		return
 
 	estado = Estado.MORTO
+	$VideoStreamPlayer.play()
 	agente.set_velocity(Vector3.ZERO)
 	velocity = Vector3.ZERO
 	move_and_slide()
@@ -109,6 +110,8 @@ func die():
 	if corpo_colisao:
 		corpo_colisao.set_deferred("disabled", true)
 
+func _on_video_finished():
+	get_tree().change_scene_to_file("res://victory.tscn")
 
 # ================================= UTILITÁRIOS =================================
 func _suavizar_rotacao_pela_velocidade(delta: float):

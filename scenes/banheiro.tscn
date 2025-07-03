@@ -1,19 +1,20 @@
-[gd_scene load_steps=62 format=4 uid="uid://c2nu668m2p4ud"]
+[gd_scene load_steps=64 format=4 uid="uid://c2nu668m2p4ud"]
 
-[ext_resource type="Texture2D" uid="uid://dp0rexk6215nq" path="res://textures/pisocomp.jpg" id="1_ohvp2"]
-[ext_resource type="Texture2D" uid="uid://prlec3li23cu" path="res://textures/paredecomp.jpg" id="2_v8g2v"]
-[ext_resource type="Texture2D" uid="uid://c2vrpdfas42ty" path="res://textures/piagranito_comp.png" id="3_oowmx"]
-[ext_resource type="Texture2D" uid="uid://dq3esb588o4p3" path="res://textures/tetocomp.jpg" id="3_p1g6w"]
-[ext_resource type="Texture2D" uid="uid://bsitmwt61elam" path="res://textures/corrimao_comp.jpg" id="4_qnxut"]
-[ext_resource type="Texture2D" uid="uid://crbyrce32x0fq" path="res://textures/Texturelabs_Metal_comp.jpg" id="5_qg2ob"]
+[ext_resource type="Texture2D" uid="uid://ccpvpy3wueb3t" path="res://textures/pisocomp.jpg" id="1_ohvp2"]
+[ext_resource type="Texture2D" uid="uid://lym88tt4ghbp" path="res://textures/paredecomp.jpg" id="2_v8g2v"]
+[ext_resource type="Texture2D" uid="uid://bqy5fh2grotyn" path="res://textures/piagranito_comp.png" id="3_oowmx"]
+[ext_resource type="Texture2D" uid="uid://cd31ue7tjexmn" path="res://textures/tetocomp.jpg" id="3_p1g6w"]
+[ext_resource type="Texture2D" uid="uid://bnu0cerc55l1i" path="res://textures/corrimao_comp.jpg" id="4_qnxut"]
+[ext_resource type="Texture2D" uid="uid://dgh850uq4iie8" path="res://textures/Texturelabs_Metal_comp.jpg" id="5_qg2ob"]
 [ext_resource type="PackedScene" uid="uid://rxinvobacirt" path="res://entities/player.tscn" id="10_pv52q"]
-[ext_resource type="Texture2D" uid="uid://pt316urjvgih" path="res://textures/door_brown.png" id="10_uu4lb"]
-[ext_resource type="Texture2D" uid="uid://b4etskt8t3to3" path="res://textures/door_bathroom.png" id="11_jhdnp"]
+[ext_resource type="Texture2D" uid="uid://b4k537ktrqoq1" path="res://textures/door_brown.png" id="10_uu4lb"]
+[ext_resource type="Texture2D" uid="uid://xhdef0yh738e" path="res://textures/door_bathroom.png" id="11_jhdnp"]
 [ext_resource type="Script" uid="uid://brxlx3bv071et" path="res://scripts/cameras/cameraTrigger.gd" id="12_3746r"]
-[ext_resource type="AudioStream" uid="uid://03mlgeqjq6b" path="res://audio/porta_dechando.mp3" id="12_jhdnp"]
+[ext_resource type="AudioStream" uid="uid://fy63npmtm8r0" path="res://audio/porta_dechando.mp3" id="12_jhdnp"]
 [ext_resource type="PackedScene" uid="uid://catogyqckj5p1" path="res://entities/door.tscn" id="13_5ukx8"]
-[ext_resource type="AudioStream" uid="uid://di2fyr0uaa43i" path="res://audio/porta_abrindo.mp3" id="13_ohvp2"]
-[ext_resource type="AudioStream" uid="uid://dwsak37fq60ht" path="res://audio/bloqueado_effect.mp3" id="14_v8g2v"]
+[ext_resource type="AudioStream" uid="uid://bd6ya8l000wsi" path="res://audio/porta_abrindo.mp3" id="13_ohvp2"]
+[ext_resource type="AudioStream" uid="uid://c7tpte8d5kos7" path="res://audio/bloqueado_effect.mp3" id="14_v8g2v"]
+[ext_resource type="Shader" uid="uid://cu2wpiadetu0v" path="res://scenes/vsh.gdshader" id="15_p1g6w"]
 
 [sub_resource type="GDScript" id="GDScript_ohvp2"]
 script/source = "extends Node3D
@@ -350,6 +351,30 @@ shading_mode = 0
 albedo_texture = ExtResource("11_jhdnp")
 uv1_scale = Vector3(3, 2, 1)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qnxut"]
+shader = ExtResource("15_p1g6w")
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.153
+shader_parameter/scanlines_width = 0.08
+shader_parameter/grille_opacity = 0.0
+shader_parameter/resolution = Vector2(640, 320)
+shader_parameter/pixelate = false
+shader_parameter/roll = false
+shader_parameter/roll_speed = 8.0
+shader_parameter/roll_size = 15.0
+shader_parameter/roll_variation = 0.424
+shader_parameter/distort_intensity = 0.0
+shader_parameter/noise_opacity = 0.103
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.03
+shader_parameter/aberration = 4.75e-08
+shader_parameter/brightness = 1.0
+shader_parameter/discolor = false
+shader_parameter/warp_amount = 0.0
+shader_parameter/clip_warp = true
+shader_parameter/vignette_intensity = 0.1
+shader_parameter/vignette_opacity = 0.0
+
 [node name="Node3D" type="Node3D"]
 script = SubResource("GDScript_ohvp2")
 
@@ -565,6 +590,21 @@ stream = ExtResource("13_ohvp2")
 
 [node name="BloqueadoEffect" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("14_v8g2v")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_qnxut")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -3.0
+offset_top = 1.0
+offset_right = 2.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
 [connection signal="body_entered" from="Node3D/Node3D/cameraEntrada/cameraTrigger" to="Node3D/Node3D/cameraEntrada/cameraTrigger" method="enter"]
 [connection signal="body_exited" from="Node3D/Node3D/cameraEntrada/cameraTrigger" to="Node3D/Node3D/cameraEntrada/cameraTrigger" method="leave"]

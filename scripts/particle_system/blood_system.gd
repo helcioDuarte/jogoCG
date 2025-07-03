@@ -37,10 +37,7 @@ func _ready():
 		printerr(self.name, ": MultiMesh resource not found in ", multimesh_node.name)
 		set_process(false)
 		return
-	if not emission_timer:
-		printerr(self.name, ": Child node Timer not found!")
-		set_process(false)
-		return
+	
 
 	particles_data.resize(multimesh_res.instance_count)
 	for i in range(multimesh_res.instance_count):
@@ -49,22 +46,11 @@ func _ready():
 		multimesh_res.set_instance_color(i, Color(1,1,1,0))
 		multimesh_res.set_instance_transform(i, Transform3D().scaled(Vector3.ZERO))
 
-	if emission_rate_hz > 0:
-		emission_timer.wait_time = 1.0 / emission_rate_hz
-	else:
-		emission_timer.wait_time = 1000
-	emission_timer.timeout.connect(_on_emission_timer_timeout)
-	if emission_timer.autostart:
-		emission_timer.start()
-
-func _on_emission_timer_timeout():
-	var emit_position = global_transform.origin
-	var base_emit_direction = global_transform.basis.z.normalized()
-	emit_particles(emit_position, base_emit_direction)
 
 func emit_particles(origin_position: Vector3, base_direction: Vector3):
 	if not multimesh_res: return
-
+	
+	print("fuichamado")
 	var num_to_emit = randi_range(pnumber_min, pnumber_max)
 	
 	for _i in range(num_to_emit):

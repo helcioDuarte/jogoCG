@@ -1,4 +1,4 @@
-[gd_scene load_steps=316 format=4 uid="uid://c5hqi28oohmun"]
+[gd_scene load_steps=318 format=4 uid="uid://c5hqi28oohmun"]
 
 [ext_resource type="Texture2D" uid="uid://ccpvpy3wueb3t" path="res://textures/pisocomp.jpg" id="1_5mvug"]
 [ext_resource type="Texture2D" uid="uid://lym88tt4ghbp" path="res://textures/paredecomp.jpg" id="2_ebegn"]
@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://dwffagowe1pga" path="res://entities/textbox.tscn" id="20_lprxf"]
 [ext_resource type="Script" uid="uid://dkhxy0b1vl5m" path="res://scripts/textTrigger.gd" id="21_8huxt"]
 [ext_resource type="AudioStream" uid="uid://bd6ya8l000wsi" path="res://audio/porta_abrindo.mp3" id="22_8huxt"]
+[ext_resource type="Shader" uid="uid://cu2wpiadetu0v" path="res://scenes/vsh.gdshader" id="23_gkvkn"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p261k"]
 albedo_texture = ExtResource("1_5mvug")
@@ -2331,6 +2332,30 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_sn5ao")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jm27p"]
+shader = ExtResource("23_gkvkn")
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.153
+shader_parameter/scanlines_width = 0.08
+shader_parameter/grille_opacity = 0.0
+shader_parameter/resolution = Vector2(640, 320)
+shader_parameter/pixelate = false
+shader_parameter/roll = false
+shader_parameter/roll_speed = 8.0
+shader_parameter/roll_size = 15.0
+shader_parameter/roll_variation = 0.424
+shader_parameter/distort_intensity = 0.0
+shader_parameter/noise_opacity = 0.103
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.03
+shader_parameter/aberration = 4.75e-08
+shader_parameter/brightness = 1.0
+shader_parameter/discolor = false
+shader_parameter/warp_amount = 0.0
+shader_parameter/clip_warp = true
+shader_parameter/vignette_intensity = 0.1
+shader_parameter/vignette_opacity = 0.0
+
 [node name="Node3D" type="Node3D"]
 
 [node name="TBLoader" type="TBLoader" parent="."]
@@ -3329,6 +3354,21 @@ skeleton = NodePath("")
 
 [node name="PortaAbrindo" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("22_8huxt")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_jm27p")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -3.0
+offset_top = 1.0
+offset_right = 2.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
 [connection signal="body_entered" from="Node3D/Node3D/cameraEntrada/cameraTrigger" to="Node3D/Node3D/cameraEntrada/cameraTrigger" method="enter"]
 [connection signal="body_exited" from="Node3D/Node3D/cameraEntrada/cameraTrigger" to="Node3D/Node3D/cameraEntrada/cameraTrigger" method="leave"]
