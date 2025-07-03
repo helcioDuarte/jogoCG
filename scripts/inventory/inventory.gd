@@ -40,11 +40,11 @@ const ITEM_DATA = {
 	"herb_mix": {"name": "Mistura de Ervas", "id": "herb_mix", "description": "Ervas verde e vermelha combinadas. Cura significativa.", "type": "consumable", "icon_path": "res://icon.svg", "quantity": 1, "heal_amount": 80, "combinable": false},
 	"revolver": {"name": "Revólver", "id": "revolver", "description": "Um revólver calibre .38.", "type": "weapon", "damage": 35, "icon_path": "res://icon.svg", "combinable": true, "current_ammo": 0, "max_ammo": 6},
 	"revolver_ammo": {"name": "Bala .38", "id": "revolver_ammo", "description": "Uma bala calibre .38.", "type": "ingredient", "icon_path": "res://icon.svg", "quantity": 1, "combinable": true},
-	"red_bear": {"name": "Urso Vermelho", "id": "red_bear", "description": "Um velho urso de pelúcia vermelho.", "type": "puzzle", "icon_path": "res://icon.svg", "quantity": 1},
-	"blue_bear": {"name": "Urso Azul", "id": "blue_bear", "description": "Um velho urso de pelúcia azul.", "type": "puzzle", "icon_path": "res://icon.svg", "quantity": 1},
-	"green_bear": {"name": "Urso Verde", "id": "green_bear", "description": "Um velho urso de pelúcia verde.", "type": "puzzle", "icon_path": "res://icon.svg", "quantity": 1},
-	"yellow_bear": {"name": "Urso Amarelo", "id": "yellow_bear", "description": "Um velho urso de pelúcia amarelo.", "type": "puzzle", "icon_path": "res://icon.svg", "quantity": 1},
-	"black_bear": {"name": "Urso Preto", "id": "black_bear", "description": "Um velho urso de pelúcia preto.", "type": "puzzle", "icon_path": "res://icon.svg", "quantity": 1},
+	"red_bear": {"name": "Urso Vermelho", "id": "red_bear", "description": "Um velho urso de pelúcia vermelho. Onde será que eu uso isso?", "type": "puzzle", "icon_path": "res://icon.svg", "quantity": 1},
+	"blue_bear": {"name": "Urso Azul", "id": "blue_bear", "description": "Um velho urso de pelúcia azul. Onde será que eu uso isso?", "type": "puzzle", "icon_path": "res://icon.svg", "quantity": 1},
+	"green_bear": {"name": "Urso Verde", "id": "green_bear", "description": "Um velho urso de pelúcia verde. Onde será que eu uso isso?", "type": "puzzle", "icon_path": "res://icon.svg", "quantity": 1},
+	"yellow_bear": {"name": "Urso Amarelo", "id": "yellow_bear", "description": "Um velho urso de pelúcia amarelo. Onde será que eu uso isso?", "type": "puzzle", "icon_path": "res://icon.svg", "quantity": 1},
+	"black_bear": {"name": "Urso Preto", "id": "black_bear", "description": "Um velho urso de pelúcia preto. Onde será que eu uso isso?", "type": "puzzle", "icon_path": "res://icon.svg", "quantity": 1},
 	"chave_bandejao": {"name": "Chave do Bandejão", "id": "chave_bandejao", "description": "Uma chave ornamentada, parece importante.", "type": "key", "icon_path": "res://icon.svg"}
 }
 

@@ -1,26 +1,28 @@
-[gd_scene load_steps=749 format=4 uid="uid://8jft6yj11cv3"]
+[gd_scene load_steps=752 format=4 uid="uid://8jft6yj11cv3"]
 
-[ext_resource type="Texture2D" uid="uid://shnvjclcxego" path="res://textures/paredecomp.jpg" id="2_e23bp"]
-[ext_resource type="Texture2D" uid="uid://bvy288mjk6wde" path="res://textures/asphalt_track_diff_comp.png" id="3_8b1ih"]
-[ext_resource type="Texture2D" uid="uid://cwwybg15m44ai" path="res://textures/tetocomp.jpg" id="3_gb2nd"]
-[ext_resource type="Texture2D" uid="uid://tanv4r5fe1y5" path="res://textures/carpete_comp.jpg" id="3_jm84g"]
-[ext_resource type="Texture2D" uid="uid://cnnm2pe0w4t6r" path="res://textures/Texturelabs_Metal_comp.jpg" id="5_2pe64"]
-[ext_resource type="Texture2D" uid="uid://6cqoma58n5wr" path="res://textures/pisocomp.jpg" id="7_3i23n"]
-[ext_resource type="Texture2D" uid="uid://6vwfhkmgxaig" path="res://textures/p.png" id="7_15lrw"]
-[ext_resource type="Texture2D" uid="uid://vq05vvi7kixk" path="res://textures/vermelho_comp.jpg" id="8_3i23n"]
+[ext_resource type="Texture2D" uid="uid://ullxcsvm3vm6" path="res://textures/paredecomp.jpg" id="2_e23bp"]
+[ext_resource type="Texture2D" uid="uid://dev0qltrwej7e" path="res://textures/asphalt_track_diff_comp.png" id="3_8b1ih"]
+[ext_resource type="Texture2D" uid="uid://dlqy7hji1ud7o" path="res://textures/tetocomp.jpg" id="3_gb2nd"]
+[ext_resource type="Texture2D" uid="uid://d2u7ql8p0clio" path="res://textures/carpete_comp.jpg" id="3_jm84g"]
+[ext_resource type="Texture2D" uid="uid://bh4s2ck2kho2e" path="res://textures/Texturelabs_Metal_comp.jpg" id="5_2pe64"]
+[ext_resource type="Texture2D" uid="uid://bwwtxdqgiuwm6" path="res://textures/pisocomp.jpg" id="7_3i23n"]
+[ext_resource type="Texture2D" uid="uid://b225crq47e4fy" path="res://textures/p.png" id="7_15lrw"]
+[ext_resource type="Texture2D" uid="uid://cwq1ox1t4a8n8" path="res://textures/vermelho_comp.jpg" id="8_3i23n"]
 [ext_resource type="PackedScene" uid="uid://rxinvobacirt" path="res://entities/player.tscn" id="10_rwu5s"]
 [ext_resource type="Script" uid="uid://b4l20vgp1cixy" path="res://scripts/cameras/lookCamera.gd" id="11_dfjm3"]
-[ext_resource type="Texture2D" uid="uid://ym7dqhm4url7" path="res://textures/door_industrial_01_dark.png" id="11_jm84g"]
+[ext_resource type="Texture2D" uid="uid://prlp6t6px71s" path="res://textures/door_industrial_01_dark.png" id="11_jm84g"]
 [ext_resource type="Script" uid="uid://brxlx3bv071et" path="res://scripts/cameras/cameraTrigger.gd" id="12_vc80t"]
 [ext_resource type="PackedScene" uid="uid://catogyqckj5p1" path="res://entities/door.tscn" id="13_m6yth"]
 [ext_resource type="Script" uid="uid://bcipbw7e3i68m" path="res://scripts/auditorium_puzzle.gd" id="14_e23bp"]
 [ext_resource type="PackedScene" uid="uid://b42f1s878cbr4" path="res://scenes/puzzles/red_bear.tscn" id="14_pckik"]
 [ext_resource type="PackedScene" uid="uid://dyk0upt4i5lig" path="res://scenes/puzzles/black_bear.tscn" id="15_15lrw"]
 [ext_resource type="Script" uid="uid://cojqr0k8gahxa" path="res://scripts/BearPlaceholder.gd" id="15_gb2nd"]
-[ext_resource type="Texture2D" uid="uid://bg7vkjq4bln47" path="res://textures/ursos/teddy_bear_preto.png" id="17_eedx2"]
+[ext_resource type="Texture2D" uid="uid://dlwb3if654wcv" path="res://textures/ursos/teddy_bear_preto.png" id="17_eedx2"]
 [ext_resource type="PackedScene" uid="uid://b1xr3kp1rvopn" path="res://scenes/puzzles/yellow_bear.tscn" id="18_s04jf"]
 [ext_resource type="PackedScene" uid="uid://g1ahr62fkl2h" path="res://scenes/puzzles/chave_bandejao.tscn" id="19_15lrw"]
-[ext_resource type="Texture2D" uid="uid://cvvddrmsobrnp" path="res://textures/olimpiadalogo.jpg" id="20_s04jf"]
+[ext_resource type="Texture2D" uid="uid://ddf2iy5c6r2p5" path="res://textures/olimpiadalogo.jpg" id="20_s04jf"]
+[ext_resource type="PackedScene" uid="uid://dwffagowe1pga" path="res://entities/textbox.tscn" id="22_dfjm3"]
+[ext_resource type="Script" uid="uid://dkhxy0b1vl5m" path="res://scripts/textTrigger.gd" id="23_vc80t"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3i23n"]
 albedo_texture = ExtResource("2_e23bp")
@@ -5582,6 +5584,9 @@ albedo_texture = ExtResource("17_eedx2")
 [sub_resource type="BoxShape3D" id="BoxShape3D_g3w3p"]
 size = Vector3(2.31885, 1, 0.726013)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_m6yth"]
+size = Vector3(4.92688, 1, 13.3467)
+
 [node name="Node3D" type="Node3D"]
 
 [node name="TBLoader" type="TBLoader" parent="."]
@@ -7894,14 +7899,14 @@ transform = Transform3D(-0.973579, 0, -0.228351, 0, 1, 0, 0.228351, 0, -0.973579
 shape = SubResource("BoxShape3D_aktge")
 
 [node name="cameraApresentacao" type="Camera3D" parent="Node3D/Node3D" groups=["savable"]]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -16.6973, 3.22227, -8.35174)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -8.20708, 3.22227, -8.35174)
 script = ExtResource("11_dfjm3")
 
 [node name="cameraTrigger" type="Area3D" parent="Node3D/Node3D/cameraApresentacao"]
 script = ExtResource("12_vc80t")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/Node3D/cameraApresentacao/cameraTrigger"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0434723, -1.66687, -3.52258)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0434732, -1.66687, -4.72087)
 shape = SubResource("BoxShape3D_e23bp")
 
 [node name="Painel" type="MeshInstance3D" parent="."]
@@ -7982,6 +7987,28 @@ shape = SubResource("BoxShape3D_g3w3p")
 script = ExtResource("14_e23bp")
 placeholders = Array[NodePath]([NodePath("../Placeholder1"), NodePath("../Placeholder2"), NodePath("../Placeholder3"), NodePath("../Placeholder4"), NodePath("../Placeholder5")])
 key_item_path = NodePath("../chave_bandejao")
+
+[node name="caixas de texto" type="Node3D" parent="."]
+
+[node name="textBox" parent="caixas de texto" instance=ExtResource("22_dfjm3")]
+
+[node name="Area3D" type="Area3D" parent="caixas de texto/textBox"]
+script = ExtResource("23_vc80t")
+messages = Array[String](["CADÊ OS URSOS?????", "Ué, tinha essa chave aqui antes?"])
+
+[node name="area" type="CollisionShape3D" parent="caixas de texto/textBox/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.515, 10, -8.303)
+shape = SubResource("BoxShape3D_m6yth")
+
+[node name="textBox2" parent="caixas de texto" instance=ExtResource("22_dfjm3")]
+
+[node name="Area3D" type="Area3D" parent="caixas de texto/textBox2"]
+script = ExtResource("23_vc80t")
+messages = Array[String](["Por que tem ursos de pelúcia aqui?", "Deve ser um enigma."])
+
+[node name="area" type="CollisionShape3D" parent="caixas de texto/textBox2/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.54858, 0.533157, -8.312)
+shape = SubResource("BoxShape3D_m6yth")
 
 [connection signal="body_entered" from="Node3D/Node3D/cameraEntrada/cameraTrigger" to="Node3D/Node3D/cameraEntrada/cameraTrigger" method="enter"]
 [connection signal="body_exited" from="Node3D/Node3D/cameraEntrada/cameraTrigger" to="Node3D/Node3D/cameraEntrada/cameraTrigger" method="leave"]

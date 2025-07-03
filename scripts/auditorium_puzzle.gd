@@ -52,7 +52,7 @@ func check_solution():
 
 	is_solved = true
 	print("!!!!!!!! PUZZLE RESOLVIDO !!!!!!!!")
-	
+	$"../caixas de texto/textBox/Area3D/area".position.y = 1.518
 	if key_item_path:
 		var key_node = get_node(key_item_path)
 		if is_instance_valid(key_node):
