@@ -47,7 +47,7 @@ func hit_pipe():
 			if enemy_to_target.has_method("take_damage"):
 				await get_tree().create_timer(0.77).timeout
 				cano_audio.play()
-				enemy_to_target.call("take_damage", pipe_damage)
+				enemy_to_target.call("take_damage", 10)
 	else:
 		await get_tree().create_timer(0.73).timeout
 		errar_audio.play()
@@ -74,7 +74,7 @@ func hit_knife():
 				
 func hit_revolver():
 	var enemy_to_target = $Area3D.get_enemy() # Pega o inimigo mais próximo
-	var attack_range = 8 # Distância máxima para o ataque corpo a corpo
+	var attack_range = 15 # Distância máxima para o ataque corpo a corpo
 	
 	# Vira para o inimigo se houver um
 	if enemy_to_target:
@@ -298,7 +298,7 @@ func weapon_handler():
 		if Input.is_action_just_pressed("hit") and animations.animationFinished("Revolver"):
 			animations.changeWalkRevolver()
 			speed = 0
-			hit_pipe()
+			hit_revolver()
 			await get_tree().create_timer(1.2).timeout
 			speed = 3
 	else: 
