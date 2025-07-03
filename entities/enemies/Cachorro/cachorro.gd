@@ -18,9 +18,9 @@ extends CharacterBody3D
 @export var velocidade_rot: float = 5.0
 
 # Estados de IA
-#+ Adicionado o estado MORTO
-enum Estado { PATRULHANDO, PERSEGUINDO, VOLTANDO, ATACANDO, MORTO }
-var estado: Estado = Estado.PATRULHANDO
+enum Estado { PATRULHANDO, PERSEGUINDO, VOLTANDO, ATACANDO, MORTO } 
+# O estado inicial agora é PATRULHANDO
+var estado: Estado = Estado.PATRULHANDO 
 
 # Variáveis de referência
 var jogador: Node3D
@@ -50,6 +50,8 @@ var _pode_causar_dano_neste_ciclo_anim: bool = false
 # ========== INICIALIZAÇÃO ==========
 func _ready():
 	_set_anim_state(false, true, false, false)
+	
+	
 
 	_criar_area_visao_cone()
 	_criar_area_visao_esferica()
@@ -83,6 +85,11 @@ func _ready():
 	
 	_criar_visual_area_ataque()
 	_atualizar_visibilidade_debug_visuals()
+	
+	print("--- DIAGNÓSTICO DO INIMIGO ---")
+	print("Máscara de visão do CONE: ", area_visao_cone.collision_mask)
+	print("Máscara de visão da ESFERA: ", area_visao_redonda.collision_mask)
+	print("----------------------------")
 
 
 # ========== CICLO DE VIDA ==========
@@ -130,18 +137,31 @@ func _patrulhar(delta: float):
 	_suavizar_rotacao_pela_velocidade(delta)
 
 
+# Em cachorro.gd - SUBSTITUA ESTA FUNÇÃO
+
 func _perseguir_jogador(delta: float):
+	# Se o jogador não é mais um alvo válido...
 	if not is_instance_valid(jogador):
 		tempo_desde_perda += delta
-		_set_anim_state(true, false, false, false)
+		_set_anim_state(true, false, false, false) # Animação de parado
 		velocity = Vector3.ZERO
 		move_and_slide()
 
+		# Verificamos se o tempo de espera para procurar o jogador acabou.
 		if tempo_desde_perda > tempo_para_voltar:
-			estado = Estado.VOLTANDO
-			agente.target_position = patrulha_alvo.global_position
+			# O TEMPO ACABOU! AGORA tomamos a decisão.
+			
+			# Verificamos se existe um caminho de patrulha (inimigo do overworld).
+			if is_instance_valid(patrulha_alvo):
+				estado = Estado.VOLTANDO
+				agente.target_position = patrulha_alvo.global_position
+			else:
+				# Se NÃO existe (inimigo da sala), ele volta a patrulhar (sem se mover).
+				# Como não há IDLE, o estado PATRULHANDO é o estado "neutro".
+				estado = Estado.PATRULHANDO
 		return
 
+	# Se o jogador é válido, a perseguição continua...
 	tempo_desde_perda = 0.0
 	_set_anim_state(false, true, false, false)
 
@@ -214,6 +234,8 @@ func _on_body_exited(body: Node3D):
 func _on_body_entered_atack(body: Node3D):
 	if body.is_in_group("player"):
 		estado = Estado.ATACANDO
+		
+# Em cachorro.gd
 
 func _on_body_exited_atack(body: Node3D):
 	if body.is_in_group("player"):
@@ -223,8 +245,15 @@ func _on_body_exited_atack(body: Node3D):
 				if is_instance_valid(area_node) and area_node.get_overlapping_bodies().has(jogador):
 					jogador_ainda_em_area_de_visao_geral = true
 					break
+			
 			if jogador_ainda_em_area_de_visao_geral:
 				estado = Estado.PERSEGUINDO
+				# --- AQUI ESTÁ A CORREÇÃO ---
+				# Forçamos a atualização da animação no momento exato da transição de estado.
+				# (idle: false, walk: true, attack: false, die: false)
+				_set_anim_state(false, true, false, false)
+			else:
+				jogador = null
 
 
 func _verificar_visibilidade_jogador_apos_saida():
@@ -441,21 +470,50 @@ func _on_animation_finished(anim_name: StringName):
 # Em cachorro.gd
 
 func scan_for_player_on_spawn():
+	# Espera um quadro para garantir que a posição do inimigo está atualizada.
 	await get_tree().physics_frame
 	
-	for area in todas_as_areas_de_visao:
-		print(area)
-		if not is_instance_valid(area): continue
-		
-		var corpos_dentro = area.get_overlapping_bodies()
-		
-		for corpo_encontrado in corpos_dentro:
-			print(corpo_encontrado)
-			if corpo_encontrado.is_in_group("player"):
-				print("Jogador detectado no spawn!")
-				_on_body_entered(corpo_encontrado)
-				return
-				
-	print("Não encontrei o jogador no spawn.")
-	_set_anim_state(true, false, false, false) # Animação de idle
+	# Pega o "estado do mundo" físico para fazermos uma pergunta direta a ele.
+	var space_state = get_world_3d().direct_space_state
+	
+	# Cria uma "forma de consulta" esférica imaginária.
+	var shape_query = SphereShape3D.new()
+	shape_query.radius = esfera_raio
+	
+	# Configura os parâmetros da nossa pergunta ao motor de física.
+	var query_params = PhysicsShapeQueryParameters3D.new()
+	query_params.shape = shape_query
+	query_params.transform = global_transform
+	query_params.collision_mask = 1
+	
+	# Executa a consulta.
+	var result: Array = space_state.intersect_shape(query_params)
+	
+	# Se encontrar algo...
+	if not result.is_empty():
+		for body_found in result:
+			var collider = body_found.collider
+			
+			if collider.is_in_group("player"):
+				print("Jogador detectado diretamente pela física no spawn!")
+				_on_body_entered(collider) # Inicia a perseguição
+				return # Encontramos, não precisa continuar.
+
+	# Este código só roda se não encontrar ninguém.
+	print("Não encontrei o jogador no spawn (método direto). Iniciando patrulha.")
+	# CORREÇÃO: Define o estado para PATRULHANDO, que é o novo estado neutro.
 	estado = Estado.PATRULHANDO
+
+func iniciar_perseguicao_imediata(alvo: Node3D):
+	# Se não for um alvo válido, não faz nada
+	if not is_instance_valid(alvo):
+		printerr("Tentativa de iniciar perseguição com alvo inválido.")
+		estado = Estado.PATRULHANDO # Fica em patrulha por segurança
+		return
+	
+	print("Recebi ordem para perseguir ", alvo.name, " imediatamente!")
+	# Define manualmente as mesmas variáveis que a detecção por área faria
+	jogador = alvo
+	estado = Estado.PERSEGUINDO
+	tempo_desde_perda = 0.0
+	_set_anim_state(false, true, false, false) # Ativa a animação de andar/correr

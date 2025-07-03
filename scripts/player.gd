@@ -68,6 +68,9 @@ func hit_pipe():
 func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	inventory.visible = false
+	print("--- DIAGNÓSTICO DO JOGADOR ---")
+	print("Eu estou na Camada de Colisão: ", self.collision_layer)
+	print("-----------------------------")
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func handle_inventory_input():
