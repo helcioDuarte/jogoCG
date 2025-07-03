@@ -19,7 +19,11 @@ func _unhandled_input(event):
 		else:
 			_display_next_message()
 
-func start_dialogue(messages):
+func start_dialogue(messages, player): 
+	# Adicione esta verificação para chamar a função no jogador
+	if player and player.has_method("stop_all_sounds"):
+		player.stop_all_sounds()
+
 	$background.texture = ImageTexture.create_from_image(get_viewport().get_texture().get_image())
 	text_queue = messages
 	_display_next_message()

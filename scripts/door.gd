@@ -44,7 +44,7 @@ func _process(_delta: float) -> void:
 			openBuffer -= 1
 		else:
 			openBuffer = message.size()
-			$textBox.start_dialogue(message)
+			$textBox.start_dialogue(message, player)
 			
 func save_state() -> Dictionary:
 	return {

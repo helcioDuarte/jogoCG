@@ -1,4 +1,4 @@
-[gd_scene load_steps=246 format=4 uid="uid://bgflont1gd4ui"]
+[gd_scene load_steps=247 format=4 uid="uid://bgflont1gd4ui"]
 
 [ext_resource type="Texture2D" uid="uid://ccpvpy3wueb3t" path="res://textures/pisocomp.jpg" id="1_qcxi5"]
 [ext_resource type="Script" uid="uid://w544843th8kj" path="res://scripts/controladorDaSala.gd" id="1_sffe5"]
@@ -15,6 +15,40 @@
 [ext_resource type="PackedScene" uid="uid://catogyqckj5p1" path="res://entities/door.tscn" id="12_gwya1"]
 [ext_resource type="AudioStream" uid="uid://bd6ya8l000wsi" path="res://audio/porta_abrindo.mp3" id="14_nydbu"]
 [ext_resource type="Shader" uid="uid://cu2wpiadetu0v" path="res://scenes/vsh.gdshader" id="15_csjrf"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_12o68"]
+size = Vector3(26.1086, 1, 22.6176)
+
+[sub_resource type="Environment" id="Environment_aqf5g"]
+fog_density = 0.1075
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_waxpn"]
+shader = ExtResource("15_csjrf")
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.153
+shader_parameter/scanlines_width = 0.08
+shader_parameter/grille_opacity = 0.0
+shader_parameter/resolution = Vector2(640, 320)
+shader_parameter/pixelate = false
+shader_parameter/roll = false
+shader_parameter/roll_speed = 8.0
+shader_parameter/roll_size = 15.0
+shader_parameter/roll_variation = 0.424
+shader_parameter/distort_intensity = 0.0
+shader_parameter/noise_opacity = 0.103
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.03
+shader_parameter/aberration = 4.75e-08
+shader_parameter/brightness = 1.0
+shader_parameter/discolor = false
+shader_parameter/warp_amount = 0.0
+shader_parameter/clip_warp = true
+shader_parameter/vignette_intensity = 0.1
+shader_parameter/vignette_opacity = 0.0
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_csjrf"]
+vertices = PackedVector3Array(-12, 6.5, -6.25, -12, 6.5, 5.75, 6.49996, 6.5, 5.75, 6.49996, 6.5, -6.25, -12.5, 1, -6, -12.5, 1, 5, -11.5, 1, 5, -11.5, 1, -6, -10.25, 1, -5.75, -10.25, 1, 4.75, -9.25004, 1, 4.75, -9.25004, 1, -5.75, 2.74996, 1, 3.5, 2.24996, 1, 3.75, 2.74996, 1, 4.75, 5.49996, 1, 4.75, 3.24996, 1, -5.75, 2.49996, 1, -5.75, 2.24996, 1, -5, 2.74996, 1, -3.75, 2.74996, 1, -2.25, 1.74996, 1, -1.5, 1.99996, 1, 4.76837e-06, 2.74996, 1, 1, 5.24996, 1, -2.5, 3.99996, 1, -2.75, 0.49996, 1, 0.250005, 0.74996, 1, 0.750005, 2.24996, 1, 0.500005, -8.00004, 1, 4.76837e-06, -8.00004, 1, 0.750005, -1.50004, 1, 0.500005, -1.50004, 1, 4.76837e-06)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(7, 6, 4), PackedInt32Array(4, 6, 5), PackedInt32Array(11, 10, 8), PackedInt32Array(8, 10, 9), PackedInt32Array(13, 12, 14), PackedInt32Array(14, 12, 15), PackedInt32Array(17, 16, 18), PackedInt32Array(18, 16, 19), PackedInt32Array(25, 24, 20), PackedInt32Array(20, 24, 21), PackedInt32Array(21, 24, 22), PackedInt32Array(22, 24, 23), PackedInt32Array(28, 27, 22), PackedInt32Array(22, 27, 26), PackedInt32Array(12, 23, 15), PackedInt32Array(15, 23, 24), PackedInt32Array(23, 28, 22), PackedInt32Array(20, 18, 19), PackedInt32Array(20, 19, 25), PackedInt32Array(32, 31, 29), PackedInt32Array(29, 31, 30)]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qcxi5"]
 albedo_texture = ExtResource("1_qcxi5")
@@ -1899,694 +1933,11 @@ _surfaces = [{
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_oqmrp"]
 data = PackedVector3Array(0.2662, -0.4678, 0.2119, 0.2974, -0.4678, 0.2119, 0.2974, -0.0303, 0.2119, 0.2662, -0.4678, 0.2119, 0.2974, -0.0303, 0.2119, 0.2662, -0.0303, 0.2119, 0.2662, -0.4678, 0.2119, 0.2662, -0.0303, 0.2119, 0.2349, -0.0303, 0.2431, 0.2662, -0.4678, 0.2119, 0.2349, -0.0303, 0.2431, 0.2349, -0.4678, 0.2431, 0.2974, -0.0303, 0.2119, 0.2974, -0.4678, 0.2119, 0.3287, -0.4678, 0.2431, 0.2974, -0.0303, 0.2119, 0.3287, -0.4678, 0.2431, 0.3287, -0.0303, 0.2431, 0.2349, -0.0303, 0.2431, 0.2349, -0.0303, 0.2744, 0.2349, -0.4678, 0.2744, 0.2349, -0.0303, 0.2431, 0.2349, -0.4678, 0.2744, 0.2349, -0.4678, 0.2431, 0.3287, -0.4678, 0.2431, 0.2974, -0.4678, 0.2119, 0.2662, -0.4678, 0.2119, 0.3287, -0.4678, 0.2431, 0.2662, -0.4678, 0.2119, 0.2349, -0.4678, 0.2431, 0.3287, -0.4678, 0.2431, 0.2349, -0.4678, 0.2431, 0.2349, -0.4678, 0.2744, 0.3287, -0.4678, 0.2431, 0.2349, -0.4678, 0.2744, 0.2662, -0.4678, 0.3056, 0.3287, -0.4678, 0.2431, 0.2662, -0.4678, 0.3056, 0.2974, -0.4678, 0.3056, 0.3287, -0.4678, 0.2431, 0.2974, -0.4678, 0.3056, 0.3287, -0.4678, 0.2744, 0.3287, -0.0303, 0.2431, 0.3287, -0.0303, 0.2744, 0.2974, -0.0303, 0.3056, 0.3287, -0.0303, 0.2431, 0.2974, -0.0303, 0.3056, 0.2662, -0.0303, 0.3056, 0.3287, -0.0303, 0.2431, 0.2662, -0.0303, 0.3056, 0.2349, -0.0303, 0.2744, 0.3287, -0.0303, 0.2431, 0.2349, -0.0303, 0.2744, 0.2349, -0.0303, 0.2431, 0.3287, -0.0303, 0.2431, 0.2349, -0.0303, 0.2431, 0.2662, -0.0303, 0.2119, 0.3287, -0.0303, 0.2431, 0.2662, -0.0303, 0.2119, 0.2974, -0.0303, 0.2119, 0.3287, -0.0303, 0.2431, 0.3287, -0.4678, 0.2431, 0.3287, -0.4678, 0.2744, 0.3287, -0.0303, 0.2431, 0.3287, -0.4678, 0.2744, 0.3287, -0.0303, 0.2744, 0.2349, -0.0303, 0.2744, 0.2662, -0.0303, 0.3056, 0.2662, -0.4678, 0.3056, 0.2349, -0.0303, 0.2744, 0.2662, -0.4678, 0.3056, 0.2349, -0.4678, 0.2744, 0.2974, -0.4678, 0.3056, 0.2974, -0.0303, 0.3056, 0.3287, -0.0303, 0.2744, 0.2974, -0.4678, 0.3056, 0.3287, -0.0303, 0.2744, 0.3287, -0.4678, 0.2744, 0.2974, -0.4678, 0.3056, 0.2662, -0.4678, 0.3056, 0.2662, -0.0303, 0.3056, 0.2974, -0.4678, 0.3056, 0.2662, -0.0303, 0.3056, 0.2974, -0.0303, 0.3056, -0.2026, -0.4678, 0.2119, -0.1401, -0.4678, 0.2119, -0.1401, -0.0303, 0.2119, -0.2026, -0.4678, 0.2119, -0.1401, -0.0303, 0.2119, -0.2026, -0.0303, 0.2119, -0.2026, -0.4678, 0.2119, -0.2026, -0.0303, 0.2119, -0.2338, -0.0303, 0.2431, -0.2026, -0.4678, 0.2119, -0.2338, -0.0303, 0.2431, -0.2338, -0.4678, 0.2431, -0.1401, -0.0303, 0.2119, -0.1401, -0.4678, 0.2119, -0.1088, -0.4678, 0.2431, -0.1401, -0.0303, 0.2119, -0.1088, -0.4678, 0.2431, -0.1088, -0.0303, 0.2431, -0.2338, -0.0303, 0.2431, -0.2338, -0.0303, 0.2744, -0.2338, -0.4678, 0.2744, -0.2338, -0.0303, 0.2431, -0.2338, -0.4678, 0.2744, -0.2338, -0.4678, 0.2431, -0.1088, -0.4678, 0.2431, -0.1401, -0.4678, 0.2119, -0.2026, -0.4678, 0.2119, -0.1088, -0.4678, 0.2431, -0.2026, -0.4678, 0.2119, -0.2338, -0.4678, 0.2431, -0.1088, -0.4678, 0.2431, -0.2338, -0.4678, 0.2431, -0.2338, -0.4678, 0.2744, -0.1088, -0.4678, 0.2431, -0.2338, -0.4678, 0.2744, -0.2026, -0.4678, 0.3056, -0.1088, -0.4678, 0.2431, -0.2026, -0.4678, 0.3056, -0.1401, -0.4678, 0.3056, -0.1088, -0.4678, 0.2431, -0.1401, -0.4678, 0.3056, -0.1088, -0.4678, 0.2744, -0.1088, -0.0303, 0.2431, -0.1088, -0.0303, 0.2744, -0.1401, -0.0303, 0.3056, -0.1088, -0.0303, 0.2431, -0.1401, -0.0303, 0.3056, -0.2026, -0.0303, 0.3056, -0.1088, -0.0303, 0.2431, -0.2026, -0.0303, 0.3056, -0.2338, -0.0303, 0.2744, -0.1088, -0.0303, 0.2431, -0.2338, -0.0303, 0.2744, -0.2338, -0.0303, 0.2431, -0.1088, -0.0303, 0.2431, -0.2338, -0.0303, 0.2431, -0.2026, -0.0303, 0.2119, -0.1088, -0.0303, 0.2431, -0.2026, -0.0303, 0.2119, -0.1401, -0.0303, 0.2119, -0.1088, -0.0303, 0.2431, -0.1088, -0.4678, 0.2431, -0.1088, -0.4678, 0.2744, -0.1088, -0.0303, 0.2431, -0.1088, -0.4678, 0.2744, -0.1088, -0.0303, 0.2744, -0.2338, -0.0303, 0.2744, -0.2026, -0.0303, 0.3056, -0.2026, -0.4678, 0.3056, -0.2338, -0.0303, 0.2744, -0.2026, -0.4678, 0.3056, -0.2338, -0.4678, 0.2744, -0.1401, -0.4678, 0.3056, -0.1401, -0.0303, 0.3056, -0.1088, -0.0303, 0.2744, -0.1401, -0.4678, 0.3056, -0.1088, -0.0303, 0.2744, -0.1088, -0.4678, 0.2744, -0.1401, -0.4678, 0.3056, -0.2026, -0.4678, 0.3056, -0.2026, -0.0303, 0.3056, -0.1401, -0.4678, 0.3056, -0.2026, -0.0303, 0.3056, -0.1401, -0.0303, 0.3056, -0.2026, -0.0303, 0.2119, -0.1401, -0.0303, 0.2119, -0.1401, 0.2197, 0.2119, -0.2026, -0.0303, 0.2119, -0.1401, 0.2197, 0.2119, -0.2026, 0.2197, 0.2119, -0.2026, -0.0303, 0.2119, -0.2026, 0.2197, 0.2119, -0.2338, 0.2197, 0.2431, -0.2026, -0.0303, 0.2119, -0.2338, 0.2197, 0.2431, -0.2338, -0.0303, 0.2431, -0.1401, 0.2197, 0.2119, -0.1401, -0.0303, 0.2119, -0.1088, -0.0303, 0.2431, -0.1401, 0.2197, 0.2119, -0.1088, -0.0303, 0.2431, -0.1088, 0.2197, 0.2431, -0.2338, 0.2197, 0.2431, -0.2338, 0.2197, 0.2744, -0.2338, -0.0303, 0.2744, -0.2338, 0.2197, 0.2431, -0.2338, -0.0303, 0.2744, -0.2338, -0.0303, 0.2431, -0.1088, -0.0303, 0.2431, -0.1401, -0.0303, 0.2119, -0.2026, -0.0303, 0.2119, -0.1088, -0.0303, 0.2431, -0.2026, -0.0303, 0.2119, -0.2338, -0.0303, 0.2431, -0.1088, -0.0303, 0.2431, -0.2338, -0.0303, 0.2431, -0.2338, -0.0303, 0.2744, -0.1088, -0.0303, 0.2431, -0.2338, -0.0303, 0.2744, -0.2026, -0.0303, 0.3056, -0.1088, -0.0303, 0.2431, -0.2026, -0.0303, 0.3056, -0.1401, -0.0303, 0.3056, -0.1088, -0.0303, 0.2431, -0.1401, -0.0303, 0.3056, -0.1088, -0.0303, 0.2744, -0.1088, 0.2197, 0.2431, -0.1088, 0.2197, 0.2744, -0.1401, 0.2197, 0.3056, -0.1088, 0.2197, 0.2431, -0.1401, 0.2197, 0.3056, -0.2026, 0.2197, 0.3056, -0.1088, 0.2197, 0.2431, -0.2026, 0.2197, 0.3056, -0.2338, 0.2197, 0.2744, -0.1088, 0.2197, 0.2431, -0.2338, 0.2197, 0.2744, -0.2338, 0.2197, 0.2431, -0.1088, 0.2197, 0.2431, -0.2338, 0.2197, 0.2431, -0.2026, 0.2197, 0.2119, -0.1088, 0.2197, 0.2431, -0.2026, 0.2197, 0.2119, -0.1401, 0.2197, 0.2119, -0.1088, 0.2197, 0.2431, -0.1088, -0.0303, 0.2431, -0.1088, -0.0303, 0.2744, -0.1088, 0.2197, 0.2431, -0.1088, -0.0303, 0.2744, -0.1088, 0.2197, 0.2744, -0.2338, 0.2197, 0.2744, -0.2026, 0.2197, 0.3056, -0.2026, -0.0303, 0.3056, -0.2338, 0.2197, 0.2744, -0.2026, -0.0303, 0.3056, -0.2338, -0.0303, 0.2744, -0.1401, -0.0303, 0.3056, -0.1401, 0.2197, 0.3056, -0.1088, 0.2197, 0.2744, -0.1401, -0.0303, 0.3056, -0.1088, 0.2197, 0.2744, -0.1088, -0.0303, 0.2744, -0.2026, -0.0303, 0.3056, -0.2026, 0.2197, 0.3056, -0.1401, 0.2197, 0.3056, -0.2026, -0.0303, 0.3056, -0.1401, 0.2197, 0.3056, -0.1401, -0.0303, 0.3056, -0.2026, -0.0303, -0.2256, -0.1401, -0.0303, -0.2256, -0.1401, 0.2197, -0.2256, -0.2026, -0.0303, -0.2256, -0.1401, 0.2197, -0.2256, -0.2026, 0.2197, -0.2256, -0.2026, 0.2197, -0.2256, -0.2338, 0.2197, -0.1944, -0.2338, -0.0303, -0.1944, -0.2026, 0.2197, -0.2256, -0.2338, -0.0303, -0.1944, -0.2026, -0.0303, -0.2256, -0.1401, 0.2197, -0.2256, -0.1401, -0.0303, -0.2256, -0.1088, -0.0303, -0.1944, -0.1401, 0.2197, -0.2256, -0.1088, -0.0303, -0.1944, -0.1088, 0.2197, -0.1944, -0.2338, 0.2197, -0.1944, -0.2338, 0.2197, -0.1631, -0.2338, -0.0303, -0.1631, -0.2338, 0.2197, -0.1944, -0.2338, -0.0303, -0.1631, -0.2338, -0.0303, -0.1944, -0.1088, -0.0303, -0.1944, -0.1401, -0.0303, -0.2256, -0.2026, -0.0303, -0.2256, -0.1088, -0.0303, -0.1944, -0.2026, -0.0303, -0.2256, -0.2338, -0.0303, -0.1944, -0.1088, -0.0303, -0.1944, -0.2338, -0.0303, -0.1944, -0.2338, -0.0303, -0.1631, -0.1088, -0.0303, -0.1944, -0.2338, -0.0303, -0.1631, -0.2026, -0.0303, -0.1319, -0.1088, -0.0303, -0.1944, -0.2026, -0.0303, -0.1319, -0.1401, -0.0303, -0.1319, -0.1088, -0.0303, -0.1944, -0.1401, -0.0303, -0.1319, -0.1088, -0.0303, -0.1631, -0.1088, 0.2197, -0.1944, -0.1088, 0.2197, -0.1631, -0.1401, 0.2197, -0.1319, -0.1088, 0.2197, -0.1944, -0.1401, 0.2197, -0.1319, -0.2026, 0.2197, -0.1319, -0.1088, 0.2197, -0.1944, -0.2026, 0.2197, -0.1319, -0.2338, 0.2197, -0.1631, -0.1088, 0.2197, -0.1944, -0.2338, 0.2197, -0.1631, -0.2338, 0.2197, -0.1944, -0.1088, 0.2197, -0.1944, -0.2338, 0.2197, -0.1944, -0.2026, 0.2197, -0.2256, -0.1088, 0.2197, -0.1944, -0.2026, 0.2197, -0.2256, -0.1401, 0.2197, -0.2256, -0.1088, 0.2197, -0.1944, -0.1088, -0.0303, -0.1944, -0.1088, -0.0303, -0.1631, -0.1088, 0.2197, -0.1944, -0.1088, -0.0303, -0.1631, -0.1088, 0.2197, -0.1631, -0.2338, 0.2197, -0.1631, -0.2026, 0.2197, -0.1319, -0.2026, -0.0303, -0.1319, -0.2338, 0.2197, -0.1631, -0.2026, -0.0303, -0.1319, -0.2338, -0.0303, -0.1631, -0.1401, -0.0303, -0.1319, -0.1401, 0.2197, -0.1319, -0.1088, 0.2197, -0.1631, -0.1401, -0.0303, -0.1319, -0.1088, 0.2197, -0.1631, -0.1088, -0.0303, -0.1631, -0.2026, -0.0303, -0.1319, -0.2026, 0.2197, -0.1319, -0.1401, 0.2197, -0.1319, -0.2026, -0.0303, -0.1319, -0.1401, 0.2197, -0.1319, -0.1401, -0.0303, -0.1319, -0.2026, -0.4678, -0.2256, -0.1401, -0.4678, -0.2256, -0.1401, -0.0303, -0.2256, -0.2026, -0.4678, -0.2256, -0.1401, -0.0303, -0.2256, -0.2026, -0.0303, -0.2256, -0.2026, -0.4678, -0.2256, -0.2026, -0.0303, -0.2256, -0.2338, -0.0303, -0.1944, -0.2026, -0.4678, -0.2256, -0.2338, -0.0303, -0.1944, -0.2338, -0.4678, -0.1944, -0.1401, -0.0303, -0.2256, -0.1401, -0.4678, -0.2256, -0.1088, -0.4678, -0.1944, -0.1401, -0.0303, -0.2256, -0.1088, -0.4678, -0.1944, -0.1088, -0.0303, -0.1944, -0.2338, -0.0303, -0.1944, -0.2338, -0.0303, -0.1631, -0.2338, -0.4678, -0.1631, -0.2338, -0.0303, -0.1944, -0.2338, -0.4678, -0.1631, -0.2338, -0.4678, -0.1944, -0.1088, -0.4678, -0.1944, -0.1401, -0.4678, -0.2256, -0.2026, -0.4678, -0.2256, -0.1088, -0.4678, -0.1944, -0.2026, -0.4678, -0.2256, -0.2338, -0.4678, -0.1944, -0.1088, -0.4678, -0.1944, -0.2338, -0.4678, -0.1944, -0.2338, -0.4678, -0.1631, -0.1088, -0.4678, -0.1944, -0.2338, -0.4678, -0.1631, -0.2026, -0.4678, -0.1319, -0.1088, -0.4678, -0.1944, -0.2026, -0.4678, -0.1319, -0.1401, -0.4678, -0.1319, -0.1088, -0.4678, -0.1944, -0.1401, -0.4678, -0.1319, -0.1088, -0.4678, -0.1631, -0.1088, -0.0303, -0.1944, -0.1088, -0.0303, -0.1631, -0.1401, -0.0303, -0.1319, -0.1088, -0.0303, -0.1944, -0.1401, -0.0303, -0.1319, -0.2026, -0.0303, -0.1319, -0.1088, -0.0303, -0.1944, -0.2026, -0.0303, -0.1319, -0.2338, -0.0303, -0.1631, -0.1088, -0.0303, -0.1944, -0.2338, -0.0303, -0.1631, -0.2338, -0.0303, -0.1944, -0.1088, -0.0303, -0.1944, -0.2338, -0.0303, -0.1944, -0.2026, -0.0303, -0.2256, -0.1088, -0.0303, -0.1944, -0.2026, -0.0303, -0.2256, -0.1401, -0.0303, -0.2256, -0.1088, -0.0303, -0.1944, -0.1088, -0.4678, -0.1944, -0.1088, -0.4678, -0.1631, -0.1088, -0.0303, -0.1944, -0.1088, -0.4678, -0.1631, -0.1088, -0.0303, -0.1631, -0.2338, -0.0303, -0.1631, -0.2026, -0.0303, -0.1319, -0.2026, -0.4678, -0.1319, -0.2338, -0.0303, -0.1631, -0.2026, -0.4678, -0.1319, -0.2338, -0.4678, -0.1631, -0.1088, -0.4678, -0.1631, -0.1401, -0.4678, -0.1319, -0.1401, -0.0303, -0.1319, -0.1088, -0.4678, -0.1631, -0.1401, -0.0303, -0.1319, -0.1088, -0.0303, -0.1631, -0.1401, -0.4678, -0.1319, -0.2026, -0.4678, -0.1319, -0.2026, -0.0303, -0.1319, -0.1401, -0.4678, -0.1319, -0.2026, -0.0303, -0.1319, -0.1401, -0.0303, -0.1319, 0.0851, 0.1876, -0.2086, 0.0851, 0.1991, -0.2086, -0.1093, 0.1991, -0.2086, 0.0851, 0.1876, -0.2086, -0.1093, 0.1991, -0.2086, -0.1093, 0.1876, -0.2086, 0.0851, 0.1876, -0.2086, -0.1093, 0.1876, -0.2086, -0.1093, 0.1794, -0.2005, 0.0851, 0.1876, -0.2086, -0.1093, 0.1794, -0.2005, 0.0851, 0.1794, -0.2005, 0.0851, 0.1991, -0.2086, 0.0851, 0.2072, -0.2005, -0.1093, 0.2072, -0.2005, 0.0851, 0.1991, -0.2086, -0.1093, 0.2072, -0.2005, -0.1093, 0.1991, -0.2086, -0.1093, 0.2072, -0.2005, -0.1093, 0.2072, -0.189, -0.1093, 0.1991, -0.1808, -0.1093, 0.2072, -0.2005, -0.1093, 0.1991, -0.1808, -0.1093, 0.1876, -0.1808, -0.1093, 0.2072, -0.2005, -0.1093, 0.1876, -0.1808, -0.1093, 0.1794, -0.189, -0.1093, 0.2072, -0.2005, -0.1093, 0.1794, -0.189, -0.1093, 0.1794, -0.2005, -0.1093, 0.2072, -0.2005, -0.1093, 0.1794, -0.2005, -0.1093, 0.1876, -0.2086, -0.1093, 0.2072, -0.2005, -0.1093, 0.1876, -0.2086, -0.1093, 0.1991, -0.2086, 0.0851, 0.1794, -0.2005, -0.1093, 0.1794, -0.2005, -0.1093, 0.1794, -0.189, 0.0851, 0.1794, -0.2005, -0.1093, 0.1794, -0.189, 0.0851, 0.1794, -0.189, 0.0851, 0.2072, -0.2005, 0.0851, 0.2072, -0.189, -0.1093, 0.2072, -0.189, 0.0851, 0.2072, -0.2005, -0.1093, 0.2072, -0.189, -0.1093, 0.2072, -0.2005, 0.0851, 0.2072, -0.2005, 0.0851, 0.1991, -0.2086, 0.0851, 0.1876, -0.2086, 0.0851, 0.2072, -0.2005, 0.0851, 0.1876, -0.2086, 0.0851, 0.1794, -0.2005, 0.0851, 0.2072, -0.2005, 0.0851, 0.1794, -0.2005, 0.0851, 0.1794, -0.189, 0.0851, 0.2072, -0.2005, 0.0851, 0.1794, -0.189, 0.0851, 0.1876, -0.1808, 0.0851, 0.2072, -0.2005, 0.0851, 0.1876, -0.1808, 0.0851, 0.1991, -0.1808, 0.0851, 0.2072, -0.2005, 0.0851, 0.1991, -0.1808, 0.0851, 0.2072, -0.189, -0.1093, 0.1876, -0.1808, 0.0851, 0.1876, -0.1808, 0.0851, 0.1794, -0.189, -0.1093, 0.1876, -0.1808, 0.0851, 0.1794, -0.189, -0.1093, 0.1794, -0.189, -0.1093, 0.1991, -0.1808, -0.1093, 0.2072, -0.189, 0.0851, 0.2072, -0.189, -0.1093, 0.1991, -0.1808, 0.0851, 0.2072, -0.189, 0.0851, 0.1991, -0.1808, -0.1093, 0.1876, -0.1808, -0.1093, 0.1991, -0.1808, 0.0851, 0.1991, -0.1808, -0.1093, 0.1876, -0.1808, 0.0851, 0.1991, -0.1808, 0.0851, 0.1876, -0.1808, 0.2662, -0.0303, -0.2256, 0.2662, -0.4678, -0.2256, 0.2974, -0.4678, -0.2256, 0.2662, -0.0303, -0.2256, 0.2974, -0.4678, -0.2256, 0.2974, -0.0303, -0.2256, 0.2662, -0.0303, -0.2256, 0.2349, -0.0303, -0.1944, 0.2349, -0.4678, -0.1944, 0.2662, -0.0303, -0.2256, 0.2349, -0.4678, -0.1944, 0.2662, -0.4678, -0.2256, 0.2974, -0.0303, -0.2256, 0.2974, -0.4678, -0.2256, 0.3287, -0.4678, -0.1944, 0.2974, -0.0303, -0.2256, 0.3287, -0.4678, -0.1944, 0.3287, -0.0303, -0.1944, 0.2349, -0.0303, -0.1944, 0.2349, -0.0303, -0.1631, 0.2349, -0.4678, -0.1631, 0.2349, -0.0303, -0.1944, 0.2349, -0.4678, -0.1631, 0.2349, -0.4678, -0.1944, 0.3287, -0.4678, -0.1944, 0.2974, -0.4678, -0.2256, 0.2662, -0.4678, -0.2256, 0.3287, -0.4678, -0.1944, 0.2662, -0.4678, -0.2256, 0.2349, -0.4678, -0.1944, 0.3287, -0.4678, -0.1944, 0.2349, -0.4678, -0.1944, 0.2349, -0.4678, -0.1631, 0.3287, -0.4678, -0.1944, 0.2349, -0.4678, -0.1631, 0.2662, -0.4678, -0.1319, 0.3287, -0.4678, -0.1944, 0.2662, -0.4678, -0.1319, 0.2974, -0.4678, -0.1319, 0.3287, -0.4678, -0.1944, 0.2974, -0.4678, -0.1319, 0.3287, -0.4678, -0.1631, 0.3287, -0.0303, -0.1944, 0.3287, -0.0303, -0.1631, 0.2974, -0.0303, -0.1319, 0.3287, -0.0303, -0.1944, 0.2974, -0.0303, -0.1319, 0.2662, -0.0303, -0.1319, 0.3287, -0.0303, -0.1944, 0.2662, -0.0303, -0.1319, 0.2349, -0.0303, -0.1631, 0.3287, -0.0303, -0.1944, 0.2349, -0.0303, -0.1631, 0.2349, -0.0303, -0.1944, 0.3287, -0.0303, -0.1944, 0.2349, -0.0303, -0.1944, 0.2662, -0.0303, -0.2256, 0.3287, -0.0303, -0.1944, 0.2662, -0.0303, -0.2256, 0.2974, -0.0303, -0.2256, 0.3287, -0.0303, -0.1944, 0.3287, -0.4678, -0.1944, 0.3287, -0.4678, -0.1631, 0.3287, -0.0303, -0.1944, 0.3287, -0.4678, -0.1631, 0.3287, -0.0303, -0.1631, 0.2349, -0.0303, -0.1631, 0.2662, -0.0303, -0.1319, 0.2662, -0.4678, -0.1319, 0.2349, -0.0303, -0.1631, 0.2662, -0.4678, -0.1319, 0.2349, -0.4678, -0.1631, 0.3287, -0.4678, -0.1631, 0.2974, -0.4678, -0.1319, 0.2974, -0.0303, -0.1319, 0.3287, -0.4678, -0.1631, 0.2974, -0.0303, -0.1319, 0.3287, -0.0303, -0.1631, 0.2662, -0.4678, -0.1319, 0.2662, -0.0303, -0.1319, 0.2974, -0.0303, -0.1319, 0.2662, -0.4678, -0.1319, 0.2974, -0.0303, -0.1319, 0.2974, -0.4678, -0.1319, -0.2338, 0.0634, -0.2256, -0.2338, -0.0303, -0.2256, 0.3287, -0.0303, -0.2256, -0.2338, 0.0634, -0.2256, 0.3287, -0.0303, -0.2256, 0.2974, 0.0634, -0.2256, -0.2338, 0.0634, -0.2256, -0.2338, 0.0634, 0.3056, -0.2338, -0.0303, 0.3056, -0.2338, 0.0634, -0.2256, -0.2338, -0.0303, 0.3056, -0.2338, -0.0303, -0.2256, 0.3287, -0.0303, -0.2256, -0.2338, -0.0303, -0.2256, -0.2338, -0.0303, 0.3056, 0.3287, -0.0303, -0.2256, -0.2338, -0.0303, 0.3056, 0.3287, -0.0303, 0.3056, 0.2974, 0.0634, -0.2256, 0.2974, 0.0634, 0.3056, -0.2338, 0.0634, 0.3056, 0.2974, 0.0634, -0.2256, -0.2338, 0.0634, 0.3056, -0.2338, 0.0634, -0.2256, 0.2974, 0.0634, -0.2256, 0.3287, -0.0303, -0.2256, 0.3287, -0.0303, 0.3056, 0.2974, 0.0634, -0.2256, 0.3287, -0.0303, 0.3056, 0.2974, 0.0634, 0.3056, -0.2338, 0.0634, 0.3056, 0.2974, 0.0634, 0.3056, 0.3287, -0.0303, 0.3056, -0.2338, 0.0634, 0.3056, 0.3287, -0.0303, 0.3056, -0.2338, -0.0303, 0.3056, -0.2338, 0.5322, -0.2256, -0.2338, 0.2197, -0.2256, -0.1088, 0.2197, -0.2256, -0.2338, 0.5322, -0.2256, -0.1088, 0.2197, -0.2256, -0.1088, 0.5322, -0.2256, -0.2338, 0.5322, -0.2256, -0.2338, 0.5322, 0.3056, -0.2338, 0.2197, 0.3056, -0.2338, 0.5322, -0.2256, -0.2338, 0.2197, 0.3056, -0.2338, 0.2197, -0.2256, -0.1088, 0.2197, -0.2256, -0.2338, 0.2197, -0.2256, -0.2338, 0.2197, 0.3056, -0.1088, 0.2197, -0.2256, -0.2338, 0.2197, 0.3056, -0.1088, 0.2197, 0.3056, -0.1088, 0.5322, -0.2256, -0.1088, 0.5322, 0.3056, -0.2338, 0.5322, 0.3056, -0.1088, 0.5322, -0.2256, -0.2338, 0.5322, 0.3056, -0.2338, 0.5322, -0.2256, -0.1088, 0.5322, -0.2256, -0.1088, 0.2197, -0.2256, -0.1088, 0.2197, 0.3056, -0.1088, 0.5322, -0.2256, -0.1088, 0.2197, 0.3056, -0.1088, 0.5322, 0.3056, -0.2338, 0.5322, 0.3056, -0.1088, 0.5322, 0.3056, -0.1088, 0.2197, 0.3056, -0.2338, 0.5322, 0.3056, -0.1088, 0.2197, 0.3056, -0.2338, 0.2197, 0.3056, 0.0573, 0.235, -0.2086, 0.0573, 0.2072, -0.2086, 0.4739, 0.2072, -0.2086, 0.0573, 0.235, -0.2086, 0.4739, 0.2072, -0.2086, 0.4739, 0.235, -0.2086, 0.0573, 0.235, -0.2086, 0.0573, 0.235, -0.1531, 0.0573, 0.2072, -0.1531, 0.0573, 0.235, -0.2086, 0.0573, 0.2072, -0.1531, 0.0573, 0.2072, -0.2086, 0.4739, 0.2072, -0.2086, 0.0573, 0.2072, -0.2086, 0.0573, 0.2072, -0.1531, 0.4739, 0.2072, -0.2086, 0.0573, 0.2072, -0.1531, 0.4739, 0.2072, 0.0691, 0.4739, 0.235, -0.2086, 0.4739, 0.235, 0.0691, 0.0573, 0.235, -0.1531, 0.4739, 0.235, -0.2086, 0.0573, 0.235, -0.1531, 0.0573, 0.235, -0.2086, 0.4739, 0.235, -0.2086, 0.4739, 0.2072, -0.2086, 0.4739, 0.2072, 0.0691, 0.4739, 0.235, -0.2086, 0.4739, 0.2072, 0.0691, 0.4739, 0.235, 0.0691, 0.0573, 0.235, -0.1531, 0.4739, 0.235, 0.0691, 0.4739, 0.2072, 0.0691, 0.0573, 0.235, -0.1531, 0.4739, 0.2072, 0.0691, 0.0573, 0.2072, -0.1531)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_12o68"]
-size = Vector3(26.1086, 1, 22.6176)
-
-[sub_resource type="Environment" id="Environment_aqf5g"]
-fog_density = 0.1075
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_waxpn"]
-shader = ExtResource("15_csjrf")
-shader_parameter/overlay = true
-shader_parameter/scanlines_opacity = 0.153
-shader_parameter/scanlines_width = 0.08
-shader_parameter/grille_opacity = 0.0
-shader_parameter/resolution = Vector2(640, 320)
-shader_parameter/pixelate = false
-shader_parameter/roll = false
-shader_parameter/roll_speed = 8.0
-shader_parameter/roll_size = 15.0
-shader_parameter/roll_variation = 0.424
-shader_parameter/distort_intensity = 0.0
-shader_parameter/noise_opacity = 0.103
-shader_parameter/noise_speed = 5.0
-shader_parameter/static_noise_intensity = 0.03
-shader_parameter/aberration = 4.75e-08
-shader_parameter/brightness = 1.0
-shader_parameter/discolor = false
-shader_parameter/warp_amount = 0.0
-shader_parameter/clip_warp = true
-shader_parameter/vignette_intensity = 0.1
-shader_parameter/vignette_opacity = 0.0
-
 [node name="Node3D" type="Node3D" node_paths=PackedStringArray("pontos_spawn_inimigos", "pontos_spawn_itens", "no_jogador")]
 script = ExtResource("1_sffe5")
 pontos_spawn_inimigos = [NodePath("InimigosSpawn/Marker3D"), NodePath("InimigosSpawn/Marker3D2")]
 pontos_spawn_itens = [NodePath("ItensSpawn/Marker3D"), NodePath("ItensSpawn/Marker3D2"), NodePath("ItensSpawn/Marker3D3")]
 no_jogador = NodePath("player")
-
-[node name="TBLoader" type="TBLoader" parent="."]
-map_resource = "res://levels/sala2-crash_mirrored.map"
-
-[node name="Default Layer" type="Node3D" parent="TBLoader"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.43656, 2.16094, -3.06406)
-
-[node name="entity_0_geometry" type="MeshInstance3D" parent="TBLoader/Default Layer"]
-mesh = SubResource("ArrayMesh_qq681")
-
-[node name="entity_0_geometry_col" type="StaticBody3D" parent="TBLoader/Default Layer"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/Default Layer/entity_0_geometry_col"]
-shape = SubResource("ConcavePolygonShape3D_sgv44")
-
-[node name="rebocoPorta" type="MeshInstance3D" parent="TBLoader/Default Layer"]
-transform = Transform3D(3.82137e-15, 6.55671e-08, 0.9, 2, -6.55671e-08, 0, 8.74228e-08, 1.5, -3.93403e-08, 4.11096, -0.463587, 6.80744)
-material_override = SubResource("StandardMaterial3D_7f2bi")
-mesh = SubResource("BoxMesh_5ndea")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="TBLoader/Default Layer/rebocoPorta"]
-visible = false
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/Default Layer/rebocoPorta/StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_udykg")
-
-[node name="fileira" type="Node3D" parent="TBLoader"]
-
-[node name="entity_1_geometry" type="MeshInstance3D" parent="TBLoader/fileira"]
-mesh = SubResource("ArrayMesh_26jec")
-
-[node name="entity_1_geometry_col" type="StaticBody3D" parent="TBLoader/fileira"]
-
-[node name="cadeira aluno" type="Node3D" parent="TBLoader"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.3807, 1.18764, -5.6339)
-
-[node name="entity_2_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno"]
-mesh = SubResource("ArrayMesh_toewt")
-
-[node name="entity_2_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno/entity_2_geometry_col"]
-shape = SubResource("ConcavePolygonShape3D_c6np7")
-
-[node name="cadeira aluno2" type="Node3D" parent="TBLoader"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.96147, 1.205, -5.77425)
-
-[node name="entity_3_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno2"]
-mesh = SubResource("ArrayMesh_3wjyf")
-
-[node name="entity_3_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno2"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno2/entity_3_geometry_col"]
-shape = SubResource("ConcavePolygonShape3D_0qa8x")
-
-[node name="cadeira aluno3" type="Node3D" parent="TBLoader"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.52635, 1.205, -5.77113)
-
-[node name="entity_4_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno3"]
-mesh = SubResource("ArrayMesh_oxk08")
-
-[node name="entity_4_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno3"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno3/entity_4_geometry_col"]
-shape = SubResource("ConcavePolygonShape3D_ew58v")
-
-[node name="cadeira aluno4" type="Node3D" parent="TBLoader"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.01945, 1.205, -5.77425)
-
-[node name="entity_5_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno4"]
-mesh = SubResource("ArrayMesh_ska3p")
-
-[node name="entity_5_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno4"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno4/entity_5_geometry_col"]
-shape = SubResource("ConcavePolygonShape3D_x3lgl")
-
-[node name="cadeira aluno5" type="Node3D" parent="TBLoader"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.48327, 1.18751, -5.74046)
-
-[node name="entity_6_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno5"]
-mesh = SubResource("ArrayMesh_234xt")
-
-[node name="entity_6_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno5"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno5/entity_6_geometry_col"]
-shape = SubResource("ConcavePolygonShape3D_up54r")
-
-[node name="cadeira aluno6" type="Node3D" parent="TBLoader"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0406639, 1.18721, -5.80681)
-
-[node name="entity_7_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno6"]
-mesh = SubResource("ArrayMesh_aeaj4")
-
-[node name="entity_7_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno6"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno6/entity_7_geometry_col"]
-shape = SubResource("ConcavePolygonShape3D_cqxpp")
-
-[node name="cadeira aluno7" type="Node3D" parent="TBLoader"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.45259, 1.18656, -5.77438)
-
-[node name="entity_8_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno7"]
-mesh = SubResource("ArrayMesh_f26a6")
-
-[node name="entity_8_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno7"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno7/entity_8_geometry_col"]
-shape = SubResource("ConcavePolygonShape3D_q28p3")
-
-[node name="fileira2" type="Node3D" parent="TBLoader"]
-
-[node name="entity_9_geometry" type="MeshInstance3D" parent="TBLoader/fileira2"]
-mesh = SubResource("ArrayMesh_guwtt")
-
-[node name="entity_9_geometry_col" type="StaticBody3D" parent="TBLoader/fileira2"]
-
-[node name="cadeira aluno8" type="Node3D" parent="TBLoader"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.31821, 1.18712, -2.45235)
-
-[node name="entity_10_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno8"]
-mesh = SubResource("ArrayMesh_em3h6")
-
-[node name="entity_10_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno8"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno8/entity_10_geometry_col"]
-shape = SubResource("ConcavePolygonShape3D_tgvdv")
-
-[node name="cadeira aluno9" type="Node3D" parent="TBLoader"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.90737, 1.20469, -2.36618)
-
-[node name="entity_11_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno9"]
-mesh = SubResource("ArrayMesh_a10wb")
-
-[node name="entity_11_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno9"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno9/entity_11_geometry_col"]
-shape = SubResource("ConcavePolygonShape3D_jjgl6")
-
-[node name="cadeira aluno10" type="Node3D" parent="TBLoader"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.49453, 1.20469, -2.44766)
-
-[node name="entity_12_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno10"]
-mesh = SubResource("ArrayMesh_068nx")
-
-[node name="entity_12_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno10"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno10/entity_12_geometry_col"]
-shape = SubResource("ConcavePolygonShape3D_x1ah2")
-
-[node name="cadeira aluno11" type="Node3D" parent="TBLoader"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.96446, 1.20469, -2.51578)
-
-[node name="entity_13_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno11"]
-mesh = SubResource("ArrayMesh_v2jlg")
-
-[node name="entity_13_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno11"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno11/entity_13_geometry_col"]
-shape = SubResource("ConcavePolygonShape3D_38n50")
-
-[node name="cadeira aluno12" type="Node3D" parent="TBLoader"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.45805, 1.18712, -2.45235)
-
-[node name="entity_14_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno12"]
-mesh = SubResource("ArrayMesh_8sdfm")
-
-[node name="entity_14_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno12"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno12/entity_14_geometry_col"]
-shape = SubResource("ConcavePolygonShape3D_iaicy")
-
-[node name="cadeira aluno13" type="Node3D" parent="TBLoader"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.013852, 1.18751, -2.48121)
-
-[node name="entity_15_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno13"]
-mesh = SubResource("ArrayMesh_ivkfr")
-
-[node name="entity_15_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno13"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno13/entity_15_geometry_col"]
-shape = SubResource("ConcavePolygonShape3D_u4djv")
-
-[node name="cadeira aluno14" type="Node3D" parent="TBLoader"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.71996, 1.18712, -2.56289)
-
-[node name="entity_16_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno14"]
-mesh = SubResource("ArrayMesh_jsrfd")
-
-[node name="entity_16_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno14"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno14/entity_16_geometry_col"]
-shape = SubResource("ConcavePolygonShape3D_j8ohj")
-
-[node name="fileira3" type="Node3D" parent="TBLoader"]
-
-[node name="entity_17_geometry" type="MeshInstance3D" parent="TBLoader/fileira3"]
-mesh = SubResource("ArrayMesh_bmkce")
-
-[node name="entity_17_geometry_col" type="StaticBody3D" parent="TBLoader/fileira3"]
-
-[node name="cadeira aluno15" type="Node3D" parent="TBLoader"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.2495, 1.18751, -0.845627)
-
-[node name="entity_18_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno15"]
-mesh = SubResource("ArrayMesh_q32uq")
-
-[node name="entity_18_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno15"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno15/entity_18_geometry_col"]
-shape = SubResource("ConcavePolygonShape3D_ac2ck")
-
-[node name="cadeira aluno16" type="Node3D" parent="TBLoader"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.87734, 1.20469, -0.816406)
-
-[node name="entity_19_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno16"]
-mesh = SubResource("ArrayMesh_m24sb")
-
-[node name="entity_19_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno16"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno16/entity_19_geometry_col"]
-shape = SubResource("ConcavePolygonShape3D_b8xuy")
-
-[node name="cadeira aluno17" type="Node3D" parent="TBLoader"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.44107, 1.20469, -0.778199)
-
-[node name="entity_20_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno17"]
-mesh = SubResource("ArrayMesh_xigek")
-
-[node name="entity_20_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno17"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno17/entity_20_geometry_col"]
-shape = SubResource("ConcavePolygonShape3D_xggly")
-
-[node name="cadeira aluno18" type="Node3D" parent="TBLoader"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.92464, 1.20469, -0.849323)
-
-[node name="entity_21_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno18"]
-mesh = SubResource("ArrayMesh_8ju3k")
-
-[node name="entity_21_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno18"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno18/entity_21_geometry_col"]
-shape = SubResource("ConcavePolygonShape3D_hxq60")
-
-[node name="cadeira aluno19" type="Node3D" parent="TBLoader"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.40561, 1.18764, -0.816119)
-
-[node name="entity_22_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno19"]
-mesh = SubResource("ArrayMesh_wo12i")
-
-[node name="entity_22_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno19"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno19/entity_22_geometry_col"]
-shape = SubResource("ConcavePolygonShape3D_hiu3r")
-
-[node name="cadeira aluno20" type="Node3D" parent="TBLoader"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.477609, 1.18716, -0.00705331)
-
-[node name="entity_23_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno20"]
-mesh = SubResource("ArrayMesh_dqd8u")
-
-[node name="entity_23_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno20"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno20/entity_23_geometry_col"]
-shape = SubResource("ConcavePolygonShape3D_ayjjn")
-
-[node name="cadeira aluno21" type="Node3D" parent="TBLoader"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.853531, 1.18764, -0.726032)
-
-[node name="entity_24_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno21"]
-mesh = SubResource("ArrayMesh_j12rr")
-
-[node name="entity_24_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno21"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno21/entity_24_geometry_col"]
-shape = SubResource("ConcavePolygonShape3D_jbw2c")
-
-[node name="fileira4" type="Node3D" parent="TBLoader"]
-
-[node name="entity_25_geometry" type="MeshInstance3D" parent="TBLoader/fileira4"]
-mesh = SubResource("ArrayMesh_8t42t")
-
-[node name="entity_25_geometry_col" type="StaticBody3D" parent="TBLoader/fileira4"]
-
-[node name="cadeira aluno22" type="Node3D" parent="TBLoader"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.26656, 1.18764, 1.49094)
-
-[node name="entity_26_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno22"]
-mesh = SubResource("ArrayMesh_trn8t")
-
-[node name="entity_26_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno22"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno22/entity_26_geometry_col"]
-shape = SubResource("ConcavePolygonShape3D_s3bax")
-
-[node name="cadeira aluno23" type="Node3D" parent="TBLoader"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.87734, 1.20469, 1.49141)
-
-[node name="entity_27_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno23"]
-mesh = SubResource("ArrayMesh_uoa1f")
-
-[node name="entity_27_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno23"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno23/entity_27_geometry_col"]
-shape = SubResource("ConcavePolygonShape3D_3yr4o")
-
-[node name="cadeira aluno24" type="Node3D" parent="TBLoader"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.44219, 1.20469, 1.49297)
-
-[node name="entity_28_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno24"]
-mesh = SubResource("ArrayMesh_up5oo")
-
-[node name="entity_28_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno24"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno24/entity_28_geometry_col"]
-shape = SubResource("ConcavePolygonShape3D_ire1e")
-
-[node name="cadeira aluno25" type="Node3D" parent="TBLoader"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.90452, 1.20469, 1.42835)
-
-[node name="entity_29_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno25"]
-mesh = SubResource("ArrayMesh_weul8")
-
-[node name="entity_29_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno25"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno25/entity_29_geometry_col"]
-shape = SubResource("ConcavePolygonShape3D_ex2vm")
-
-[node name="cadeira aluno26" type="Node3D" parent="TBLoader"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.40561, 1.18764, 1.49094)
-
-[node name="entity_30_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno26"]
-mesh = SubResource("ArrayMesh_lf2ul")
-
-[node name="entity_30_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno26"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno26/entity_30_geometry_col"]
-shape = SubResource("ConcavePolygonShape3D_c0crp")
-
-[node name="cadeira aluno27" type="Node3D" parent="TBLoader"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0578662, 1.18717, 1.56554)
-
-[node name="entity_31_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno27"]
-mesh = SubResource("ArrayMesh_onhio")
-
-[node name="entity_31_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno27"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno27/entity_31_geometry_col"]
-shape = SubResource("ConcavePolygonShape3D_7b2lm")
-
-[node name="cadeira aluno28" type="Node3D" parent="TBLoader"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.54187, 1.18764, 1.49094)
-
-[node name="entity_32_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno28"]
-mesh = SubResource("ArrayMesh_wop4f")
-
-[node name="entity_32_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno28"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno28/entity_32_geometry_col"]
-shape = SubResource("ConcavePolygonShape3D_sdibh")
-
-[node name="fileira5" type="Node3D" parent="TBLoader"]
-
-[node name="entity_33_geometry" type="MeshInstance3D" parent="TBLoader/fileira5"]
-mesh = SubResource("ArrayMesh_lohqb")
-
-[node name="entity_33_geometry_col" type="StaticBody3D" parent="TBLoader/fileira5"]
-
-[node name="cadeira aluno29" type="Node3D" parent="TBLoader"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.26656, 1.18764, 2.95998)
-
-[node name="entity_34_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno29"]
-mesh = SubResource("ArrayMesh_038o0")
-
-[node name="entity_34_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno29"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno29/entity_34_geometry_col"]
-shape = SubResource("ConcavePolygonShape3D_p3nq4")
-
-[node name="cadeira aluno30" type="Node3D" parent="TBLoader"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.06968, 1.20469, 3.00588)
-
-[node name="entity_35_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno30"]
-mesh = SubResource("ArrayMesh_7bsqn")
-
-[node name="entity_35_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno30"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno30/entity_35_geometry_col"]
-shape = SubResource("ConcavePolygonShape3D_iqnfh")
-
-[node name="cadeira aluno31" type="Node3D" parent="TBLoader"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.44219, 1.20469, 2.96328)
-
-[node name="entity_36_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno31"]
-mesh = SubResource("ArrayMesh_setvf")
-
-[node name="entity_36_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno31"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno31/entity_36_geometry_col"]
-shape = SubResource("ConcavePolygonShape3D_wfoj0")
-
-[node name="cadeira aluno32" type="Node3D" parent="TBLoader"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.92814, 1.20469, 3.02422)
-
-[node name="entity_37_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno32"]
-mesh = SubResource("ArrayMesh_2cmxh")
-
-[node name="entity_37_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno32"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno32/entity_37_geometry_col"]
-shape = SubResource("ConcavePolygonShape3D_cxfm1")
-
-[node name="cadeira aluno33" type="Node3D" parent="TBLoader"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.40561, 1.18764, 2.95998)
-
-[node name="entity_38_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno33"]
-mesh = SubResource("ArrayMesh_r5h2m")
-
-[node name="entity_38_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno33"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno33/entity_38_geometry_col"]
-shape = SubResource("ConcavePolygonShape3D_hiwt4")
-
-[node name="cadeira aluno34" type="Node3D" parent="TBLoader"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0453723, 1.18764, 2.93357)
-
-[node name="entity_39_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno34"]
-mesh = SubResource("ArrayMesh_5gb47")
-
-[node name="entity_39_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno34"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno34/entity_39_geometry_col"]
-shape = SubResource("ConcavePolygonShape3D_ucuuf")
-
-[node name="cadeira aluno35" type="Node3D" parent="TBLoader"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.54098, 1.18753, 3.00928)
-
-[node name="entity_40_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno35"]
-mesh = SubResource("ArrayMesh_lyjvh")
-
-[node name="entity_40_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno35"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno35/entity_40_geometry_col"]
-shape = SubResource("ConcavePolygonShape3D_oic6r")
-
-[node name="guadro" type="Node3D" parent="TBLoader"]
-
-[node name="entity_41_geometry" type="MeshInstance3D" parent="TBLoader/guadro"]
-mesh = SubResource("ArrayMesh_h22we")
-
-[node name="entity_41_geometry_col" type="StaticBody3D" parent="TBLoader/guadro"]
-
-[node name="quadro" type="Node3D" parent="TBLoader"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.00524, 2.39397, -1.26786)
-
-[node name="entity_42_geometry" type="MeshInstance3D" parent="TBLoader/quadro"]
-mesh = SubResource("ArrayMesh_q2ne8")
-
-[node name="entity_42_geometry_col" type="StaticBody3D" parent="TBLoader/quadro"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/quadro/entity_42_geometry_col"]
-shape = SubResource("ConcavePolygonShape3D_wjap4")
-
-[node name="apagador" type="Node3D" parent="TBLoader"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.96875, 1.65625, 0.5)
-
-[node name="entity_43_geometry" type="MeshInstance3D" parent="TBLoader/apagador"]
-mesh = SubResource("ArrayMesh_0xrpr")
-
-[node name="entity_43_geometry_col" type="StaticBody3D" parent="TBLoader/apagador"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/apagador/entity_43_geometry_col"]
-shape = SubResource("ConcavePolygonShape3D_ssng8")
-
-[node name="mesa do putao" type="Node3D" parent="TBLoader"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.4998, 1.23438, -3.97792)
-
-[node name="entity_44_geometry" type="MeshInstance3D" parent="TBLoader/mesa do putao"]
-mesh = SubResource("ArrayMesh_8nvq0")
-
-[node name="entity_44_geometry_col" type="StaticBody3D" parent="TBLoader/mesa do putao"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/mesa do putao/entity_44_geometry_col"]
-shape = SubResource("ConcavePolygonShape3D_v6blr")
-
-[node name="fileira6" type="Node3D" parent="TBLoader"]
-
-[node name="entity_45_geometry" type="MeshInstance3D" parent="TBLoader/fileira6"]
-mesh = SubResource("ArrayMesh_wkeqy")
-
-[node name="entity_45_geometry_col" type="StaticBody3D" parent="TBLoader/fileira6"]
-
-[node name="cadeira aluno36" type="Node3D" parent="TBLoader"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.26656, 1.18764, 4.70998)
-
-[node name="entity_46_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno36"]
-mesh = SubResource("ArrayMesh_ca160")
-
-[node name="entity_46_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno36"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno36/entity_46_geometry_col"]
-shape = SubResource("ConcavePolygonShape3D_4d0wq")
-
-[node name="cadeira aluno37" type="Node3D" parent="TBLoader"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.06968, 1.20469, 4.75588)
-
-[node name="entity_47_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno37"]
-mesh = SubResource("ArrayMesh_8qot7")
-
-[node name="entity_47_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno37"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno37/entity_47_geometry_col"]
-shape = SubResource("ConcavePolygonShape3D_3r4qr")
-
-[node name="cadeira aluno38" type="Node3D" parent="TBLoader"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.44219, 1.20469, 4.71328)
-
-[node name="entity_48_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno38"]
-mesh = SubResource("ArrayMesh_rtv0t")
-
-[node name="entity_48_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno38"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno38/entity_48_geometry_col"]
-shape = SubResource("ConcavePolygonShape3D_qn0ox")
-
-[node name="cadeira aluno39" type="Node3D" parent="TBLoader"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.92814, 1.20469, 4.77422)
-
-[node name="entity_49_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno39"]
-mesh = SubResource("ArrayMesh_xvvbt")
-
-[node name="entity_49_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno39"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno39/entity_49_geometry_col"]
-shape = SubResource("ConcavePolygonShape3D_n0pan")
-
-[node name="cadeira aluno40" type="Node3D" parent="TBLoader"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.40561, 1.18764, 4.70998)
-
-[node name="entity_50_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno40"]
-mesh = SubResource("ArrayMesh_n8m4f")
-
-[node name="entity_50_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno40"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno40/entity_50_geometry_col"]
-shape = SubResource("ConcavePolygonShape3D_k0svb")
-
-[node name="cadeira aluno41" type="Node3D" parent="TBLoader"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0453723, 1.18764, 4.68357)
-
-[node name="entity_51_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno41"]
-mesh = SubResource("ArrayMesh_404on")
-
-[node name="entity_51_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno41"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno41/entity_51_geometry_col"]
-shape = SubResource("ConcavePolygonShape3D_noga2")
-
-[node name="cadeira aluno42" type="Node3D" parent="TBLoader"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.54098, 1.18753, 4.75928)
-
-[node name="entity_52_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno42"]
-mesh = SubResource("ArrayMesh_dfyea")
-
-[node name="entity_52_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno42"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno42/entity_52_geometry_col"]
-shape = SubResource("ConcavePolygonShape3D_q7jbo")
-
-[node name="fileira7" type="Node3D" parent="TBLoader"]
-
-[node name="entity_53_geometry" type="MeshInstance3D" parent="TBLoader/fileira7"]
-mesh = SubResource("ArrayMesh_tqote")
-
-[node name="entity_53_geometry_col" type="StaticBody3D" parent="TBLoader/fileira7"]
-
-[node name="cadeira aluno43" type="Node3D" parent="TBLoader"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.3807, 1.18764, -4.0089)
-
-[node name="entity_54_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno43"]
-mesh = SubResource("ArrayMesh_rbxes")
-
-[node name="entity_54_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno43"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno43/entity_54_geometry_col"]
-shape = SubResource("ConcavePolygonShape3D_3ot45")
-
-[node name="cadeira aluno44" type="Node3D" parent="TBLoader"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.96147, 1.205, -4.14925)
-
-[node name="entity_55_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno44"]
-mesh = SubResource("ArrayMesh_vtqfa")
-
-[node name="entity_55_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno44"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno44/entity_55_geometry_col"]
-shape = SubResource("ConcavePolygonShape3D_6dlja")
-
-[node name="cadeira aluno45" type="Node3D" parent="TBLoader"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.52635, 1.205, -4.14613)
-
-[node name="entity_56_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno45"]
-mesh = SubResource("ArrayMesh_8ww4s")
-
-[node name="entity_56_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno45"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno45/entity_56_geometry_col"]
-shape = SubResource("ConcavePolygonShape3D_xogpo")
-
-[node name="cadeira aluno46" type="Node3D" parent="TBLoader"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.01945, 1.205, -4.14925)
-
-[node name="entity_57_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno46"]
-mesh = SubResource("ArrayMesh_ldplq")
-
-[node name="entity_57_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno46"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno46/entity_57_geometry_col"]
-shape = SubResource("ConcavePolygonShape3D_6x41a")
-
-[node name="cadeira aluno47" type="Node3D" parent="TBLoader"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.48327, 1.18751, -4.11546)
-
-[node name="entity_58_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno47"]
-mesh = SubResource("ArrayMesh_v4uml")
-
-[node name="entity_58_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno47"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno47/entity_58_geometry_col"]
-shape = SubResource("ConcavePolygonShape3D_7trdv")
-
-[node name="cadeira aluno48" type="Node3D" parent="TBLoader"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0406639, 1.18721, -4.18181)
-
-[node name="entity_59_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno48"]
-mesh = SubResource("ArrayMesh_8gi30")
-
-[node name="entity_59_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno48"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno48/entity_59_geometry_col"]
-shape = SubResource("ConcavePolygonShape3D_y7tt4")
-
-[node name="cadeira aluno49" type="Node3D" parent="TBLoader"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.45259, 1.18656, -4.14938)
-
-[node name="entity_60_geometry" type="MeshInstance3D" parent="TBLoader/cadeira aluno49"]
-mesh = SubResource("ArrayMesh_7336d")
-
-[node name="entity_60_geometry_col" type="StaticBody3D" parent="TBLoader/cadeira aluno49"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/cadeira aluno49/entity_60_geometry_col"]
-shape = SubResource("ConcavePolygonShape3D_oqmrp")
 
 [node name="player" parent="." instance=ExtResource("9_5ndea")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.4535, 1.7672, 3.73881)
@@ -2653,6 +2004,662 @@ offset_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_csjrf")
+
+[node name="TBLoader" type="TBLoader" parent="NavigationRegion3D"]
+map_resource = "res://levels/sala2-crash_mirrored.map"
+
+[node name="Default Layer" type="Node3D" parent="NavigationRegion3D/TBLoader"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.43656, 2.16094, -3.06406)
+
+[node name="entity_0_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/Default Layer"]
+mesh = SubResource("ArrayMesh_qq681")
+
+[node name="entity_0_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/Default Layer"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/Default Layer/entity_0_geometry_col"]
+shape = SubResource("ConcavePolygonShape3D_sgv44")
+
+[node name="rebocoPorta" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/Default Layer"]
+transform = Transform3D(3.82137e-15, 6.55671e-08, 0.9, 2, -6.55671e-08, 0, 8.74228e-08, 1.5, -3.93403e-08, 4.11096, -0.463587, 6.80744)
+material_override = SubResource("StandardMaterial3D_7f2bi")
+mesh = SubResource("BoxMesh_5ndea")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/Default Layer/rebocoPorta"]
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/Default Layer/rebocoPorta/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_udykg")
+
+[node name="fileira" type="Node3D" parent="NavigationRegion3D/TBLoader"]
+
+[node name="entity_1_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/fileira"]
+mesh = SubResource("ArrayMesh_26jec")
+
+[node name="entity_1_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/fileira"]
+
+[node name="cadeira aluno" type="Node3D" parent="NavigationRegion3D/TBLoader"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.3807, 1.18764, -5.6339)
+
+[node name="entity_2_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno"]
+mesh = SubResource("ArrayMesh_toewt")
+
+[node name="entity_2_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno/entity_2_geometry_col"]
+shape = SubResource("ConcavePolygonShape3D_c6np7")
+
+[node name="cadeira aluno2" type="Node3D" parent="NavigationRegion3D/TBLoader"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.96147, 1.205, -5.77425)
+
+[node name="entity_3_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno2"]
+mesh = SubResource("ArrayMesh_3wjyf")
+
+[node name="entity_3_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno2/entity_3_geometry_col"]
+shape = SubResource("ConcavePolygonShape3D_0qa8x")
+
+[node name="cadeira aluno3" type="Node3D" parent="NavigationRegion3D/TBLoader"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.52635, 1.205, -5.77113)
+
+[node name="entity_4_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno3"]
+mesh = SubResource("ArrayMesh_oxk08")
+
+[node name="entity_4_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno3/entity_4_geometry_col"]
+shape = SubResource("ConcavePolygonShape3D_ew58v")
+
+[node name="cadeira aluno4" type="Node3D" parent="NavigationRegion3D/TBLoader"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.01945, 1.205, -5.77425)
+
+[node name="entity_5_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno4"]
+mesh = SubResource("ArrayMesh_ska3p")
+
+[node name="entity_5_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno4/entity_5_geometry_col"]
+shape = SubResource("ConcavePolygonShape3D_x3lgl")
+
+[node name="cadeira aluno5" type="Node3D" parent="NavigationRegion3D/TBLoader"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.48327, 1.18751, -5.74046)
+
+[node name="entity_6_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno5"]
+mesh = SubResource("ArrayMesh_234xt")
+
+[node name="entity_6_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno5"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno5/entity_6_geometry_col"]
+shape = SubResource("ConcavePolygonShape3D_up54r")
+
+[node name="cadeira aluno6" type="Node3D" parent="NavigationRegion3D/TBLoader"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0406639, 1.18721, -5.80681)
+
+[node name="entity_7_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno6"]
+mesh = SubResource("ArrayMesh_aeaj4")
+
+[node name="entity_7_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno6"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno6/entity_7_geometry_col"]
+shape = SubResource("ConcavePolygonShape3D_cqxpp")
+
+[node name="cadeira aluno7" type="Node3D" parent="NavigationRegion3D/TBLoader"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.45259, 1.18656, -5.77438)
+
+[node name="entity_8_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno7"]
+mesh = SubResource("ArrayMesh_f26a6")
+
+[node name="entity_8_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno7"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno7/entity_8_geometry_col"]
+shape = SubResource("ConcavePolygonShape3D_q28p3")
+
+[node name="fileira2" type="Node3D" parent="NavigationRegion3D/TBLoader"]
+
+[node name="entity_9_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/fileira2"]
+mesh = SubResource("ArrayMesh_guwtt")
+
+[node name="entity_9_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/fileira2"]
+
+[node name="cadeira aluno8" type="Node3D" parent="NavigationRegion3D/TBLoader"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.31821, 1.18712, -2.45235)
+
+[node name="entity_10_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno8"]
+mesh = SubResource("ArrayMesh_em3h6")
+
+[node name="entity_10_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno8"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno8/entity_10_geometry_col"]
+shape = SubResource("ConcavePolygonShape3D_tgvdv")
+
+[node name="cadeira aluno9" type="Node3D" parent="NavigationRegion3D/TBLoader"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.90737, 1.20469, -2.36618)
+
+[node name="entity_11_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno9"]
+mesh = SubResource("ArrayMesh_a10wb")
+
+[node name="entity_11_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno9"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno9/entity_11_geometry_col"]
+shape = SubResource("ConcavePolygonShape3D_jjgl6")
+
+[node name="cadeira aluno10" type="Node3D" parent="NavigationRegion3D/TBLoader"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.49453, 1.20469, -2.44766)
+
+[node name="entity_12_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno10"]
+mesh = SubResource("ArrayMesh_068nx")
+
+[node name="entity_12_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno10"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno10/entity_12_geometry_col"]
+shape = SubResource("ConcavePolygonShape3D_x1ah2")
+
+[node name="cadeira aluno11" type="Node3D" parent="NavigationRegion3D/TBLoader"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.96446, 1.20469, -2.51578)
+
+[node name="entity_13_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno11"]
+mesh = SubResource("ArrayMesh_v2jlg")
+
+[node name="entity_13_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno11"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno11/entity_13_geometry_col"]
+shape = SubResource("ConcavePolygonShape3D_38n50")
+
+[node name="cadeira aluno12" type="Node3D" parent="NavigationRegion3D/TBLoader"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.45805, 1.18712, -2.45235)
+
+[node name="entity_14_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno12"]
+mesh = SubResource("ArrayMesh_8sdfm")
+
+[node name="entity_14_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno12"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno12/entity_14_geometry_col"]
+shape = SubResource("ConcavePolygonShape3D_iaicy")
+
+[node name="cadeira aluno13" type="Node3D" parent="NavigationRegion3D/TBLoader"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.013852, 1.18751, -2.48121)
+
+[node name="entity_15_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno13"]
+mesh = SubResource("ArrayMesh_ivkfr")
+
+[node name="entity_15_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno13"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno13/entity_15_geometry_col"]
+shape = SubResource("ConcavePolygonShape3D_u4djv")
+
+[node name="cadeira aluno14" type="Node3D" parent="NavigationRegion3D/TBLoader"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.71996, 1.18712, -2.56289)
+
+[node name="entity_16_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno14"]
+mesh = SubResource("ArrayMesh_jsrfd")
+
+[node name="entity_16_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno14"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno14/entity_16_geometry_col"]
+shape = SubResource("ConcavePolygonShape3D_j8ohj")
+
+[node name="fileira3" type="Node3D" parent="NavigationRegion3D/TBLoader"]
+
+[node name="entity_17_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/fileira3"]
+mesh = SubResource("ArrayMesh_bmkce")
+
+[node name="entity_17_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/fileira3"]
+
+[node name="cadeira aluno15" type="Node3D" parent="NavigationRegion3D/TBLoader"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.2495, 1.18751, -0.845627)
+
+[node name="entity_18_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno15"]
+mesh = SubResource("ArrayMesh_q32uq")
+
+[node name="entity_18_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno15"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno15/entity_18_geometry_col"]
+shape = SubResource("ConcavePolygonShape3D_ac2ck")
+
+[node name="cadeira aluno16" type="Node3D" parent="NavigationRegion3D/TBLoader"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.87734, 1.20469, -0.816406)
+
+[node name="entity_19_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno16"]
+mesh = SubResource("ArrayMesh_m24sb")
+
+[node name="entity_19_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno16"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno16/entity_19_geometry_col"]
+shape = SubResource("ConcavePolygonShape3D_b8xuy")
+
+[node name="cadeira aluno17" type="Node3D" parent="NavigationRegion3D/TBLoader"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.44107, 1.20469, -0.778199)
+
+[node name="entity_20_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno17"]
+mesh = SubResource("ArrayMesh_xigek")
+
+[node name="entity_20_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno17"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno17/entity_20_geometry_col"]
+shape = SubResource("ConcavePolygonShape3D_xggly")
+
+[node name="cadeira aluno18" type="Node3D" parent="NavigationRegion3D/TBLoader"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.92464, 1.20469, -0.849323)
+
+[node name="entity_21_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno18"]
+mesh = SubResource("ArrayMesh_8ju3k")
+
+[node name="entity_21_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno18"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno18/entity_21_geometry_col"]
+shape = SubResource("ConcavePolygonShape3D_hxq60")
+
+[node name="cadeira aluno19" type="Node3D" parent="NavigationRegion3D/TBLoader"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.40561, 1.18764, -0.816119)
+
+[node name="entity_22_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno19"]
+mesh = SubResource("ArrayMesh_wo12i")
+
+[node name="entity_22_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno19"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno19/entity_22_geometry_col"]
+shape = SubResource("ConcavePolygonShape3D_hiu3r")
+
+[node name="cadeira aluno20" type="Node3D" parent="NavigationRegion3D/TBLoader"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.477609, 1.18716, -0.00705331)
+
+[node name="entity_23_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno20"]
+mesh = SubResource("ArrayMesh_dqd8u")
+
+[node name="entity_23_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno20"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno20/entity_23_geometry_col"]
+shape = SubResource("ConcavePolygonShape3D_ayjjn")
+
+[node name="cadeira aluno21" type="Node3D" parent="NavigationRegion3D/TBLoader"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.853531, 1.18764, -0.726032)
+
+[node name="entity_24_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno21"]
+mesh = SubResource("ArrayMesh_j12rr")
+
+[node name="entity_24_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno21"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno21/entity_24_geometry_col"]
+shape = SubResource("ConcavePolygonShape3D_jbw2c")
+
+[node name="fileira4" type="Node3D" parent="NavigationRegion3D/TBLoader"]
+
+[node name="entity_25_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/fileira4"]
+mesh = SubResource("ArrayMesh_8t42t")
+
+[node name="entity_25_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/fileira4"]
+
+[node name="cadeira aluno22" type="Node3D" parent="NavigationRegion3D/TBLoader"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.26656, 1.18764, 1.49094)
+
+[node name="entity_26_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno22"]
+mesh = SubResource("ArrayMesh_trn8t")
+
+[node name="entity_26_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno22"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno22/entity_26_geometry_col"]
+shape = SubResource("ConcavePolygonShape3D_s3bax")
+
+[node name="cadeira aluno23" type="Node3D" parent="NavigationRegion3D/TBLoader"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.87734, 1.20469, 1.49141)
+
+[node name="entity_27_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno23"]
+mesh = SubResource("ArrayMesh_uoa1f")
+
+[node name="entity_27_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno23"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno23/entity_27_geometry_col"]
+shape = SubResource("ConcavePolygonShape3D_3yr4o")
+
+[node name="cadeira aluno24" type="Node3D" parent="NavigationRegion3D/TBLoader"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.44219, 1.20469, 1.49297)
+
+[node name="entity_28_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno24"]
+mesh = SubResource("ArrayMesh_up5oo")
+
+[node name="entity_28_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno24"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno24/entity_28_geometry_col"]
+shape = SubResource("ConcavePolygonShape3D_ire1e")
+
+[node name="cadeira aluno25" type="Node3D" parent="NavigationRegion3D/TBLoader"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.90452, 1.20469, 1.42835)
+
+[node name="entity_29_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno25"]
+mesh = SubResource("ArrayMesh_weul8")
+
+[node name="entity_29_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno25"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno25/entity_29_geometry_col"]
+shape = SubResource("ConcavePolygonShape3D_ex2vm")
+
+[node name="cadeira aluno26" type="Node3D" parent="NavigationRegion3D/TBLoader"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.40561, 1.18764, 1.49094)
+
+[node name="entity_30_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno26"]
+mesh = SubResource("ArrayMesh_lf2ul")
+
+[node name="entity_30_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno26"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno26/entity_30_geometry_col"]
+shape = SubResource("ConcavePolygonShape3D_c0crp")
+
+[node name="cadeira aluno27" type="Node3D" parent="NavigationRegion3D/TBLoader"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0578662, 1.18717, 1.56554)
+
+[node name="entity_31_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno27"]
+mesh = SubResource("ArrayMesh_onhio")
+
+[node name="entity_31_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno27"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno27/entity_31_geometry_col"]
+shape = SubResource("ConcavePolygonShape3D_7b2lm")
+
+[node name="cadeira aluno28" type="Node3D" parent="NavigationRegion3D/TBLoader"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.54187, 1.18764, 1.49094)
+
+[node name="entity_32_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno28"]
+mesh = SubResource("ArrayMesh_wop4f")
+
+[node name="entity_32_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno28"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno28/entity_32_geometry_col"]
+shape = SubResource("ConcavePolygonShape3D_sdibh")
+
+[node name="fileira5" type="Node3D" parent="NavigationRegion3D/TBLoader"]
+
+[node name="entity_33_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/fileira5"]
+mesh = SubResource("ArrayMesh_lohqb")
+
+[node name="entity_33_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/fileira5"]
+
+[node name="cadeira aluno29" type="Node3D" parent="NavigationRegion3D/TBLoader"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.26656, 1.18764, 2.95998)
+
+[node name="entity_34_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno29"]
+mesh = SubResource("ArrayMesh_038o0")
+
+[node name="entity_34_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno29"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno29/entity_34_geometry_col"]
+shape = SubResource("ConcavePolygonShape3D_p3nq4")
+
+[node name="cadeira aluno30" type="Node3D" parent="NavigationRegion3D/TBLoader"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.06968, 1.20469, 3.00588)
+
+[node name="entity_35_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno30"]
+mesh = SubResource("ArrayMesh_7bsqn")
+
+[node name="entity_35_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno30"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno30/entity_35_geometry_col"]
+shape = SubResource("ConcavePolygonShape3D_iqnfh")
+
+[node name="cadeira aluno31" type="Node3D" parent="NavigationRegion3D/TBLoader"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.44219, 1.20469, 2.96328)
+
+[node name="entity_36_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno31"]
+mesh = SubResource("ArrayMesh_setvf")
+
+[node name="entity_36_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno31"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno31/entity_36_geometry_col"]
+shape = SubResource("ConcavePolygonShape3D_wfoj0")
+
+[node name="cadeira aluno32" type="Node3D" parent="NavigationRegion3D/TBLoader"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.92814, 1.20469, 3.02422)
+
+[node name="entity_37_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno32"]
+mesh = SubResource("ArrayMesh_2cmxh")
+
+[node name="entity_37_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno32"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno32/entity_37_geometry_col"]
+shape = SubResource("ConcavePolygonShape3D_cxfm1")
+
+[node name="cadeira aluno33" type="Node3D" parent="NavigationRegion3D/TBLoader"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.40561, 1.18764, 2.95998)
+
+[node name="entity_38_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno33"]
+mesh = SubResource("ArrayMesh_r5h2m")
+
+[node name="entity_38_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno33"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno33/entity_38_geometry_col"]
+shape = SubResource("ConcavePolygonShape3D_hiwt4")
+
+[node name="cadeira aluno34" type="Node3D" parent="NavigationRegion3D/TBLoader"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0453723, 1.18764, 2.93357)
+
+[node name="entity_39_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno34"]
+mesh = SubResource("ArrayMesh_5gb47")
+
+[node name="entity_39_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno34"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno34/entity_39_geometry_col"]
+shape = SubResource("ConcavePolygonShape3D_ucuuf")
+
+[node name="cadeira aluno35" type="Node3D" parent="NavigationRegion3D/TBLoader"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.54098, 1.18753, 3.00928)
+
+[node name="entity_40_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno35"]
+mesh = SubResource("ArrayMesh_lyjvh")
+
+[node name="entity_40_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno35"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno35/entity_40_geometry_col"]
+shape = SubResource("ConcavePolygonShape3D_oic6r")
+
+[node name="guadro" type="Node3D" parent="NavigationRegion3D/TBLoader"]
+
+[node name="entity_41_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/guadro"]
+mesh = SubResource("ArrayMesh_h22we")
+
+[node name="entity_41_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/guadro"]
+
+[node name="quadro" type="Node3D" parent="NavigationRegion3D/TBLoader"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.00524, 2.39397, -1.26786)
+
+[node name="entity_42_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/quadro"]
+mesh = SubResource("ArrayMesh_q2ne8")
+
+[node name="entity_42_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/quadro"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/quadro/entity_42_geometry_col"]
+shape = SubResource("ConcavePolygonShape3D_wjap4")
+
+[node name="apagador" type="Node3D" parent="NavigationRegion3D/TBLoader"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.96875, 1.65625, 0.5)
+
+[node name="entity_43_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/apagador"]
+mesh = SubResource("ArrayMesh_0xrpr")
+
+[node name="entity_43_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/apagador"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/apagador/entity_43_geometry_col"]
+shape = SubResource("ConcavePolygonShape3D_ssng8")
+
+[node name="mesa do putao" type="Node3D" parent="NavigationRegion3D/TBLoader"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.4998, 1.23438, -3.97792)
+
+[node name="entity_44_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/mesa do putao"]
+mesh = SubResource("ArrayMesh_8nvq0")
+
+[node name="entity_44_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/mesa do putao"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/mesa do putao/entity_44_geometry_col"]
+shape = SubResource("ConcavePolygonShape3D_v6blr")
+
+[node name="fileira6" type="Node3D" parent="NavigationRegion3D/TBLoader"]
+
+[node name="entity_45_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/fileira6"]
+mesh = SubResource("ArrayMesh_wkeqy")
+
+[node name="entity_45_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/fileira6"]
+
+[node name="cadeira aluno36" type="Node3D" parent="NavigationRegion3D/TBLoader"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.26656, 1.18764, 4.70998)
+
+[node name="entity_46_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno36"]
+mesh = SubResource("ArrayMesh_ca160")
+
+[node name="entity_46_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno36"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno36/entity_46_geometry_col"]
+shape = SubResource("ConcavePolygonShape3D_4d0wq")
+
+[node name="cadeira aluno37" type="Node3D" parent="NavigationRegion3D/TBLoader"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.06968, 1.20469, 4.75588)
+
+[node name="entity_47_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno37"]
+mesh = SubResource("ArrayMesh_8qot7")
+
+[node name="entity_47_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno37"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno37/entity_47_geometry_col"]
+shape = SubResource("ConcavePolygonShape3D_3r4qr")
+
+[node name="cadeira aluno38" type="Node3D" parent="NavigationRegion3D/TBLoader"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.44219, 1.20469, 4.71328)
+
+[node name="entity_48_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno38"]
+mesh = SubResource("ArrayMesh_rtv0t")
+
+[node name="entity_48_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno38"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno38/entity_48_geometry_col"]
+shape = SubResource("ConcavePolygonShape3D_qn0ox")
+
+[node name="cadeira aluno39" type="Node3D" parent="NavigationRegion3D/TBLoader"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.92814, 1.20469, 4.77422)
+
+[node name="entity_49_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno39"]
+mesh = SubResource("ArrayMesh_xvvbt")
+
+[node name="entity_49_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno39"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno39/entity_49_geometry_col"]
+shape = SubResource("ConcavePolygonShape3D_n0pan")
+
+[node name="cadeira aluno40" type="Node3D" parent="NavigationRegion3D/TBLoader"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.40561, 1.18764, 4.70998)
+
+[node name="entity_50_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno40"]
+mesh = SubResource("ArrayMesh_n8m4f")
+
+[node name="entity_50_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno40"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno40/entity_50_geometry_col"]
+shape = SubResource("ConcavePolygonShape3D_k0svb")
+
+[node name="cadeira aluno41" type="Node3D" parent="NavigationRegion3D/TBLoader"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0453723, 1.18764, 4.68357)
+
+[node name="entity_51_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno41"]
+mesh = SubResource("ArrayMesh_404on")
+
+[node name="entity_51_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno41"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno41/entity_51_geometry_col"]
+shape = SubResource("ConcavePolygonShape3D_noga2")
+
+[node name="cadeira aluno42" type="Node3D" parent="NavigationRegion3D/TBLoader"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.54098, 1.18753, 4.75928)
+
+[node name="entity_52_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno42"]
+mesh = SubResource("ArrayMesh_dfyea")
+
+[node name="entity_52_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno42"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno42/entity_52_geometry_col"]
+shape = SubResource("ConcavePolygonShape3D_q7jbo")
+
+[node name="fileira7" type="Node3D" parent="NavigationRegion3D/TBLoader"]
+
+[node name="entity_53_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/fileira7"]
+mesh = SubResource("ArrayMesh_tqote")
+
+[node name="entity_53_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/fileira7"]
+
+[node name="cadeira aluno43" type="Node3D" parent="NavigationRegion3D/TBLoader"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.3807, 1.18764, -4.0089)
+
+[node name="entity_54_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno43"]
+mesh = SubResource("ArrayMesh_rbxes")
+
+[node name="entity_54_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno43"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno43/entity_54_geometry_col"]
+shape = SubResource("ConcavePolygonShape3D_3ot45")
+
+[node name="cadeira aluno44" type="Node3D" parent="NavigationRegion3D/TBLoader"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.96147, 1.205, -4.14925)
+
+[node name="entity_55_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno44"]
+mesh = SubResource("ArrayMesh_vtqfa")
+
+[node name="entity_55_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno44"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno44/entity_55_geometry_col"]
+shape = SubResource("ConcavePolygonShape3D_6dlja")
+
+[node name="cadeira aluno45" type="Node3D" parent="NavigationRegion3D/TBLoader"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.52635, 1.205, -4.14613)
+
+[node name="entity_56_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno45"]
+mesh = SubResource("ArrayMesh_8ww4s")
+
+[node name="entity_56_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno45"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno45/entity_56_geometry_col"]
+shape = SubResource("ConcavePolygonShape3D_xogpo")
+
+[node name="cadeira aluno46" type="Node3D" parent="NavigationRegion3D/TBLoader"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.01945, 1.205, -4.14925)
+
+[node name="entity_57_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno46"]
+mesh = SubResource("ArrayMesh_ldplq")
+
+[node name="entity_57_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno46"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno46/entity_57_geometry_col"]
+shape = SubResource("ConcavePolygonShape3D_6x41a")
+
+[node name="cadeira aluno47" type="Node3D" parent="NavigationRegion3D/TBLoader"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.48327, 1.18751, -4.11546)
+
+[node name="entity_58_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno47"]
+mesh = SubResource("ArrayMesh_v4uml")
+
+[node name="entity_58_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno47"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno47/entity_58_geometry_col"]
+shape = SubResource("ConcavePolygonShape3D_7trdv")
+
+[node name="cadeira aluno48" type="Node3D" parent="NavigationRegion3D/TBLoader"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0406639, 1.18721, -4.18181)
+
+[node name="entity_59_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno48"]
+mesh = SubResource("ArrayMesh_8gi30")
+
+[node name="entity_59_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno48"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno48/entity_59_geometry_col"]
+shape = SubResource("ConcavePolygonShape3D_y7tt4")
+
+[node name="cadeira aluno49" type="Node3D" parent="NavigationRegion3D/TBLoader"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.45259, 1.18656, -4.14938)
+
+[node name="entity_60_geometry" type="MeshInstance3D" parent="NavigationRegion3D/TBLoader/cadeira aluno49"]
+mesh = SubResource("ArrayMesh_7336d")
+
+[node name="entity_60_geometry_col" type="StaticBody3D" parent="NavigationRegion3D/TBLoader/cadeira aluno49"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/TBLoader/cadeira aluno49/entity_60_geometry_col"]
+shape = SubResource("ConcavePolygonShape3D_oqmrp")
 
 [connection signal="body_entered" from="Node3D/Node3D/cameraEntrada/cameraTrigger" to="Node3D/Node3D/cameraEntrada/cameraTrigger" method="enter"]
 [connection signal="body_exited" from="Node3D/Node3D/cameraEntrada/cameraTrigger" to="Node3D/Node3D/cameraEntrada/cameraTrigger" method="leave"]

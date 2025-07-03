@@ -1,4 +1,4 @@
-[gd_scene load_steps=757 format=4 uid="uid://8jft6yj11cv3"]
+[gd_scene load_steps=752 format=4 uid="uid://8jft6yj11cv3"]
 
 [ext_resource type="Texture2D" uid="uid://lym88tt4ghbp" path="res://textures/paredecomp.jpg" id="2_e23bp"]
 [ext_resource type="Texture2D" uid="uid://ck2bjq53e0m45" path="res://textures/asphalt_track_diff_comp.png" id="3_8b1ih"]
@@ -14,13 +14,10 @@
 [ext_resource type="Script" uid="uid://brxlx3bv071et" path="res://scripts/cameras/cameraTrigger.gd" id="12_vc80t"]
 [ext_resource type="PackedScene" uid="uid://catogyqckj5p1" path="res://entities/door.tscn" id="13_m6yth"]
 [ext_resource type="Script" uid="uid://bcipbw7e3i68m" path="res://scripts/auditorium_puzzle.gd" id="14_e23bp"]
-[ext_resource type="PackedScene" uid="uid://dyk0upt4i5lig" path="res://scenes/puzzles/black_bear.tscn" id="15_15lrw"]
 [ext_resource type="Script" uid="uid://cojqr0k8gahxa" path="res://scripts/BearPlaceholder.gd" id="15_gb2nd"]
-[ext_resource type="Texture2D" uid="uid://dwdrk8sj74eaj" path="res://textures/ursos/teddy_bear_preto.png" id="17_eedx2"]
 [ext_resource type="PackedScene" uid="uid://g1ahr62fkl2h" path="res://scenes/puzzles/chave_bandejao.tscn" id="19_15lrw"]
 [ext_resource type="Texture2D" uid="uid://detippdhdhxk" path="res://textures/olimpiadalogo.jpg" id="20_s04jf"]
 [ext_resource type="PackedScene" uid="uid://dwffagowe1pga" path="res://entities/textbox.tscn" id="22_dfjm3"]
-[ext_resource type="Shader" uid="uid://cu2wpiadetu0v" path="res://scenes/vsh.gdshader" id="23_dfjm3"]
 [ext_resource type="Script" uid="uid://dkhxy0b1vl5m" path="res://scripts/textTrigger.gd" id="23_vc80t"]
 [ext_resource type="AudioStream" uid="uid://bd6ya8l000wsi" path="res://audio/porta_abrindo.mp3" id="24_vc80t"]
 
@@ -5578,9 +5575,6 @@ albedo_texture = ExtResource("20_s04jf")
 
 [sub_resource type="QuadMesh" id="QuadMesh_vc80t"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3v7vy"]
-albedo_texture = ExtResource("17_eedx2")
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_vc80t"]
 size = Vector3(2.31787, 1, 0.681152)
 
@@ -5598,30 +5592,6 @@ size = Vector3(2.32617, 1, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_m6yth"]
 size = Vector3(4.92688, 1, 13.3467)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_vc80t"]
-shader = ExtResource("23_dfjm3")
-shader_parameter/overlay = true
-shader_parameter/scanlines_opacity = 0.153
-shader_parameter/scanlines_width = 0.08
-shader_parameter/grille_opacity = 0.0
-shader_parameter/resolution = Vector2(640, 320)
-shader_parameter/pixelate = false
-shader_parameter/roll = false
-shader_parameter/roll_speed = 8.0
-shader_parameter/roll_size = 15.0
-shader_parameter/roll_variation = 0.424
-shader_parameter/distort_intensity = 0.0
-shader_parameter/noise_opacity = 0.103
-shader_parameter/noise_speed = 5.0
-shader_parameter/static_noise_intensity = 0.03
-shader_parameter/aberration = 4.75e-08
-shader_parameter/brightness = 1.0
-shader_parameter/discolor = false
-shader_parameter/warp_amount = 0.0
-shader_parameter/clip_warp = true
-shader_parameter/vignette_intensity = 0.1
-shader_parameter/vignette_opacity = 0.0
 
 [node name="Node3D" type="Node3D"]
 
@@ -7950,10 +7920,6 @@ transform = Transform3D(-4.67712e-07, 0, 2, 0, 3.01, 0, -10.7, 0, -8.74228e-08, 
 material_override = SubResource("StandardMaterial3D_dfjm3")
 mesh = SubResource("QuadMesh_vc80t")
 
-[node name="black_bear" parent="." instance=ExtResource("15_15lrw")]
-transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, -3.85607, 0.58855, -5.415)
-material_override = SubResource("StandardMaterial3D_3v7vy")
-
 [node name="chave_bandejao" parent="." instance=ExtResource("19_15lrw")]
 transform = Transform3D(-2.18557e-09, -0.0120961, 0.0485148, 0, 0.0485148, 0.0120961, -0.05, 5.28737e-10, -2.12065e-09, -10.5588, 2.13068, -4.50811)
 visible = false
@@ -8042,21 +8008,6 @@ shape = SubResource("BoxShape3D_m6yth")
 
 [node name="PortaAbrindo" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("24_vc80t")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-material = SubResource("ShaderMaterial_vc80t")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -3.0
-offset_top = 1.0
-offset_right = 2.0
-offset_bottom = 2.0
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_use_anchors_ = true
 
 [connection signal="body_entered" from="Node3D/Node3D/cameraEntrada/cameraTrigger" to="Node3D/Node3D/cameraEntrada/cameraTrigger" method="enter"]
 [connection signal="body_exited" from="Node3D/Node3D/cameraEntrada/cameraTrigger" to="Node3D/Node3D/cameraEntrada/cameraTrigger" method="leave"]

@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-@export var speed = 13.0
+@export var speed = 3.0
 @export var sprint_multiplier = 2.0
 @export var pipe_damage = 10
 
@@ -17,7 +17,7 @@ extends CharacterBody3D
 @onready var facada = $Esfaquear
 @onready var inv_audio = $BloqueadoEffect
 @onready var pistola_tiro = $PistolEffect
-
+@onready var mortetela = $Morte
 
 var nearby_placeholder = null
 var current_input_dir = Vector2.ZERO
@@ -26,6 +26,7 @@ var active_world_movement_direction = Vector3.ZERO
 var is_sprinting: bool = false # <- to usando pra saber se o helsio ta correndo
 var _camera_was_just_switched = false
 var is_playing_walk_sound = false
+var can_move = true
 
 func move():
 	if velocity.length() > 0 and step_up_ray.is_colliding() and not other_ray.is_colliding():
@@ -133,7 +134,7 @@ func _physics_process(delta: float):
 			return
 	
 	if inventory.current_health <= 0:
-		animations.die()
+		die()
 		return
 	if get_tree().paused:
 		return
@@ -178,7 +179,7 @@ func _physics_process(delta: float):
 	is_sprinting = Input.is_action_pressed("sprint") and velocity.length() > 0
 	var current_speed = speed * sprint_multiplier if is_sprinting else speed
 	# Aplica o movimento
-	if active_world_movement_direction != Vector3.ZERO:
+	if active_world_movement_direction != Vector3.ZERO and can_move:
 		velocity = active_world_movement_direction * current_speed
 	else:
 		velocity = Vector3.ZERO
@@ -276,35 +277,48 @@ func weapon_handler():
 		$model/Armature/Skeleton3D/BoneAttachment3D/pipe.visible = true
 		if Input.is_action_just_pressed("hit") and animations.animationFinished("Slash"):
 			animations.changeWalkSlash()
-			speed = 0
+			can_move = false # <-- Mude aqui
 			hit_pipe()
 			await get_tree().create_timer(1.4).timeout
-			speed = 3
-	else: 
+			can_move = true # <-- E aqui
+	else:
 		$model/Armature/Skeleton3D/BoneAttachment3D/pipe.visible = false
-		
+
+	# Faça o mesmo para as outras armas (faca e revólver)
 	if inventory.get_equipped_item() == "faca":
 		$model/Armature/Skeleton3D/BoneAttachment3D/knife.visible = true
 		if Input.is_action_just_pressed("hit") and animations.animationFinished("Stab"):
 			animations.changeWalkStab()
-			speed = 0
+			can_move = false # <-- Mude aqui
 			hit_knife()
 			await get_tree().create_timer(2.06).timeout
-			speed = 3
-	else: 
+			can_move = true # <-- E aqui
+	else:
 		$model/Armature/Skeleton3D/BoneAttachment3D/knife.visible = false
-		
+
 	if inventory.get_equipped_item() == "revolver":
 		$model/Armature/Skeleton3D/BoneAttachment3D/revolver.visible = true
 		if Input.is_action_just_pressed("hit") and animations.animationFinished("Revolver"):
 			animations.changeWalkRevolver()
-			speed = 0
+			can_move = false # <-- Mude aqui
 			hit_revolver()
 			await get_tree().create_timer(1.2).timeout
-			speed = 3
-	else: 
+			can_move = true # <-- E aqui
+	else:
 		$model/Armature/Skeleton3D/BoneAttachment3D/revolver.visible = false
 
+func die():
+	can_move = false # Impede que o player deslize enquanto morre
+	animations.die()
+	
+	# Aguarda o tempo da animação antes de continuar
+	await get_tree().create_timer(2.633).timeout 
+	
+	# Mostra a tela de morte e pausa o jogo APÓS a animação
+	mortetela.visible = true
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	
+	mortetela.pause_game()
 
 func pewpewpew():
 	pistola_tiro.play()

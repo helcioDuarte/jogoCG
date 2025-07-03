@@ -3,7 +3,7 @@ extends CharacterBody3D
 # --- Configurações de Comportamento ---
 @export var velocidade: float = 13.0
 @export var dano_ataque: float = 15.0
-@export var vida: float = 120.0
+@export var vida: float = 150
 @export var velocidade_rot: float = 5.0
 
 # --- Estados da IA ---
@@ -111,7 +111,7 @@ func die():
 		corpo_colisao.set_deferred("disabled", true)
 
 func _on_video_finished():
-	get_tree().change_scene_to_file("res://victory.tscn")
+	get_tree().change_scene_to_file("res://scenes/victory.tscn")
 
 # ================================= UTILITÁRIOS =================================
 func _suavizar_rotacao_pela_velocidade(delta: float):
