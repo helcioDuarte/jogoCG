@@ -1,12 +1,11 @@
-# door.gd
 extends MeshInstance3D
 
 @export var destination = "res://scenes/sala.tscn"
-# @export var room = "overworld"
 @export var open = true
 @export var message: Array[String] = ["Trancado..."]
 @export var cenas_inimigos_para_spawnar: Array[PackedScene] = []
 @export var cenas_itens_para_spawnar: Array[PackedScene] = [] 
+@export var key = ""
 
 var player = null
 var canEnter = false
@@ -37,6 +36,10 @@ func _process(_delta: float) -> void:
 			TransitionManager.setRoom(name)
 			$"../PortaAbrindo".play()
 			TransitionManager.start(destination)
+
+		elif key == "chave_bandejao" and player.inventory.inventory.get_inventory_item_by_id("chave_bandejao") != {}:
+			TransitionManager.start("res://scenes/overworldBoss.tscn")
+
 		elif openBuffer > 0: # só tenta abrir a porta de novo após fechar o diálogo
 			openBuffer -= 1
 		else:

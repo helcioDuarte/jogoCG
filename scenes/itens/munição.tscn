@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=4 uid="uid://8xwvs1bwbxyy"]
+
+[ext_resource type="ArrayMesh" uid="uid://pfm7xfrk18cs" path="res://models/amno.res" id="1_6nu57"]
+[ext_resource type="Material" uid="uid://bpyo07plkdadg" path="res://textures/outline.tres" id="2_ppcdw"]
+[ext_resource type="PackedScene" uid="uid://b6l6p2b3hv2e1" path="res://entities/item_pickup_area.tscn" id="3_cuc3i"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_ktwn5"]
+_surfaces = [{
+"aabb": AABB(-0.341368, 0.0961325, -0.216368, 0.682735, 0.307735, 0.432735),
+"attribute_data": PackedByteArray("AACAPwAAgbeU/xM/df8DP5T/Ez8AAIG3AACAP3X/Az8AAIA/df8DP5T/Ez8AAIG3AACAPwAAgbeU/xM/df8DPwAAgLd1/wM/lP8TPwAAgbeU/xM/df8DPwAAgLcAAIG37P9rPwAAgT+U/xM/df8DP+z/az91/wM/lP8TPwAAgT+U/xM/df8DPwAAgLcC/n8/lP8TPwL+fz8AAIC3df8DP5T/Ez8C/n8/AACAt3X/Az8AAIC3Av5/P5T/Ez91/wM/"),
+"format": 34359742487,
+"index_count": 36,
+"index_data": PackedByteArray("AAACAAEAAAABAAMABAAGAAUABAAFAAcACAAKAAkACAAJAAsADAAOAA0ADAANAA8AEAASABEAEAARABMAFAAWABUAFAAVABcA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("uceuPrnHzj5yj12+uceuPhzhxD1yj10+uceuPrnHzj5yj10+uceuPhzhxD1yj12+uceuvhzhxD1yj10+uceuvrnHzj5yj12+uceuvrnHzj5yj10+uceuvhzhxD1yj12+uceuvrnHzj5yj10+uceuPrnHzj5yj12+uceuPrnHzj5yj10+uceuvrnHzj5yj12+uceuPhzhxD1yj12+uceuvhzhxD1yj10+uceuPhzhxD1yj10+uceuvhzhxD1yj12+uceuPhzhxD1yj10+uceuvrnHzj5yj10+uceuPrnHzj5yj10+uceuvhzhxD1yj10+uceuvrnHzj5yj12+uceuPhzhxD1yj12+uceuPrnHzj5yj12+uceuvhzhxD1yj12+/f8AgP7//v/9/wCA/v/+//3/AID+//7//f8AgP7//v8BAP9/AID/vwEA/38AgP+/AQD/fwCA/78BAP9/AID/v/9//f/+//+//3/9//7//7//f/3//v//v/9//f/+//+/AIABAP7//78AgAEA/v//vwCAAQD+//+/AIABAP7//7/6f/9/+v//P/p//3/6//8/+n//f/r//z/6f/9/+v//P/7/AAAAAP8//v8AAAAA/z/+/wAAAAD/P/7/AAAAAP8/")
+}]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yt5df"]
+size = Vector3(0.287048, 0.153259, 0.231201)
+
+[node name="Munição" type="MeshInstance3D"]
+mesh = ExtResource("1_6nu57")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("ArrayMesh_ktwn5")
+surface_material_override/0 = ExtResource("2_ppcdw")
+
+[node name="itemPickupArea" parent="." instance=ExtResource("3_cuc3i")]
+
+[node name="area" parent="itemPickupArea" index="0"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0.0202332, 0.265411, 0.0267334)
+shape = SubResource("BoxShape3D_yt5df")
+
+[editable path="itemPickupArea"]
