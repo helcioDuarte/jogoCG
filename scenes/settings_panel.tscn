@@ -1,0 +1,94 @@
+[gd_scene load_steps=12 format=3 uid="uid://b8qui8y0miiou"]
+
+[ext_resource type="FontFile" uid="uid://bndb7kvucav34" path="res://OldLondon.ttf" id="1_8fxpn"]
+[ext_resource type="Script" uid="uid://bjpbvwyf7ry4x" path="res://scripts/main_menu.gd" id="2_70r2r"]
+[ext_resource type="AudioStream" uid="uid://cmk82sughtkan" path="res://audio/accept_effect.mp3" id="3_is6do"]
+[ext_resource type="AudioStream" uid="uid://4pyr5ka837l5" path="res://audio/menu_ambient_looped.mp3" id="4_77s4b"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mxgkd"]
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g6gyw"]
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3dmrc"]
+bg_color = Color(0.827364, 0.464388, 0.644417, 1)
+draw_center = false
+border_width_left = 10
+border_color = Color(0.461145, 0.114532, 0.493064, 1)
+
+[sub_resource type="Gradient" id="Gradient_8fxpn"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.00649351, 0.0779221, 0.227273, 0.350649, 0.461039)
+colors = PackedColorArray(1, 1, 1, 1, 0.785714, 0.785714, 0.785714, 1, 0.480519, 0.480519, 0.480519, 1, 0.511937, 0.511937, 0.511937, 1, 0.446733, 0.446733, 0.446733, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_70r2r"]
+gradient = SubResource("Gradient_8fxpn")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_is6do"]
+texture = SubResource("GradientTexture1D_70r2r")
+modulate_color = Color(0.515399, 0.154786, 0.465019, 0.960784)
+
+[sub_resource type="Theme" id="Theme_emta1"]
+default_font = ExtResource("1_8fxpn")
+Button/colors/font_color = Color(0.916372, 0.912534, 2.31028e-06, 1)
+Button/font_sizes/font_size = 69
+Button/styles/hover = SubResource("StyleBoxFlat_mxgkd")
+Button/styles/hover_pressed = SubResource("StyleBoxFlat_g6gyw")
+Button/styles/normal = SubResource("StyleBoxFlat_3dmrc")
+Panel/styles/panel = SubResource("StyleBoxTexture_is6do")
+VBoxContainer/constants/separation = 69
+
+[node name="SettingsPanel" type="CanvasLayer"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_emta1")
+script = ExtResource("2_70r2r")
+
+[node name="Timer" type="Timer" parent="Control"]
+one_shot = true
+
+[node name="AcceptEffect" type="AudioStreamPlayer" parent="Control"]
+stream = ExtResource("3_is6do")
+
+[node name="MenuAmbientLooped" type="AudioStreamPlayer" parent="Control"]
+stream = ExtResource("4_77s4b")
+volume_db = 7.495
+autoplay = true
+parameters/looping = true
+
+[node name="Panel" type="Panel" parent="Control"]
+layout_mode = 0
+offset_right = 1151.0
+offset_bottom = 655.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Panel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -327.5
+offset_right = 1152.0
+offset_bottom = 320.5
+grow_vertical = 2
+
+[node name="load" type="Button" parent="Control/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Carregar"
+alignment = 0
+
+[node name="exit" type="Button" parent="Control/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Sair"
+alignment = 0
+
+[connection signal="pressed" from="Control/Panel/VBoxContainer/load" to="Control" method="_on_load_button_pressed"]
+[connection signal="pressed" from="Control/Panel/VBoxContainer/exit" to="Control" method="_on_exit_button_pressed"]

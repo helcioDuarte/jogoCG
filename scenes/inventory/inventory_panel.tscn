@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bdqsbhb6idhy5"]
+[gd_scene load_steps=7 format=3 uid="uid://bdqsbhb6idhy5"]
 
 [ext_resource type="Script" uid="uid://ddjioub76e5o5" path="res://scripts/inventory/inventory.gd" id="1_xyz12"]
 [ext_resource type="PackedScene" uid="uid://b5w5fucv7g2vj" path="res://scenes/inventory/item_icon.tscn" id="2_pqrst"]
 [ext_resource type="PackedScene" uid="uid://cvg8w6yqmxwvg" path="res://scenes/inventory/health_display.tscn" id="3_fha14"]
+[ext_resource type="AudioStream" uid="uid://cmk82sughtkan" path="res://audio/accept_effect.mp3" id="4_a8pde"]
+[ext_resource type="AudioStream" uid="uid://ds0xf752vmv7" path="res://audio/inv_button.mp3" id="5_2iec7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel_bg"]
 bg_color = Color(0.1, 0.1, 0.15, 0.85)
@@ -128,6 +130,12 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "Munição: 0/0"
 horizontal_alignment = 2
+
+[node name="AcceptEffect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_a8pde")
+
+[node name="InvButton" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_2iec7")
 
 [connection signal="pressed" from="InventoryPanel/MarginContainer/VBoxContainer/CarouselControls/PrevItemButton" to="." method="_on_prev_item_button_pressed"]
 [connection signal="pressed" from="InventoryPanel/MarginContainer/VBoxContainer/CarouselControls/NextItemButton" to="." method="_on_next_item_button_pressed"]

@@ -24,3 +24,14 @@ func _on_exit_button_pressed():
 
 func videoFinished() -> void:
 	TransitionManager.start("res://scenes/overworld.tscn")
+	
+	
+func pause_game():
+	get_tree().paused = true
+	if not is_visible():
+		$background.texture = ImageTexture.create_from_image(get_viewport().get_texture().get_image())
+	visible = true
+
+func unpause_game():
+	get_tree().paused = false
+	visible = false

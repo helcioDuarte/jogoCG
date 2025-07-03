@@ -14,6 +14,9 @@ extends CharacterBody3D
 @onready var boneco_correndo = $BonecoCorrendo
 @onready var cano_audio = $CanoBatendo
 @onready var errar_audio = $"WeaponSwingInAir,Whoosh3(soundFx)"
+@onready var facada = $Esfaquear
+@onready var inv_audio = $BloqueadoEffect
+@onready var pistola_tiro = $PistolEffect
 
 
 var nearby_placeholder = null
@@ -58,11 +61,16 @@ func hit_knife():
 		var target_position_flat = enemy_to_target.global_transform.origin
 		target_position_flat.y = global_position.y
 		look_at(target_position_flat, Vector3.UP)
-
+  
 		# Verifica se o inimigo está dentro do alcance de ataque
 		if global_position.distance_to(enemy_to_target.global_transform.origin) <= attack_range:
 			if enemy_to_target.has_method("take_damage"):
+				await get_tree().create_timer(0.9).timeout
+				facada.play()
 				enemy_to_target.call("take_damage", 15)
+	else:
+		await get_tree().create_timer(0.85).timeout
+		errar_audio.play()
 				
 func hit_revolver():
 	var enemy_to_target = $Area3D.get_enemy() # Pega o inimigo mais próximo
@@ -77,6 +85,8 @@ func hit_revolver():
 		# Verifica se o inimigo está dentro do alcance de ataque
 		if global_position.distance_to(enemy_to_target.global_transform.origin) <= attack_range:
 			if enemy_to_target.has_method("take_damage"):
+				await get_tree().create_timer(0.24).timeout
+				pistola_tiro.play()
 				enemy_to_target.call("take_damage", 30)
 
 func _ready():
@@ -92,6 +102,7 @@ func handle_inventory_input():
 		if !is_instance_valid(inventory):
 			return
 		
+		inv_audio.play()
 		inventory.pause()
 		inventory.visible = not inventory.visible
 		get_tree().paused = inventory.visible
@@ -285,10 +296,10 @@ func weapon_handler():
 	if inventory.get_equipped_item() == "revolver":
 		$model/Armature/Skeleton3D/BoneAttachment3D/revolver.visible = true
 		if Input.is_action_just_pressed("hit") and animations.animationFinished("Revolver"):
-			animations.changeWalkSlash()
+			animations.changeWalkRevolver()
 			speed = 0
 			hit_pipe()
-			await get_tree().create_timer(1.4).timeout
+			await get_tree().create_timer(1.2).timeout
 			speed = 3
 	else: 
 		$model/Armature/Skeleton3D/BoneAttachment3D/revolver.visible = false
