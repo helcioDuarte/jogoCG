@@ -1656,5 +1656,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.15473, 0.757208, 1.79214)
 [node name="Marker3D" type="Marker3D" parent="InimigosSpawn"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.960179, 0.767411, 3.72244)
 
+[node name="ItensSpawn" type="Node3D" parent="."]
+
+[node name="Marker3D" type="Marker3D" parent="ItensSpawn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.65087, 1.72236, 0.770955)
+
+[node name="Marker3D2" type="Marker3D" parent="ItensSpawn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.15473, 0.757208, 1.79214)
+
+[node name="InimigosSpawn" type="Node3D" parent="."]
+
+[node name="Marker3D" type="Marker3D" parent="InimigosSpawn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.960179, 0.767411, 3.72244)
+
 [connection signal="body_entered" from="Node3D/Node3D/cameraEntrada/cameraTrigger" to="Node3D/Node3D/cameraEntrada/cameraTrigger" method="enter"]
 [connection signal="body_exited" from="Node3D/Node3D/cameraEntrada/cameraTrigger" to="Node3D/Node3D/cameraEntrada/cameraTrigger" method="leave"]
