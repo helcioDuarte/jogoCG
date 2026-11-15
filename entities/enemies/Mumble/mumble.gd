@@ -12,8 +12,8 @@ extends CharacterBody3D
 @export var velocidade: float = 2.5
 @export var velocidade_patrulha: float = 2.5
 @export var tempo_para_voltar: float = 5.0
-@export var dano_ataque: float = 0
-@export var vida: float = 10
+@export var dano_ataque: float = 5.0
+@export var vida: float = 30.0
 @export var velocidade_rot: float = 5.0
 
 # Estados de IA
@@ -51,8 +51,10 @@ func _ready():
 	_set_anim_state(false, true, false, false)
 	
 
-	_criar_area_visao_cone()
-	_criar_area_visao_esferica()
+	if get_node_or_null("AreaDeVisao") == null:
+		_criar_area_visao_cone()
+	if get_node_or_null("AreaDeVisaoRedonda") == null:
+		_criar_area_visao_esferica()
 	
 
 	todas_as_areas_de_visao.clear()
@@ -64,6 +66,10 @@ func _ready():
 			printerr("Erro: ConeVisual não encontrado dentro da AreaDeVisao.")
 		else:
 			todas_as_areas_de_visao.append(area_visao_cone)
+		if not area_visao_cone.body_entered.is_connected(_on_body_entered):
+			area_visao_cone.body_entered.connect(_on_body_entered)
+		if not area_visao_cone.body_exited.is_connected(_on_body_exited):
+			area_visao_cone.body_exited.connect(_on_body_exited)
 	else:
 		printerr("Erro: AreaDeVisao não encontrada.")
 
@@ -74,6 +80,10 @@ func _ready():
 			printerr("Erro: VisualRedondo não encontrado dentro da AreaDeVisaoRedibda.")
 		else:
 			todas_as_areas_de_visao.append(area_visao_redonda)
+		if not area_visao_redonda.body_entered.is_connected(_on_body_entered):
+			area_visao_redonda.body_entered.connect(_on_body_entered)
+		if not area_visao_redonda.body_exited.is_connected(_on_body_exited):
+			area_visao_redonda.body_exited.connect(_on_body_exited)
 	else:
 		printerr("Erro: AreaDeVisaoRedonda não encontrada.")
 
@@ -140,8 +150,11 @@ func _perseguir_jogador(delta: float):
 		move_and_slide()
 
 		if tempo_desde_perda > tempo_para_voltar:
-			estado = Estado.VOLTANDO
-			agente.target_position = patrulha_alvo.global_position
+			if is_instance_valid(patrulha_alvo):
+				estado = Estado.VOLTANDO
+				agente.target_position = patrulha_alvo.global_position
+			else:
+				estado = Estado.PATRULHANDO
 		return
 
 	tempo_desde_perda = 0.0
@@ -158,6 +171,10 @@ func _perseguir_jogador(delta: float):
 func _retornar_para_path(delta: float):
 	_set_anim_state(false, true, false, false)
 	
+	if not is_instance_valid(patrulha_alvo):
+		estado = Estado.PATRULHANDO
+		return
+
 	if agente.is_navigation_finished():
 		estado = Estado.PATRULHANDO
 		return
@@ -201,6 +218,8 @@ func _ponto_de_impacto_do_ataque():
 		
 # ========== DETECÇÃO ==========
 func _on_body_entered(body: Node3D):
+	if estado == Estado.MORTO:
+		return
 	if body.is_in_group("player"):
 		estado = Estado.PERSEGUINDO
 		jogador = body
@@ -214,19 +233,29 @@ func _on_body_exited(body: Node3D):
 
 
 func _on_body_entered_atack(body: Node3D):
+	if estado == Estado.MORTO:
+		return
 	if body.is_in_group("player"):
 		estado = Estado.ATACANDO
 
 func _on_body_exited_atack(body: Node3D):
-	if body.is_in_group("player"):
+	if estado == Estado.MORTO:
+		return
+	if body.is_in_group("player") or body == jogador:
+		_pode_causar_dano_neste_ciclo_anim = false
+		var jogador_ainda_em_area_de_visao_geral = false
 		if is_instance_valid(jogador):
-			var jogador_ainda_em_area_de_visao_geral = false
 			for area_node in todas_as_areas_de_visao:
 				if is_instance_valid(area_node) and area_node.get_overlapping_bodies().has(jogador):
 					jogador_ainda_em_area_de_visao_geral = true
 					break
-			if jogador_ainda_em_area_de_visao_geral:
-				estado = Estado.PERSEGUINDO
+		if jogador_ainda_em_area_de_visao_geral:
+			estado = Estado.PERSEGUINDO
+			_set_anim_state(false, true, false, false)
+		else:
+			estado = Estado.PERSEGUINDO
+			tempo_desde_perda = 0.0
+			_set_anim_state(false, true, false, false)
 
 
 func _verificar_visibilidade_jogador_apos_saida():

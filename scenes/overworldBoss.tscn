@@ -19591,43 +19591,43 @@ open = false
 
 [node name="Door18closed2" parent="doors" instance=ExtResource("19_0hces")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1.25, 0, -1, 0, -4.37114e-08, 110.629, 9.21308, -11.4546)
-destination = "res://scenes/sala.dtscn"
+destination = "res://scenes/sala.tscn"
 open = false
 
 [node name="Door18closed3" parent="doors" instance=ExtResource("19_0hces")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1.25, 0, -1, 0, -4.37114e-08, 110.629, 9.21308, -14.3916)
-destination = "res://scenes/sala.dtscn"
+destination = "res://scenes/sala.tscn"
 open = false
 
 [node name="Door18closed4" parent="doors" instance=ExtResource("19_0hces")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1.25, 0, -1, 0, -4.37114e-08, 114.602, 9.21308, -14.3916)
-destination = "res://scenes/sala.dtscn"
+destination = "res://scenes/sala.tscn"
 open = false
 
 [node name="Door18closed5" parent="doors" instance=ExtResource("19_0hces")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1.25, 0, -1, 0, -4.37114e-08, 114.602, 9.21308, -11.37)
-destination = "res://scenes/sala.dtscn"
+destination = "res://scenes/sala.tscn"
 open = false
 
 [node name="Door18closed6" parent="doors" instance=ExtResource("19_0hces")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1.25, 0, -1, 0, -4.37114e-08, 124.129, 9.21308, -11.7702)
-destination = "res://scenes/sala.dtscn"
+destination = "res://scenes/sala.tscn"
 open = false
 
 [node name="Door18closed8" parent="doors" instance=ExtResource("19_0hces")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1.25, 0, -1, 0, -4.37114e-08, 118.102, 9.21308, -11.4579)
-destination = "res://scenes/sala.dtscn"
+destination = "res://scenes/sala.tscn"
 open = false
 
 [node name="Door18closed7" parent="doors" instance=ExtResource("19_0hces")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1.25, 0, -1, 0, -4.37114e-08, 124.129, 9.21308, -14.5876)
-destination = "res://scenes/sala.dtscn"
+destination = "res://scenes/sala.tscn"
 open = false
 
 [node name="Door59" parent="doors" instance=ExtResource("19_0hces")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1.25, 0, -1, 0, -4.37114e-08, 118.13, 9.21308, -14.3569)
 material_override = SubResource("StandardMaterial3D_almj6")
-destination = "res://scenes/laboratorio.dtscn"
+destination = "res://scenes/laboratorio.tscn"
 open = false
 
 [node name="Door32closed" parent="doors" instance=ExtResource("19_0hces")]

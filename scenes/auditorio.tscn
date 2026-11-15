@@ -7873,7 +7873,7 @@ mesh = SubResource("ArrayMesh_prlpj")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/parabola99/entity_209_geometry_col"]
 shape = SubResource("ConcavePolygonShape3D_cf3uc")
 
-[node name="player" parent="." instance=ExtResource("10_rwu5s")]
+[node name="player" parent="." groups=["player"] instance=ExtResource("10_rwu5s")]
 transform = Transform3D(0.999837, 0.0180632, 0, -0.0180632, 0.999837, 0, 0, 0, 1, 4.41237, 2.00746, -2.30924)
 
 [node name="sol debug" type="DirectionalLight3D" parent="."]

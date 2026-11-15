@@ -38,7 +38,7 @@ const ITEM_DATA = {
 	"green_herb_plus": {"name": "Erva Verde+", "id": "green_herb_plus", "description": "Duas ervas verdes combinadas. Cura moderada.", "type": "consumable", "icon_path": "res://textures/icones/GreenHerb+.JPG", "quantity": 1, "heal_amount": 50, "combinable": true},
 	"green_herb_plus_plus": {"name": "Erva Verde++", "id": "green_herb_plus_plus", "description": "Uma potente mistura de ervas verdes. Cura alta.", "type": "consumable", "icon_path": "res://textures/icones/GreenHerb++.JPG", "quantity": 1, "heal_amount": 100, "combinable": false},
 	"herb_mix": {"name": "Mistura de Ervas", "id": "herb_mix", "description": "Ervas verde e vermelha combinadas. Cura significativa.", "type": "consumable", "icon_path": "res://textures/icones/MixHerb.JPG", "quantity": 1, "heal_amount": 80, "combinable": false},
-	"revolver": {"name": "Revólver", "id": "revolver", "description": "Um revólver calibre .38.", "type": "weapon", "damage": 35, "icon_path": "res://textures/icones/Revolver.JPG", "combinable": true, "current_ammo": 0, "max_ammo": 6},
+	"revolver": {"name": "Revólver", "id": "revolver", "description": "Um revólver calibre .38.", "type": "weapon", "damage": 35, "icon_path": "res://textures/icones/Revolver.JPG", "combinable": true, "current_ammo": 6, "max_ammo": 6},
 	"revolver_ammo": {"name": "Bala .38", "id": "revolver_ammo", "description": "Uma bala calibre .38.", "type": "ingredient", "icon_path": "res://textures/icones/Municao.JPG", "quantity": 1, "combinable": true},
 	"red_bear": {"name": "Urso Vermelho", "id": "red_bear", "description": "Um velho urso de pelúcia vermelho. Onde será que eu uso isso?", "type": "puzzle", "icon_path": "res://textures/icones/Urso vermelho.JPG", "quantity": 1},
 	"blue_bear": {"name": "Urso Azul", "id": "blue_bear", "description": "Um velho urso de pelúcia azul. Onde será que eu uso isso?", "type": "puzzle", "icon_path": "res://textures/icones/Urso azul.JPG", "quantity": 1},
@@ -51,12 +51,10 @@ const ITEM_DATA = {
 func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	update_health_indicator()
-	# debug itens
 	add_item_to_inventory("green_herb", 4)
 	add_item_to_inventory("red_herb", 2)
 	add_item_to_inventory("medkit", 1)
 	add_item_to_inventory("revolver_ammo", 8)
-
 
 	if not inventory.is_empty():
 		current_item_index = 0
@@ -84,7 +82,7 @@ func _input(event):
 		if event.is_action_pressed("interact"):
 			_on_use_equip_button_pressed()
 			get_viewport().set_input_as_handled()
-		if event.is_action_pressed("something_else"):
+		if event.is_action_pressed("combine"):
 			_on_combine_button_pressed()
 			get_viewport().set_input_as_handled()
 		
@@ -135,39 +133,44 @@ func add_item_to_inventory(item_id, quantity_to_add = 1):
 	var item_tpl_from_const = ITEM_DATA[item_id]
 	
 	if existing_idx != -1:
-		inventory[existing_idx].quantity += quantity_to_add
+		if inventory[existing_idx].has("quantity"):
+			inventory[existing_idx]["quantity"] += quantity_to_add
 	else:
 		var new_item_instance = item_tpl_from_const.duplicate(true)
-		new_item_instance.quantity = quantity_to_add
+		if item_tpl_from_const.has("quantity"):
+			new_item_instance["quantity"] = quantity_to_add
 		inventory.append(new_item_instance)
 		if current_item_index == -1 and inventory.size() == 1:
 			current_item_index = 0
 	
-	if is_visible():
-		update_ui_elements()
+	update_ui_elements()
 
 
 func remove_item_from_inventory(item_id, quantity_to_remove = 1):
 	for i in range(inventory.size() - 1, -1, -1):
 		var item = inventory[i]
 		if item.id == item_id:
+			var removed_entry := false
 			if item.has("quantity"):
-				item.quantity -= quantity_to_remove
-				if item.quantity <= 0:
+				item["quantity"] -= quantity_to_remove
+				if item["quantity"] <= 0:
 					if equipped_item_id == item_id:
 						unequip_current_item()
 					inventory.remove_at(i)
+					removed_entry = true
 			else:
 				if equipped_item_id == item_id:
 					unequip_current_item()
 				inventory.remove_at(i)
+				removed_entry = true
 
 			if inventory.is_empty():
 				current_item_index = -1
-			elif current_item_index >= i and current_item_index > 0 and item.quantity <= 0:
-				current_item_index = max(0, current_item_index -1)
-			elif current_item_index >= inventory.size():
-				current_item_index = inventory.size() -1
+			elif removed_entry:
+				if current_item_index > i:
+					current_item_index -= 1
+				elif current_item_index >= inventory.size():
+					current_item_index = inventory.size() - 1
 			
 			if is_visible():
 				update_ui_elements()
@@ -198,6 +201,7 @@ func update_inventory_display():
 	
 	if inventory.is_empty():
 		item_description_label.text = "Inventário Vazio"
+		%ammo.text = ""
 		current_item_index = -1
 		return
 	if current_item_index < 0 || current_item_index >= inventory.size():
@@ -490,23 +494,26 @@ func save_persistent_state() -> Dictionary:
 		"current_health": current_health,
 		"current_item_index": current_item_index,
 		"equipped_item_id": equipped_item_id,
-		"inventory": inventory
+		"inventory": inventory.duplicate(true)
 	}
 
 func load_persistent_state(data: Dictionary):
 	if data.has("current_health"):
-		current_health = data["current_health"]
+		current_health = float(data["current_health"])
 	if data.has("current_item_index"):
-		current_item_index = data["current_item_index"]
+		current_item_index = int(data["current_item_index"])
 	if data.has("equipped_item_id"):
 		equipped_item_id = data["equipped_item_id"]
 	if data.has("inventory"):
 		var loaded_inv = data["inventory"]
 		if loaded_inv is Array:
 			inventory.clear()
-			for item in loaded_inv:
-				#print(item)
-				if item.has("quantity"):
-					item["quantity"] = int(item["quantity"])
-				inventory.append(item)
+			for raw_item in loaded_inv:
+				if raw_item is Dictionary:
+					var item = raw_item.duplicate(true)
+					for int_key in ["quantity", "current_ammo", "max_ammo", "damage", "heal_amount"]:
+						if item.has(int_key):
+							item[int_key] = int(item[int_key])
+					inventory.append(item)
+	update_health_indicator()
 	update_ui_elements()

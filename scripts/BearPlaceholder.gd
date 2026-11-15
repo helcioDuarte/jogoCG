@@ -23,29 +23,49 @@ func hide_bear_and_disable():
 	# Assumindo que sua CollisionShape3D é uma filha direta desta Area3D.
 	var collision_shape = find_child("CollisionShape3D")
 	if is_instance_valid(collision_shape):
-		collision_shape.disabled = true
+		collision_shape.set_deferred("disabled", true)
+	set_deferred("monitoring", false)
+	if is_instance_valid(player_ref) and player_ref.has_method("unregister_placeholder"):
+		player_ref.unregister_placeholder(self)
+		player_ref = null
 
 func _ready():
 	pass
 
 func _on_body_entered(body):
-	if body.name == "player":
+	if body.is_in_group("player") or body.name == "player":
 		player_ref = body
-		body.register_placeholder(self)
+		if body.has_method("register_placeholder"):
+			body.register_placeholder(self)
 
 func _on_body_exited(body):
-	if body.name == "player":
+	if body.is_in_group("player") or body.name == "player":
 		player_ref = null
-		body.unregister_placeholder(self)
+		if body.has_method("unregister_placeholder"):
+			body.unregister_placeholder(self)
+
+func _instantiate_bear_visual(bear_id: String):
+	if BEAR_SCENES.has(bear_id):
+		var bear_instance = BEAR_SCENES[bear_id].instantiate()
+		var pickup = bear_instance.get_node_or_null("itemPickupArea")
+		if pickup:
+			bear_instance.remove_child(pickup)
+			pickup.queue_free()
+		bear_spawn_point.add_child(bear_instance)
+
+func clear_bear_visual():
+	current_bear_id = ""
+	if is_instance_valid(bear_spawn_point):
+		for child in bear_spawn_point.get_children():
+			bear_spawn_point.remove_child(child)
+			child.queue_free()
 
 func place_bear(bear_id: String):
 	if current_bear_id != "":
 		return
 
 	current_bear_id = bear_id
-	if BEAR_SCENES.has(bear_id):
-		var bear_instance = BEAR_SCENES[bear_id].instantiate()
-		bear_spawn_point.add_child(bear_instance)
+	_instantiate_bear_visual(bear_id)
 	
 	if puzzle_manager_node:
 		puzzle_manager_node.update_puzzle_state(self, current_bear_id)
@@ -70,6 +90,4 @@ func set_initial_bear(bear_id: String):
 		return
 
 	current_bear_id = bear_id
-	if BEAR_SCENES.has(bear_id):
-		var bear_instance = BEAR_SCENES[bear_id].instantiate()
-		bear_spawn_point.add_child(bear_instance)
+	_instantiate_bear_visual(bear_id)

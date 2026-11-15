@@ -37,12 +37,14 @@ func spawn_itens():
 		if not cena_item or not is_instance_valid(ponto_spawn): continue
 			
 		var item_instanciado = cena_item.instantiate()
-		add_child(item_instanciado)
+		add_child(item_instanciado, true)
 		item_instanciado.global_position = ponto_spawn.global_position
 
 # Função para spawnar inimigos (agora no plural e reescrita)
 func spawn_inimigos():
 	# Verificação essencial
+	if not is_instance_valid(no_jogador):
+		no_jogador = get_tree().get_first_node_in_group("player") as CharacterBody3D
 	if not is_instance_valid(no_jogador):
 		printerr("ERRO: 'no_jogador' não está configurado no Inspetor do controladorDaSala!")
 		return

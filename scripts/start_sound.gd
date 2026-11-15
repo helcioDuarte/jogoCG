@@ -1,12 +1,5 @@
 extends Control
 
-func _ready() -> void:
-	pass
-
-func _process(delta: float) -> void:
-	pass
-	
-
 func _on_load_pressed() -> void:
 	$VBoxContainer/Click.play()
 	

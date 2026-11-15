@@ -19,8 +19,12 @@ func _on_save_button_pressed():
 # Conecte o sinal 'pressed' do seu botão de Carregar a esta função.
 func _on_load_button_pressed():
 	$AcceptEffect.play()
-	TransitionManager.load_game()
-	TransitionManager.start("res://scenes/banheiro.tscn")
+	if TransitionManager.load_game():
+		TransitionManager.start(TransitionManager.get_saved_scene())
+	else:
+		confirmation_label.text = "Nenhum save encontrado!"
+		confirmation_label.show()
+		confirmation_timer.start()
 	# O menu será fechado automaticamente quando a cena for trocada.
 
 # Conecte o sinal 'timeout' do seu Timer a esta função.

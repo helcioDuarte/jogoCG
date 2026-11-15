@@ -8,6 +8,7 @@ var current_state: Dictionary = {}
 var is_solved = false
 
 func _ready():
+	add_to_group("savable")
 	for p_path in placeholders:
 		var placeholder_node = get_node(p_path)
 		if is_instance_valid(placeholder_node):
@@ -66,3 +67,41 @@ func finalize_puzzle_pieces():
 		var placeholder_node = get_node(p_path)
 		if is_instance_valid(placeholder_node):
 			placeholder_node.hide_bear_and_disable()
+
+func save_state() -> Dictionary:
+	var bears: Dictionary = {}
+	for p_path in placeholders:
+		var placeholder_node = get_node_or_null(p_path)
+		if is_instance_valid(placeholder_node):
+			bears[str(p_path)] = placeholder_node.current_bear_id
+	return {
+		"is_solved": is_solved,
+		"bears": bears
+	}
+
+func load_state(data: Dictionary):
+	is_solved = data.get("is_solved", false)
+	var saved_bears = data.get("bears", {})
+	current_state.clear()
+	for p_path in placeholders:
+		var placeholder_node = get_node_or_null(p_path)
+		if is_instance_valid(placeholder_node):
+			placeholder_node.clear_bear_visual()
+			var bear_id = ""
+			if saved_bears is Dictionary and saved_bears.has(str(p_path)):
+				bear_id = str(saved_bears[str(p_path)])
+			if not bear_id.is_empty():
+				placeholder_node.set_initial_bear(bear_id)
+			current_state[placeholder_node] = bear_id
+
+	if is_solved:
+		var text_area = get_node_or_null("../caixas de texto/textBox/Area3D/area")
+		if text_area:
+			text_area.position.y = 1.518
+		if key_item_path:
+			var key_node = get_node_or_null(key_item_path)
+			if is_instance_valid(key_node):
+				var pickup_area = key_node.get_node_or_null("itemPickupArea")
+				if pickup_area == null or not pickup_area.get("dead"):
+					key_node.visible = true
+		finalize_puzzle_pieces()

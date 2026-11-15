@@ -525,7 +525,7 @@ mesh = SubResource("ArrayMesh_y7wub")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TBLoader/torneira dos viados5/entity_12_geometry_col"]
 shape = SubResource("ConcavePolygonShape3D_el5f6")
 
-[node name="player" parent="." instance=ExtResource("10_pv52q")]
+[node name="player" parent="." groups=["player"] instance=ExtResource("10_pv52q")]
 transform = Transform3D(-4.37048e-08, -7.62869e-10, 1, -0.0174524, 0.999848, 0, -0.999848, -0.0174524, -4.37114e-08, 6.43763, 1.7672, -3.38412)
 
 [node name="Node3D" type="Node3D" parent="."]

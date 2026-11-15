@@ -1,10 +1,11 @@
 extends CharacterBody3D
 
 # --- Configurações de Comportamento ---
-@export var velocidade: float = 13.0
+@export var velocidade: float = 4.32
 @export var dano_ataque: float = 15.0
 @export var vida: float = 150
 @export var velocidade_rot: float = 5.0
+@export var ataque_cooldown: float = 1.67
 
 # --- Estados da IA ---
 enum Estado { PERSEGUINDO, ATACANDO, MORTO }
@@ -12,6 +13,7 @@ var estado: Estado = Estado.PERSEGUINDO
 
 # --- Referências ---
 var jogador: Node3D
+var _tempo_desde_ultimo_ataque: float = 0.0
 
 # --- Nós da Cena ---
 @onready var agente: NavigationAgent3D = $NavigationAgent3D
@@ -22,6 +24,8 @@ var jogador: Node3D
 func _ready():
 	print("Inimigo ", self.name, " está iniciando.")
 	jogador = get_tree().get_first_node_in_group("player")
+	if not is_instance_valid(jogador) and get_tree().current_scene:
+		jogador = get_tree().current_scene.find_child("player", true, false)
 	if not is_instance_valid(jogador):
 		print("ERRO: Inimigo '%s' não encontrou o jogador! Desativando." % self.name)
 		set_physics_process(false)
@@ -29,12 +33,15 @@ func _ready():
 	print("Inimigo '%s' encontrou o jogador: %s" % [self.name, jogador.name])
 	ataque_area.body_entered.connect(_on_body_entered_atack)
 	ataque_area.body_exited.connect(_on_body_exited_atack)
-	$VideoStreamPlayer.finished.connect(_on_video_finished)
+	if not $VideoStreamPlayer.finished.is_connected(_on_video_finished):
+		$VideoStreamPlayer.finished.connect(_on_video_finished)
 
 # ================================= CICLO DE JOGO =================================
 func _physics_process(delta: float):
 	if estado == Estado.MORTO:
 		return
+
+	_tempo_desde_ultimo_ataque += delta
 
 	match estado:
 		Estado.PERSEGUINDO:
@@ -69,13 +76,30 @@ func _atacar_jogador(delta: float):
 	velocity = Vector3.ZERO
 	move_and_slide()
 
+	if is_instance_valid(jogador):
+		var direcao_jogador = (jogador.global_position - global_position) * Vector3(1, 0, 1)
+		if direcao_jogador.length_squared() > 0.0001:
+			direcao_jogador = direcao_jogador.normalized()
+			var angulo_alvo_y = atan2(direcao_jogador.x, direcao_jogador.z)
+			rotation.y = lerp_angle(rotation.y, angulo_alvo_y, velocidade_rot * delta)
+
+		if estado == Estado.ATACANDO and ataque_area.get_overlapping_bodies().has(jogador) and _tempo_desde_ultimo_ataque >= ataque_cooldown:
+			_tempo_desde_ultimo_ataque = 0.0
+			var painel_inventario = jogador.get_node_or_null("InventoryPanel")
+			if painel_inventario and painel_inventario.has_method("take_damage"):
+				painel_inventario.take_damage(dano_ataque)
+
 
 # ================================= DETECÇÃO DE ATAQUE =================================
 func _on_body_entered_atack(body: Node3D):
+	if estado == Estado.MORTO:
+		return
 	if body == jogador:
 		estado = Estado.ATACANDO
 
 func _on_body_exited_atack(body: Node3D):
+	if estado == Estado.MORTO:
+		return
 	if body == jogador:
 		estado = Estado.PERSEGUINDO
 
@@ -90,9 +114,9 @@ func take_damage(amount: int):
 		die()
 
 func die():
-	print("INIMIGO '%s' ESTÁ MORRENDO!" % self.name)
 	if estado == Estado.MORTO:
 		return
+	print("INIMIGO '%s' ESTÁ MORRENDO!" % self.name)
 
 	estado = Estado.MORTO
 	$VideoStreamPlayer.play()
@@ -111,7 +135,8 @@ func die():
 		corpo_colisao.set_deferred("disabled", true)
 
 func _on_video_finished():
-	get_tree().change_scene_to_file("res://scenes/victory.tscn")
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	TransitionManager.start("res://scenes/victory.tscn")
 
 # ================================= UTILITÁRIOS =================================
 func _suavizar_rotacao_pela_velocidade(delta: float):

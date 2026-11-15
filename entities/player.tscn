@@ -7351,7 +7351,7 @@ shader_parameter/clip_warp = true
 shader_parameter/vignette_intensity = 0.1
 shader_parameter/vignette_opacity = 0.0
 
-[node name="player" type="CharacterBody3D" groups=["savable"]]
+[node name="player" type="CharacterBody3D" groups=["savable", "player"]]
 floor_snap_length = 0.5
 script = ExtResource("1_merdl")
 
@@ -7890,6 +7890,31 @@ offset_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
+
+[node name="Morte" type="CanvasLayer" parent="."]
+process_mode = 3
+layer = 10
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="Morte"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.1, 0, 0, 0.85)
+
+[node name="Label" type="Label" parent="Morte"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.85, 0.1, 0.1, 1)
+theme_override_font_sizes/font_size = 64
+text = "VOCÊ MORREU"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="body_entered" from="go_up_trigger" to="go_up_trigger" method="enter"]
 [connection signal="body_exited" from="go_up_trigger" to="go_up_trigger" method="leave"]

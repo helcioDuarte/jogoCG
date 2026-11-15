@@ -7,6 +7,7 @@ func _ready():
 
 # Conecte o sinal 'pressed' do seu botão de Salvar a esta função.
 func _on_new_game_button_pressed():
+	TransitionManager.reset_state()
 	$AcceptEffect.play()
 	$VBoxContainer.visible = false
 	$VideoStreamPlayer.visible = true
@@ -14,8 +15,8 @@ func _on_new_game_button_pressed():
 # Conecte o sinal 'pressed' do seu botão de Carregar a esta função.
 func _on_load_button_pressed():
 	$AcceptEffect.play()
-	TransitionManager.load_game()
-	TransitionManager.start("res://scenes/banheiro.tscn")
+	if TransitionManager.load_game():
+		TransitionManager.start(TransitionManager.get_saved_scene())
 	# O menu será fechado automaticamente quando a cena for trocada.
 
 func _on_exit_button_pressed():
